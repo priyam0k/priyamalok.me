@@ -117,36 +117,40 @@
     </div>
 
     <script>
-        // This script runs after the DOM is loaded
-        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-        const themeToggleButton = document.getElementById('theme-toggle');
+        // We wrap our code in a DOMContentLoaded event listener.
+        // This ensures the script only runs after the entire HTML page is loaded,
+        // which prevents issues with Cloudflare's optimizations.
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+            const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+            const themeToggleButton = document.getElementById('theme-toggle');
 
-        // Function to set the correct state for the theme toggle icon
-        function setIconState() {
-             if (document.documentElement.classList.contains('dark')) {
-                themeToggleLightIcon.classList.remove('hidden');
-                themeToggleDarkIcon.classList.add('hidden');
-            } else {
-                themeToggleDarkIcon.classList.remove('hidden');
-                themeToggleLightIcon.classList.add('hidden');
+            // Function to set the correct state for the theme toggle icon
+            function setIconState() {
+                if (document.documentElement.classList.contains('dark')) {
+                    themeToggleLightIcon.classList.remove('hidden');
+                    themeToggleDarkIcon.classList.add('hidden');
+                } else {
+                    themeToggleDarkIcon.classList.remove('hidden');
+                    themeToggleLightIcon.classList.add('hidden');
+                }
             }
-        }
-        
-        // Set the initial state of the icon when the page loads
-        setIconState();
-
-        // Add a click event listener to the theme toggle button
-        themeToggleButton.addEventListener('click', function() {
-            // Toggle the 'dark' class on the root <html> element
-            document.documentElement.classList.toggle('dark');
             
-            // Determine the new theme and save it to localStorage for persistence
-            const theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-            localStorage.setItem('color-theme', theme);
-
-            // Update the icon to reflect the new theme
+            // Set the initial state of the icon when the page loads
             setIconState();
+
+            // Add a click event listener to the theme toggle button
+            themeToggleButton.addEventListener('click', function() {
+                // Toggle the 'dark' class on the root <html> element
+                document.documentElement.classList.toggle('dark');
+                
+                // Determine the new theme and save it to localStorage for persistence
+                const theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+                localStorage.setItem('color-theme', theme);
+
+                // Update the icon to reflect the new theme
+                setIconState();
+            });
         });
     </script>
 </body>
