@@ -1,0 +1,2 @@
+/project  /projects.html  200
+/blog     /Blog Page.html     200
