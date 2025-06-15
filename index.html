@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,63 +8,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Consolidated and Hardened Theme-Switching Script -->
-    <script data-cfasync="false">
-        // This single, self-contained script handles everything to avoid Cloudflare interference.
-        (function() {
-            // Function to apply the theme immediately
-            function applyTheme() {
-                if (localStorage.getItem('color-theme') === 'dark') {
-                    document.documentElement.classList.add('dark');
-                } else {
-                    document.documentElement.classList.remove('dark');
-                }
-            }
-
-            applyTheme(); // Run on initial load to prevent flashing
-
-            // Wait for the full page to load before adding the button click listener
-            document.addEventListener('DOMContentLoaded', function() {
-                const themeToggleButton = document.getElementById('theme-toggle');
-                const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-                const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-
-                function setIconState() {
-                    if (document.documentElement.classList.contains('dark')) {
-                        if(themeToggleLightIcon) themeToggleLightIcon.classList.remove('hidden');
-                        if(themeToggleDarkIcon) themeToggleDarkIcon.classList.add('hidden');
-                    } else {
-                        if(themeToggleDarkIcon) themeToggleDarkIcon.classList.remove('hidden');
-                        if(themeToggleLightIcon) themeToggleLightIcon.classList.add('hidden');
-                    }
-                }
-
-                setIconState(); // Set the icon state on page load
-
-                if(themeToggleButton) {
-                    themeToggleButton.addEventListener('click', function() {
-                        // Toggle the class on the root element
-                        document.documentElement.classList.toggle('dark');
-
-                        // Update localStorage with the new theme
-                        const newTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-                        localStorage.setItem('color-theme', newTheme);
-
-                        // Update the button icon
-                        setIconState();
-                    });
-                }
-            });
-        })();
-    </script>
-
     <style>
         body {
             font-family: 'Source Serif 4', serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            transition: background-color 0.3s ease, color 0.3s ease;
         }
         .link-style {
             color: #d9534f;
@@ -77,7 +25,7 @@
             font-family: 'Source Sans 3', sans-serif;
             text-decoration: none;
             transition: color 0.2s ease-in-out;
-            color: #d9534f; /* Set base color to match other links */
+            color: #d9534f; /* Set base color for nav links */
         }
         .nav-link:hover {
             color: #bf4340; /* Slightly darker/muted red for hover */
@@ -88,12 +36,12 @@
         }
     </style>
 </head>
-<body class="bg-white dark:bg-neutral-900 flex justify-center">
+<body class="bg-white flex justify-center">
 
     <div class="max-w-3xl w-full px-4 sm:px-6 lg:px-8 py-12">
 
         <!-- Header -->
-        <header class="pb-8 mb-8 border-b border-gray-200 dark:border-neutral-800">
+        <header class="pb-8 mb-8 border-b border-gray-200">
             <div class="flex items-start space-x-4">
                 <!-- Profile Picture Logo -->
                 <img 
@@ -104,23 +52,18 @@
                 
                 <div class="flex-grow">
                     <div class="flex justify-between items-center">
-                        <h1 class="text-2xl sm:text-3xl text-black dark:text-white">Priyam Alok</h1>
+                        <h1 class="text-2xl sm:text-3xl text-black">Priyam Alok</h1>
                         <nav class="flex items-center space-x-4 text-base">
                             <a href="#" class="nav-link hidden sm:block">Home</a>
                             <a href="#" class="nav-link hidden sm:block">Projects</a>
                             <a href="#" class="nav-link hidden sm:block">Musings</a>
-                            <!-- Theme Toggle Button -->
-                            <button id="theme-toggle" type="button" class="text-gray-500 dark:text-neutral-400 hover:bg-gray-100 dark:hover:bg-neutral-800 focus:outline-none rounded-lg text-sm p-2.5">
-                                <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-                                <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 5.05A1 1 0 003.636 6.464l.707.707a1 1 0 001.414-1.414l-.707-.707zM3 11a1 1 0 100-2H2a1 1 0 100 2h1zM13.536 14.95l.707.707a1 1 0 01-1.414 1.414l-.707-.707a1 1 0 011.414-1.414z"></path></svg>
-                            </button>
                         </nav>
                     </div>
-                    <p class="text-sm text-gray-500 dark:text-neutral-400 mt-1">Musings on insurance tech, finance<br>and life</p>
+                    <p class="text-sm text-gray-500 mt-1">Musings on insurance tech, finance<br>and life</p>
                 </div>
             </div>
              <!-- Mobile Navigation -->
-            <nav class="flex sm:hidden items-center justify-around space-x-4 text-base pt-4 border-t border-gray-200 dark:border-neutral-800 mt-4">
+            <nav class="flex sm:hidden items-center justify-around space-x-4 text-base pt-4 border-t border-gray-200 mt-4">
                 <a href="#" class="nav-link">Home</a>
                 <a href="#" class="nav-link">Projects</a>
                 <a href="#" class="nav-link">Musings</a>
@@ -128,7 +71,7 @@
         </header>
 
         <!-- Main Content -->
-        <main class="text-base sm:text-lg leading-relaxed text-gray-800 dark:text-neutral-300">
+        <main class="text-base sm:text-lg leading-relaxed text-gray-800">
              <p class="mb-6">
                 I am Priyam, an aspiring actuarial model developer. This is my personal homepage.
             </p>
@@ -147,13 +90,13 @@
             <p class="mb-6">
                 Outside of work, I enjoy playing the guitar/ukulele, singing, and staying active—whether it's working out, running, cycling, or playing tennis, basketball. I cherish time with my family and my brother from another mother. Music, in all its forms, is a constant source of joy and inspiration.
             </p>
-            <p class="text-sm text-gray-500 dark:text-neutral-400 mt-12">
+            <p class="text-sm text-gray-500 mt-12">
                 Published on December 5, 2024.
             </p>
         </main>
 
         <!-- Footer -->
-        <footer class="mt-12 pt-8 border-t border-gray-200 dark:border-neutral-800 text-base text-gray-600 dark:text-neutral-400">
+        <footer class="mt-12 pt-8 border-t border-gray-200 text-base text-gray-600">
             <p>Find me on <a href="#" class="link-style">linkedin</a>, <a href="#" class="link-style">twitter(x.com)</a></p>
         </footer>
     </div>
