@@ -1,3 +1,0 @@
-/         /homepage.html     200
-/project  /projects.html     200
-/blog     /Blog%20Page.html  200
