@@ -8,15 +8,57 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        // This script runs first to prevent a flash of unstyled content (FOUC).
-        // It applies the saved theme from a previous session, otherwise defaults to light.
-        if (localStorage.getItem('color-theme') === 'dark') {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
+    
+    <!-- Consolidated and Hardened Theme-Switching Script -->
+    <script data-cfasync="false">
+        // This single, self-contained script handles everything to avoid Cloudflare interference.
+        (function() {
+            // Function to apply the theme immediately
+            function applyTheme() {
+                if (localStorage.getItem('color-theme') === 'dark') {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+            }
+
+            applyTheme(); // Run on initial load to prevent flashing
+
+            // Wait for the full page to load before adding the button click listener
+            document.addEventListener('DOMContentLoaded', function() {
+                const themeToggleButton = document.getElementById('theme-toggle');
+                const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+                const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+                function setIconState() {
+                    if (document.documentElement.classList.contains('dark')) {
+                        if(themeToggleLightIcon) themeToggleLightIcon.classList.remove('hidden');
+                        if(themeToggleDarkIcon) themeToggleDarkIcon.classList.add('hidden');
+                    } else {
+                        if(themeToggleDarkIcon) themeToggleDarkIcon.classList.remove('hidden');
+                        if(themeToggleLightIcon) themeToggleLightIcon.classList.add('hidden');
+                    }
+                }
+
+                setIconState(); // Set the icon state on page load
+
+                if(themeToggleButton) {
+                    themeToggleButton.addEventListener('click', function() {
+                        // Toggle the class on the root element
+                        document.documentElement.classList.toggle('dark');
+
+                        // Update localStorage with the new theme
+                        const newTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+                        localStorage.setItem('color-theme', newTheme);
+
+                        // Update the button icon
+                        setIconState();
+                    });
+                }
+            });
+        })();
     </script>
+
     <style>
         body {
             font-family: 'Source Serif 4', serif;
@@ -115,42 +157,6 @@
             <p>Find me on <a href="#" class="link-style">linkedin</a>, <a href="#" class="link-style">twitter(x.com)</a></p>
         </footer>
     </div>
-
-    <script data-cfasync="false">
-        // This attribute data-cfasync="false" tells Cloudflare's Rocket Loader
-        // to not touch this script, which prevents it from breaking.
-        document.addEventListener('DOMContentLoaded', function() {
-            const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-            const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-            const themeToggleButton = document.getElementById('theme-toggle');
-
-            // Function to set the correct state for the theme toggle icon
-            function setIconState() {
-                if (document.documentElement.classList.contains('dark')) {
-                    themeToggleLightIcon.classList.remove('hidden');
-                    themeToggleDarkIcon.classList.add('hidden');
-                } else {
-                    themeToggleDarkIcon.classList.remove('hidden');
-                    themeToggleLightIcon.classList.add('hidden');
-                }
-            }
-            
-            // Set the initial state of the icon when the page loads
-            setIconState();
-
-            // Add a click event listener to the theme toggle button
-            themeToggleButton.addEventListener('click', function() {
-                // Toggle the 'dark' class on the root <html> element
-                document.documentElement.classList.toggle('dark');
-                
-                // Determine the new theme and save it to localStorage for persistence
-                const theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-                localStorage.setItem('color-theme', theme);
-
-                // Update the icon to reflect the new theme
-                setIconState();
-            });
-        });
-    </script>
+    
 </body>
 </html>
