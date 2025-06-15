@@ -116,10 +116,9 @@
         </footer>
     </div>
 
-    <script>
-        // We wrap our code in a DOMContentLoaded event listener.
-        // This ensures the script only runs after the entire HTML page is loaded,
-        // which prevents issues with Cloudflare's optimizations.
+    <script data-cfasync="false">
+        // This attribute data-cfasync="false" tells Cloudflare's Rocket Loader
+        // to not touch this script, which prevents it from breaking.
         document.addEventListener('DOMContentLoaded', function() {
             const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
             const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
