@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Change the title to your post title -->
-    <title>Reading Between the Yields - Priyam Alok</title> 
+    <title>Reading Between the Yields: A Global Risk Barometer - Priyam Alok</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
@@ -15,6 +14,24 @@
         .nav-link { font-family: 'Source Sans 3', sans-serif; text-decoration: none; transition: color 0.2s ease-in-out; color: #d9534f; }
         .nav-link:hover { color: #bf4340; }
         h1, .post-title { font-family: 'Source Sans 3', sans-serif; font-weight: 600; }
+        .prose ul { list-style-position: outside; padding-left: 1.25rem; }
+        .prose ul > li { padding-left: 0.5rem; }
+        .prose ul.checklist { list-style-type: none; padding-left: 0; }
+        .prose ul.checklist > li { position: relative; padding-left: 1.75rem; }
+        .prose ul.checklist > li::before { content: '✓'; color: #34d399; position: absolute; left: 0; font-weight: 600; }
+        .download-button {
+            display: inline-block;
+            background-color: #d9534f;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s ease-in-out;
+        }
+        .download-button:hover {
+            background-color: #bf4340;
+        }
     </style>
 </head>
 <body class="bg-white flex justify-center">
@@ -24,10 +41,13 @@
         <!-- Header (Same as other pages) -->
         <header class="pb-10 mb-10 border-b border-gray-200">
             <div class="flex items-start space-x-4">
+                <!-- The root-relative path '/logo.jpg' works correctly from a sub-folder -->
                 <a href="/"><img src="/logo.jpg" alt="Priyam Alok" class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover flex-shrink-0" onerror="this.onerror=null;this.src='https://placehold.co/80x80/e2e8f0/334155?text=PA';"></a>
                 <div class="flex-grow">
                     <div class="flex justify-between items-center">
                         <div>
+                             <!-- FIX: Added width and height attributes to prevent layout shift. -->
+                             <!-- IMPORTANT: Replace width="200" and height="40" with your image's actual dimensions. -->
                             <a href="/"><img src="/title-image.png" alt="Priyam Alok Title" class="h-8" width="200" height="40" onerror="this.onerror=null;this.src='https://placehold.co/200x40/ffffff/1a1a1a?text=Priyam+Alok';"></a>
                         </div>
                         <nav class="flex items-center space-x-6 text-base">
@@ -48,17 +68,69 @@
 
         <!-- Blog Post Content -->
         <main class="text-base sm:text-lg leading-relaxed text-gray-800">
-            <article>
+            <article class="prose max-w-none">
                 <h1 class="post-title text-3xl sm:text-4xl mb-4 text-black">Reading Between the Yields: A Global Risk Barometer</h1>
-                <p class="text-sm text-gray-500 mb-8">Published on May 21, 2025</p>
+                <p class="text-sm text-gray-500 mb-8 !-mt-2">Published on May 21, 2025</p>
 
-                <!-- YOUR BLOG POST CONTENT GOES HERE -->
-                <p class="mb-6">
-                    This is the first paragraph of your blog post. You can write as much as you want here.
-                </p>
-                 <p class="mb-6">
-                    This is the second paragraph. Add images, lists, and other content just like you would in any other HTML file.
-                </p>
+                <p>As the global economy adjusts to inflation cycles, war impacts, and shifting central bank policies, the 10-year government bond yield stands out as one of the clearest windows into market perception and sovereign risk.</p>
+                <p>In this paper, I conduct a detailed comparative analysis of 10-year bond yields across:</p>
+                
+                <ul class="checklist">
+                    <li>Developed economies (US, UK, EU, Japan, Canada)</li>
+                    <li>Strategic advanced non-OECD economies (China, Saudi Arabia, UAE)</li>
+                    <li>Emerging markets (India)</li>
+                    <li>Fragile and high-risk nations (Pakistan, Turkey, Sudan, Syria)</li>
+                </ul>
+
+                <h3 class="font-semibold text-lg mt-8 mb-2">🚀 Core Topics Explored</h3>
+                <ul>
+                    <li>Why yields differ so sharply across regions</li>
+                    <li>The impact of inflation, fiscal deficits, and monetary policy</li>
+                    <li>Credit ratings and investor confidence dynamics</li>
+                    <li>Yields as a predictive signal for macroeconomic stress</li>
+                </ul>
+
+                <p class="mt-8 font-semibold">👇 Read the full research paper here:</p>
+
+                <!-- Interactive Data Table -->
+                <div class="my-6 overflow-x-auto">
+                    <table class="min-w-full text-sm border border-gray-200 divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-4 py-3 text-left font-semibold text-gray-700">Country/Region</th>
+                                <th class="px-4 py-3 text-left font-semibold text-gray-700">10Y Yield (May 2025)</th>
+                                <th class="px-4 py-3 text-left font-semibold text-gray-700">Credit Rating (Fitch)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr><td class="px-4 py-3 font-medium">United States</td><td class="px-4 py-3">4.52%</td><td class="px-4 py-3">AAA (Stable)</td></tr>
+                            <tr class="bg-gray-50"><td class="px-4 py-3 font-medium">United Kingdom</td><td class="px-4 py-3">4.70%</td><td class="px-4 py-3">AA- (Stable)</td></tr>
+                            <tr><td class="px-4 py-3 font-medium">Germany</td><td class="px-4 py-3">2.63%</td><td class="px-4 py-3">AAA (Stable)</td></tr>
+                            <tr class="bg-gray-50"><td class="px-4 py-3 font-medium">France</td><td class="px-4 py-3">3.28%</td><td class="px-4 py-3">AA- (Stable)</td></tr>
+                            <tr><td class="px-4 py-3 font-medium">Italy</td><td class="px-4 py-3">3.63%</td><td class="px-4 py-3">BBB (Stable)</td></tr>
+                            <tr class="bg-gray-50"><td class="px-4 py-3 font-medium">Spain</td><td class="px-4 py-3">3.24%</td><td class="px-4 py-3">A- (Positive)</td></tr>
+                            <tr><td class="px-4 py-3 font-medium">Australia</td><td class="px-4 py-3">4.50%</td><td class="px-4 py-3">AAA (Stable)</td></tr>
+                            <tr class="bg-gray-50"><td class="px-4 py-3 font-medium">Canada</td><td class="px-4 py-3">3.30%</td><td class="px-4 py-3">AAA (Stable)</td></tr>
+                            <tr><td class="px-4 py-3 font-medium">Japan</td><td class="px-4 py-3">1.52%</td><td class="px-4 py-3">A (Stable)</td></tr>
+                            <tr class="bg-gray-50"><td class="px-4 py-3 font-medium">China</td><td class="px-4 py-3">1.67%</td><td class="px-4 py-3">A (Stable)</td></tr>
+                            <tr><td class="px-4 py-3 font-medium">India</td><td class="px-4 py-3">6.22%</td><td class="px-4 py-3">BBB- (Stable)</td></tr>
+                            <tr class="bg-gray-50"><td class="px-4 py-3 font-medium">United Arab Emirates (UAE)</td><td class="px-4 py-3">- (N/A)</td><td class="px-4 py-3">AA- (Stable)</td></tr>
+                            <tr><td class="px-4 py-3 font-medium">Saudi Arabia</td><td class="px-4 py-3">- (N/A)</td><td class="px-4 py-3">A+ (Stable)</td></tr>
+                            <tr class="bg-gray-50"><td class="px-4 py-3 font-medium">Israel</td><td class="px-4 py-3">4.424%</td><td class="px-4 py-3">A (Negative)</td></tr>
+                             <tr><td class="px-4 py-3 font-medium">Pakistan</td><td class="px-4 py-3">12.720%</td><td class="px-4 py-3">B- (Stable)</td></tr>
+                            <tr class="bg-gray-50"><td class="px-4 py-3 font-medium">Sudan</td><td class="px-4 py-3">- (N/A)</td><td class="px-4 py-3">CC (or Default)</td></tr>
+                            <tr><td class="px-4 py-3 font-medium">Syria</td><td class="px-4 py-3">- (N/A)</td><td class="px-4 py-3">RD/Default</td></tr>
+                            <tr class="bg-gray-50"><td class="px-4 py-3 font-medium">Greece</td><td class="px-4 py-3">3.38%</td><td class="px-4 py-3">BBB- (Positive)</td></tr>
+                             <tr><td class="px-4 py-3 font-medium">Argentina</td><td class="px-4 py-3">- (N/A)</td><td class="px-4 py-3">CCC+ (Upgraded 2025)</td></tr>
+                            <tr class="bg-gray-50"><td class="px-4 py-3 font-medium">Turkey</td><td class="px-4 py-3">27.6%</td><td class="px-4 py-3">BB- (Stable)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Drive Link -->
+                <div class="mt-10 text-center">
+                    <a href="https://drive.google.com/file/d/1b5Q91pe-RWpbZPfmiWhgw5iyJstadxl6/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="download-button">Download Full PDF Analysis</a>
+                </div>
 
             </article>
         </main>
