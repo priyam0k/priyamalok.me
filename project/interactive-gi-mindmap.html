@@ -63,13 +63,11 @@
         }
     </style>
 </head>
-<body class="bg-white flex justify-center site-body">
+<body class="bg-white site-body">
 
-    <!-- Changed max-w-3xl to max-w-7xl for a wider view -->
-    <div class="max-w-7xl w-full px-4 sm:px-6 lg:px-8 py-16">
-
-        <!-- Header from priyamalok.me -->
-        <header class="pb-10 mb-10 border-b border-gray-200 site-header">
+    <!-- Header Wrapper (Constrained) -->
+    <div class="max-w-3xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+        <header class="pt-16 pb-10 mb-10 border-b border-gray-200 site-header">
             <div class="flex items-start space-x-4">
                 <a href="https://priyamalok.me">
                     <img src="https://priyamalok.me/logo.jpg" alt="Priyam Alok" class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover flex-shrink-0" onerror="this.onerror=null;this.src='https://placehold.co/80x80/e2e8f0/334155?text=PA';">
@@ -96,23 +94,25 @@
                 <a href="/blog" class="nav-link text-lg">Musings</a>
             </nav>
         </header>
+    </div>
 
-        <!-- Main Content Area for the Mindmap -->
-        <main>
-            <div id="mindmap-container" class="bg-blue-50 text-blue-900 p-4 sm:p-6 md:p-8 rounded-lg shadow-inner">
-                <div id="app" class="container mx-auto">
-                    <header class="relative text-center mb-4">
-                        <h1 id="page-title" class="text-3xl sm:text-4xl font-bold text-blue-900">General Insurance Principles</h1>
-                        <p id="page-subtitle" class="text-md text-blue-700 mt-2">An Interactive Guide</p>
-                    </header>
-                    <nav id="breadcrumb-container" class="flex justify-center items-center space-x-2 text-sm text-blue-800 mb-8 flex-wrap"></nav>
-                    <main id="content-area"></main>
-                </div>
+    <!-- Main Content Area for the Mindmap (Wider) -->
+    <main class="max-w-5xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+        <div id="mindmap-container" class="bg-blue-50 text-blue-900 p-4 sm:p-6 md:p-8 rounded-lg shadow-inner">
+            <div id="app" class="container mx-auto">
+                <header class="relative text-center mb-4">
+                    <h1 id="page-title" class="text-3xl sm:text-4xl font-bold text-blue-900">General Insurance Principles</h1>
+                    <p id="page-subtitle" class="text-md text-blue-700 mt-2">An Interactive Guide</p>
+                </header>
+                <nav id="breadcrumb-container" class="flex justify-center items-center space-x-2 text-sm text-blue-800 mb-8 flex-wrap"></nav>
+                <main id="content-area"></main>
             </div>
-        </main>
+        </div>
+    </main>
 
-        <!-- Footer from priyamalok.me -->
-        <footer class="mt-12 pt-8 border-t border-gray-200 text-base text-gray-600">
+    <!-- Footer Wrapper (Constrained) -->
+    <div class="max-w-3xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+        <footer class="mt-12 pt-8 pb-16 border-t border-gray-200 text-base text-gray-600">
             <p>Find me on <a href="https://www.linkedin.com/in/priyamalok/" target="_blank" rel="noopener noreferrer" class="link-style">linkedin</a>, <a href="https://x.com/priyam0k" target="_blank" rel="noopener noreferrer" class="link-style">twitter(x.com)</a></p>
         </footer>
     </div>
