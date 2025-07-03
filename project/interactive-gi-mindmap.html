@@ -65,7 +65,8 @@
 </head>
 <body class="bg-white flex justify-center site-body">
 
-    <div class="max-w-3xl w-full px-4 sm:px-6 lg:px-8 py-16">
+    <!-- Changed max-w-3xl to max-w-7xl for a wider view -->
+    <div class="max-w-7xl w-full px-4 sm:px-6 lg:px-8 py-16">
 
         <!-- Header from priyamalok.me -->
         <header class="pb-10 mb-10 border-b border-gray-200 site-header">
@@ -81,18 +82,18 @@
                             </a> 
                         </div>
                         <nav class="flex items-center space-x-6 text-base">
-                            <a href="https://priyamalok.me/" class="nav-link hidden sm:block text-lg">Home</a>
-                            <a href="https://priyamalok.me/project" class="nav-link hidden sm:block text-lg">Projects</a>
-                            <a href="https://priyamalok.me/blog" class="nav-link hidden sm:block text-lg">Musings</a>
+                            <a href="/" class="nav-link hidden sm:block text-lg">Home</a>
+                            <a href="/project" class="nav-link hidden sm:block text-lg">Projects</a>
+                            <a href="/blog" class="nav-link hidden sm:block text-lg">Musings</a>
                         </nav>
                     </div>
                     <p class="text-sm text-gray-500 mt-1">Musings on insurance tech, finance<br>and life</p>
                 </div>
             </div>
             <nav class="flex sm:hidden items-center justify-around space-x-4 text-base pt-6 border-t border-gray-200 mt-6">
-                <a href="https://priyamalok.me/" class="nav-link text-lg">Home</a>
-                <a href="https://priyamalok.me/project" class="nav-link text-lg">Projects</a>
-                <a href="https://priyamalok.me/blog" class="nav-link text-lg">Musings</a>
+                <a href="/" class="nav-link text-lg">Home</a>
+                <a href="/project" class="nav-link text-lg">Projects</a>
+                <a href="/blog" class="nav-link text-lg">Musings</a>
             </nav>
         </header>
 
@@ -422,6 +423,7 @@
         const pageTitle = document.getElementById('page-title');
         const pageSubtitle = document.getElementById('page-subtitle');
         const breadcrumbContainer = document.getElementById('breadcrumb-container');
+        const mindmapContainer = document.getElementById('mindmap-container'); // Get the mindmap container
         const navigationHistory = [];
         const idToTitleMap = {};
 
@@ -534,7 +536,9 @@
             document.getElementById('page-title').textContent = newPageTitle;
             document.getElementById('page-subtitle').textContent = newPageSubtitle;
             updateBreadcrumbs(pageId);
-            window.scrollTo(0, 0);
+            
+            // Scroll to the top of the mindmap container instead of the whole page
+            mindmapContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         window.goBack = function() {
