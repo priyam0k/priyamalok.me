@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal projects - Priyam Alok</title>
+    <title>Projects - Priyam Alok</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,10 +17,13 @@
         }
         .link-style {
             color: #d9534f;
-            text-decoration: underline;
-            text-decoration-color: #f0c3c2;
-            text-underline-offset: 2px;
+            text-decoration: none; /* remove default underline */
             transition: color 0.2s ease-in-out;
+        }
+        .link-style:hover {
+             text-decoration: underline;
+             text-decoration-color: #f0c3c2;
+             text-underline-offset: 2px;
         }
         .nav-link {
             font-family: 'Source Sans 3', sans-serif;
@@ -31,7 +34,7 @@
         .nav-link:hover {
             color: #bf4340; /* Slightly darker/muted red for hover */
         }
-        h1, .project-title {
+        h1, .page-title, .post-title {
             font-family: 'Source Sans 3', sans-serif;
             font-weight: 600;
         }
@@ -47,7 +50,7 @@
                 <!-- Profile Picture Logo -->
                 <a href="https://priyamalok.me">
                     <img 
-                         src="logo.jpg" 
+                         src="https://priyamalok.me/logo.jpg" 
                          alt="Priyam Alok" 
                          class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover flex-shrink-0"
                          onerror="this.onerror=null;this.src='https://placehold.co/80x80/e2e8f0/334155?text=PA';">
@@ -56,17 +59,9 @@
                 <div class="flex-grow">
                     <div class="flex justify-between items-center">
                         <div>
-                            <!-- To use an IMAGE for the title:
-                                 1. This is now active.
-                                 2. Replace 'title-image.png' with your image file name.
-                                 3. The text title below is now commented out.
-                            -->
                             <a href="https://priyamalok.me">
-                                <img src="Capturelogo-removebg-preview.png" alt="Priyam Alok Title" class="h-8" onerror="this.onerror=null;this.src='https://placehold.co/200x40/ffffff/1a1a1a?text=Priyam+Alok';">
+                                <img src="https://priyamalok.me/Capturelogo-removebg-preview.png" alt="Priyam Alok Title" class="h-8" onerror="this.onerror=null;this.src='https://placehold.co/200x40/ffffff/1a1a1a?text=Priyam+Alok';">
                             </a> 
-
-                            <!-- To use TEXT for the title, uncomment this h1 tag and comment out the <a> tag above -->
-                            <!-- <h1 class="text-3xl sm:text-4xl text-black">Priyam Alok</h1> -->
                         </div>
                         <nav class="flex items-center space-x-6 text-base">
                             <a href="/" class="nav-link hidden sm:block text-lg">Home</a>
@@ -86,15 +81,30 @@
         </header>
 
         <!-- Main Content -->
-        <main class="text-base sm:text-lg leading-relaxed text-gray-800">
+        <main class="text-base leading-relaxed text-gray-800">
             <section class="mb-12">
-                <h2 class="project-title text-2xl mb-2 text-black">Personal projects</h2>
-                <p>This page lists some of my projects.</p>
+                <h1 class="page-title text-2xl mb-2 text-black">Projects</h1>
+                <p>An assorted collection of personal and academic projects.</p>
             </section>
 
-            <section>
-                <h2 class="project-title text-2xl mb-2 text-black">Projects on Github</h2>
-                <p>stay tuned...</p>
+            <section class="space-y-10">
+                <!-- Project 1 -->
+                <article class="flex flex-col sm:flex-row gap-6">
+                    <div class="w-28 text-sm text-gray-500 flex-shrink-0">
+                        <p class="font-semibold">03</p>
+                        <p>Jul 2025</p>
+                    </div>
+                    <div>
+                        <h2 class="post-title text-xl mb-1">
+                            <a href="/project/post-gi-mindmap" class="link-style">Interactive Guide to General Insurance Principles</a>
+                        </h2>
+                        <p class="text-sm text-gray-400 mb-2">priyamalok.me</p>
+                        <p>An interactive mind map to explore core GI topics like reserving, pricing, and reinsurance.</p>
+                    </div>
+                </article>
+
+                <!-- Add future projects here -->
+                
             </section>
         </main>
 
