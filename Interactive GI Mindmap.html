@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive GI Mindmap Guide - Priyam Alok</title>
+    <!-- Fonts for priyamalok.me header/footer -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Font for the mindmap component -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Styles for priyamalok.me header/footer */
+        .site-body {
+            font-family: 'Source Serif 4', serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .link-style {
+            color: #d9534f;
+            text-decoration: underline;
+            text-decoration-color: #f0c3c2;
+            text-underline-offset: 2px;
+            transition: color 0.2s ease-in-out;
+        }
+        .nav-link {
+            font-family: 'Source Sans 3', sans-serif;
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+            color: #d9534f;
+        }
+        .nav-link:hover {
+            color: #bf4340;
+        }
+        .site-header h1 {
+            font-family: 'Source Sans 3', sans-serif;
+            font-weight: 600;
+        }
+
+        /* Styles for the mindmap component */
+        #mindmap-container {
+            font-family: 'Inter', sans-serif;
+        }
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .page.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .breadcrumb-link {
+            cursor: pointer;
+            color: #fb923c; /* orange-400 */
+        }
+        .breadcrumb-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body class="bg-white flex justify-center site-body">
+
+    <div class="max-w-3xl w-full px-4 sm:px-6 lg:px-8 py-16">
+
+        <!-- Header from priyamalok.me -->
+        <header class="pb-10 mb-10 border-b border-gray-200 site-header">
+            <div class="flex items-start space-x-4">
+                <a href="https://priyamalok.me">
+                    <img src="https://priyamalok.me/logo.jpg" alt="Priyam Alok" class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover flex-shrink-0" onerror="this.onerror=null;this.src='https://placehold.co/80x80/e2e8f0/334155?text=PA';">
+                </a>
+                <div class="flex-grow">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <a href="https://priyamalok.me">
+                                <img src="https://priyamalok.me/Capturelogo-removebg-preview.png" alt="Priyam Alok Title" class="h-8" onerror="this.onerror=null;this.src='https://placehold.co/200x40/ffffff/1a1a1a?text=Priyam+Alok';">
+                            </a> 
+                        </div>
+                        <nav class="flex items-center space-x-6 text-base">
+                            <a href="https://priyamalok.me/" class="nav-link hidden sm:block text-lg">Home</a>
+                            <a href="https://priyamalok.me/project" class="nav-link hidden sm:block text-lg">Projects</a>
+                            <a href="https://priyamalok.me/blog" class="nav-link hidden sm:block text-lg">Musings</a>
+                        </nav>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-1">Musings on insurance tech, finance<br>and life</p>
+                </div>
+            </div>
+            <nav class="flex sm:hidden items-center justify-around space-x-4 text-base pt-6 border-t border-gray-200 mt-6">
+                <a href="https://priyamalok.me/" class="nav-link text-lg">Home</a>
+                <a href="https://priyamalok.me/project" class="nav-link text-lg">Projects</a>
+                <a href="https://priyamalok.me/blog" class="nav-link text-lg">Musings</a>
+            </nav>
+        </header>
+
+        <!-- Main Content Area for the Mindmap -->
+        <main>
+            <div id="mindmap-container" class="bg-blue-50 text-blue-900 p-4 sm:p-6 md:p-8 rounded-lg shadow-inner">
+                <div id="app" class="container mx-auto">
+                    <header class="relative text-center mb-4">
+                        <h1 id="page-title" class="text-3xl sm:text-4xl font-bold text-blue-900">General Insurance Principles</h1>
+                        <p id="page-subtitle" class="text-md text-blue-700 mt-2">An Interactive Guide</p>
+                    </header>
+                    <nav id="breadcrumb-container" class="flex justify-center items-center space-x-2 text-sm text-blue-800 mb-8 flex-wrap"></nav>
+                    <main id="content-area"></main>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer from priyamalok.me -->
+        <footer class="mt-12 pt-8 border-t border-gray-200 text-base text-gray-600">
+            <p>Find me on <a href="https://www.linkedin.com/in/priyamalok/" target="_blank" rel="noopener noreferrer" class="link-style">linkedin</a>, <a href="https://x.com/priyam0k" target="_blank" rel="noopener noreferrer" class="link-style">twitter(x.com)</a></p>
+        </footer>
+    </div>
+    
+    <script>
+        // --- DATA STRUCTURE FROM MINDMAP ---
+        const mindmapData = {
+            "General Insurance Principles": {
+                "Financial Management": {
+                    "Profit Calculation": {
+                        "Net Earned Premium Formula": {},
+                        "Net Incurred Claims Formula": {},
+                        "Insurance Profit": {},
+                        "Operating Profit": {},
+                        "Post-Tax Profit": {},
+                        "Retained Profit": {}
+                    },
+                    "Financial Plan": {
+                        "Aim: Short-term & Long-term Targets": {},
+                        "Detail Level": {}
+                    },
+                    "Capital Management": {
+                        "Capital Costs in Premiums": {},
+                        "Aggregate Capital Requirements": {},
+                        "Efficient Capital Use": {},
+                        "Capital Load in Premiums": {},
+                        "Opportunity Cost": {},
+                        "Return of Capital for Acquisition/Expansions": {}
+                    },
+                    "Balance Sheet Components": {
+                        "Free Reserves": {},
+                        "Technical Reserves": {},
+                        "Investments": {},
+                        "Fixed Assets": {},
+                        "Net Current Assets": {},
+                        "Judgement in Valuation": {},
+                        "Different Purposes": {}
+                    },
+                    "Taxation": {
+                        "Technical Provisions Deductible": {},
+                        "Lloyd’s Members Tax Deferral": {},
+                        "Overseas Profits Taxed": {}
+                    }
+                },
+                "Reserving": {
+                    "Purpose of Reserves": {
+                        "Published Accounts": {},
+                        "Supervision of Solvency": {},
+                        "Internal Management Accounts": {},
+                        "Purchase/Sale Valuation": {},
+                        "Adequacy of Previous Estimates": {},
+                        "Tax Purposes": {},
+                        "Information for Management": {}
+                    },
+                    "Types of Reserves": {
+                        "Outstanding Reported Claims": {},
+                        "Incurred But Not Reported (IBNR)": {},
+                        "Incurred But Not Enough Reported (IBNER)": {},
+                        "Re-opened Claims": {},
+                        "Claims Handling Expenses": {},
+                        "Unearned Premium Reserve (UPR)": {
+                            "Definition": {},
+                            "Calculation Issues": {},
+                            "Net vs Gross UPR": {}
+                        },
+                        "Unexpired Risk Reserve (URR)": {
+                            "Definition": {},
+                            "Additional Unexpired Risk Reserves (AURR)": {}
+                        },
+                        "Catastrophe Reserve": {},
+                        "Claims Equalisation Reserve": {}
+                    },
+                    "Reserving Methodologies": {
+                        "Case Estimates": {},
+                        "Triangulation Methods": {
+                            "Chain Ladder Method": { "Basic": {}, "Inflation Adjusted": {}, "Assumption": {}, "Uses": {} },
+                            "Bornhuetter-Ferguson Method": { "Principle": {}, "Advantages": {}, "Disadvantages": {} },
+                            "Average Cost per Claim Method (ACPC)": {}
+                        },
+                        "Stochastic Models": {
+                            "Purpose: Confidence Intervals": {},
+                            "Prediction Variance Components": {},
+                            "Testing the Model": {},
+                            "Mack Model": {},
+                            "Bootstrapping": { "Definition": {}, "Over-dispersed Poisson (ODP) Model": {} },
+                            "Merz-Wuthrich Model": {},
+                            "Copulas for Dependecies": {},
+                            "Limitations": {},
+                            "Bayesian Credibility": {}
+                        },
+                        "Scenario Tests": {},
+                        "Alternative Sets for Assumptions": {},
+                        "Non-statistical Methods": {}
+                    },
+                    "Data for Reserving": {
+                        "Quality & Detail Importance": {},
+                        "Triangulated Data": {},
+                        "Large Losses": {},
+                        "Asbestos Claim": {}
+                    },
+                    "Reasonableness Checks": {
+                        "Diagnostic Tests": {},
+                        "Analysis of Emerging Experience": {},
+                        "Underwriting Cycle Impact": {},
+                        "Reserving Cycle": {}
+                    },
+                    "Communication of Uncertainty": {
+                        "Stakeholder Understanding": {},
+                        "Consistent Vocabulary": {},
+                        "Quantifying Divergence Likelihood": {}
+                    }
+                },
+                "General Insurance Products": {
+                    "Core Principles": {
+                        "Risk Aversion": {},
+                        "Profit Seeking": {},
+                        "Risk Transfer": {}
+                    },
+                    "Types of Cover": {
+                        "Liability to Third Parties": {},
+                        "Property Damage": {},
+                        "Financial Loss": {},
+                        "Fixed Benefits": {}
+                    },
+                    "Key Product Features": {
+                        "Indemnity Principle": {},
+                        "Multiple Claims": {},
+                        "Nil Claims": {},
+                        "Policy Document Importance": {},
+                        "Exclusions": { "Common Examples": {}, "Reasons for Use": {} },
+                        "Basis for Cover": { "Losses-Occurring Basis": {}, "Claims-Made Basis": {} },
+                        "Selection/Anti-selection": { "Definition": {}, "Dangers": {} },
+                        "Exposures Measures": { "Definition": {}, "Examples": {} },
+                        "Claim Characteristics": { "Origin": {}, "Notification": {}, "Settlement & Payment": {}, "Reopened Claims": {}, "Frequency": {}, "Delays (Short vs Long-tail)": {}, "Amount": {} },
+                        "Rating Factors": {},
+                        "Risk Factors": {},
+                        "Rating Factors (Proxies)": {},
+                        "Underwriting Factors": {}
+                    },
+                    "Specific Product Lines": {
+                        "Liability Insurance": {
+                            "Employer’s Liability/ Worker’s Compensation": {},
+                            "Motor Third Party Liability": {},
+                            "Public Liability": {},
+                            "Product Liability": {},
+                            "Professional Indemnity": {},
+                            "Director’s and Officer’s Liability": {},
+                            "Environmental Liability": {},
+                            "Employment Practices Liability (EPL)": {}
+                        },
+                        "Property Insurance": {
+                            "Household Building & Contents": {},
+                            "Commercial Property": {},
+                            "Motor Property Damage": {},
+                            "Marine and Aviation Property": {
+                                "Goods in Transit": {},
+                                "Construction and Engineering": {},
+                                "Extended Warranty": {}
+                            }
+                        },
+                        "Financial Loss Insurance": {
+                            "Credit Insurance": {},
+                            "Fidelity Guarantee": {},
+                            "Mortgage Indemnity": {},
+                            "Business Interruption Cover": {},
+                            "Legal Expenses Cover": {},
+                            "Suretyship": {}
+                        },
+                        "Fixed Benefits Insurance": {
+                            "Personal Accident Cover": {}
+                        }
+                    },
+                    "Emerging Risks": {
+                        "Cyber Risk": {},
+                        "Nanotechnology": {},
+                        "Climate Change Transition Risk": {}
+                    }
+                },
+                "Reinsurance": {
+                    "Definition": {},
+                    "Retrocession": {},
+                    "Reason for Purchase": {
+                        "Exposure Limitation/ Risk Spreading": {},
+                        "Avoidance of Large Single Losses": {},
+                        "Smoothing of Results": {},
+                        "Increased Profitability": {},
+                        "Improves Solvency Margin": {},
+                        "Increasing Capacity": {},
+                        "Financial Assistance": {},
+                        "Expertise Availability": {}
+                    },
+                    "Ways of Writing Business": {
+                        "Facultative Reinsurance": {},
+                        "Treaty Reinsurance": { "Advantages": {}, "Treaty Terms": {} }
+                    },
+                    "Types of Reinsurance Products": {
+                        "Proportional Reinsurance": {
+                            "Quota Share": { "Operation": {}, "Commission": {} },
+                            "Surplus": { "Operation": {}, "Estimated Maximum Loss (EML)": {}, "Advantages": {}, "Disadvantages": {} }
+                        },
+                        "Non-Proportional Reinsurance": {
+                            "Excess of Loss (XL)": { "Operation": {}, "Layers": {}, "Working Layer": {}, "Indexed Limits (Stability Clause)": {}, "Reinstatement": {}, "Rate on Line": {}, "Claims Handling Incentives": {}, "Aggregate XL": {}, "Catastrophe XL": {}, "Pricing Challenges": {} },
+                            "Stop Loss": { "Purpose": {}, "Losses Incurred Basis": {}, "Conditions Imposed": {} }
+                        },
+                        "Finite Risk (Financial) Reinsurance": {
+                            "Purpose": {},
+                            "Typical Features": {},
+                            "Types (Pre-funded, Time & Distance Deals, Spread Loss, Financial Quota Share)": {},
+                            "Risk Transfer Requirement": {}
+                        }
+                    },
+                    "Alternatives to Reinsurance (Capital Markets)": {
+                        "Committed (Contingent) Capital": { "Mechanism": {}, "Advantages": {} },
+                        "Securitisation": { "General Principle": {}, "Insurance-Linked Securities (ILS)/ Cat Bonds": {}, "Special Purpose Vehicle (SPV)": {}, "Credit Securitisation": {}, "Motor Securitisation": {}, "Advantages": {} },
+                        "Weather Derivatives": {}
+                    }
+                },
+                "General Business Environment": {
+                    "Insurance Market Structure": {
+                        "Direct Insurers (Composite, Pure GI, Specialist)": {},
+                        "Captive Insurance Companies": {},
+                        "Lloyd’s of London": {},
+                        "P&I Clubs": {},
+                        "Pooling Arrangements": {}
+                    },
+                    "Marketing Strategies": {
+                        "Non-London Market Business": { "Intermediaries (Brokers, Tied Agents)": {}, "Direct Sales (Staff, Internet, Telesales, Off-the-page)": {} },
+                        "London Market Business (Specialist Brokers, Slip System)": {}
+                    },
+                    "Regulation": {
+                        "Aims of Regulation": {},
+                        "Regulatory Requirements (Licensing, Reporting, Solvency, Pricing Limits)": {},
+                        "Solvency II Framework": {},
+                        "FCA UK Review (Pricing Practices)": {},
+                        "Disadvantages of Regulation": {},
+                        "IAIS Insurance Core Principles (ICPs)": {}
+                    },
+                    "Economic Factors": {
+                        "Claim Inflation": { "Price Inflation": {}, "Earnings Inflation": {}, "Medical Cost Inflation": {}, "Court Award Inflation (Ogden Tables)": {}, "Factors Affecting Accuracy": {} },
+                        "Underwriting Cycle": { "Description (Hard/Soft Markets)": {}, "Causes (Delayed Understanding, Low Entry Barriers, Simplistic Capital Regimes)": {}, "Impact on Loss Ratios & Premiums Volumes": {} },
+                        "Investment Conditions": { "Asset-Liability Matching": {}, "Significance for GI": {}, "Cashflow Underwriting": {} },
+                        "Currency Movements": { "Impact on Premiums/Claims": {}, "Currency Hedging": {}, "Lloyd’s Multi-currency Accounting": {} },
+                        "Economic Conditions Affecting Claims (Recession, Growth)": {},
+                        "Expense Inflation": {}
+                    },
+                    "Legal, Political & Social Factors": {
+                        "Court Awards": { "Negligence Principle": {}, "Jurisdiction Shopping": {}, "Compensation Determination (Principle of Indemnity, Head of Damage)": {}, "Trends in Awards": {}, "Out-of-court Settlements": {} },
+                        "Legislation": { "Impact on Claims Experience (Frequency/Severity)": {}, "Retrospective Changes": {}, "Examples (No-win-no fee, Alcohol Limits)": {} },
+                        "Social Attitudes and Behaviour (Propensity to Claim, Fraud, Drink Driving)": {}
+                    },
+                    "Climate & Environmental Factors": {
+                        "Weather Impact (Seasonal, Local Variation)": {},
+                        "Global Warming/Climate Change Implications": {},
+                        "Subsidence and Heave": {},
+                        "Flood Re (UK)": {}
+                    },
+                    "Technical Change": {
+                        "Increased Computer Power": {},
+                        "Reduced Data Storage Costs": {},
+                        "Online Claims Handlings": {},
+                        "Cyber Risk": {},
+                        "Data Protection Regulations (GDPR)": {},
+                        "Telematics": {}
+                    }
+                },
+                "Pricing": {
+                    "Premium Components": {
+                        "Pure Risk Premium": {},
+                        "Office Premium (Loadings)": {},
+                        "Investment Income Allowance": {},
+                        "Capital Charge/ Profit Loading": {}
+                    },
+                    "Rating Methodologies": {
+                        "Frequency/Severity Approach": { "Description": {}, "Assumption": {}, "Practical Considerations": {}, "Distribution Fitting": {}, "Simulation Use": {} },
+                        "Burning Cost Approach": { "Description": {}, "Assumption": {}, "Practical Considerations": {} },
+                        "Original Loss Curves/ Increased Limit Factors (ILFs)": { "Property Business": {}, "Casualty Business (Riebesell Curves)": {} },
+                        "Generalised Linear Models (GLMs)": { "Applications (Personal Lines, Small Commercial)": {}, "Mathematical Foundations": {}, "Model Specification": {}, "Link Functions": {}, "Error Structures": {}, "Parameter Estimation": {}, "Model Refinement (Interactions, Offsets)": {}, "Diagnostics (Deviance, Residuals, Leverage, Cook’s Distance)": {}, "Aliasing": {}, "Time Consistency Check": {}, "Validation": {} },
+                        "Credibility Theory": { "Purpose (Sparse Data)": {}, "Full Credibility Standards (Poisson, General Frequency, Severity, Aggregate)": {}, "Partial Credibility (Square Root Rule, Classical, Bayesian)": {}, "Complements of Credibility": {}, "Buhlmann-Straub Model": {} },
+                        "Experience Rating": {}
+                    },
+                    "Data for pricing": {
+                        "Reliability & Relevance": {},
+                        "Policy Data": {},
+                        "Claims Data (Peril, Reference, Loss Date, Amount)": {},
+                        "Internal Data (Policy, Premium, Claim info)": {},
+                        "External Data (Industry Schemes, Published Accounts)": {},
+                        "Data Grouping/Risk Classification": {},
+                        "Information System Requirements": { "User’s Requirement": {}, "Proposal & Claim form Design": {}, "Staff Training": {}, "Data Storage": {} },
+                        "Data Quality Issues": { "Errors, Omissions, Distortions": {}, "Wrong Numbers (Claim, Policy)": {}, "Wrong Risk Details": {}, "Wrong Dates (Event, Payment, Reported)": {}, "Claims Inflation": {}, "Changes in Procedures": {}, "Case Estimates (Inconsistent Updates)": {}, "Delays": {} }
+                    },
+                    "Large Claims": {},
+                    "Return Premiums": {},
+                    "Reopened Claims": {},
+                    "Actuarial Investigations": {
+                        "Monitoring Written Business (Growth, Premiums, Claims, Expenses)": {},
+                        "Analysis of Claims Experience (Trends, Diagnostics)": {},
+                        "Expense Analysis & Allocation": {},
+                        "Policyholder Behaviour (Lapse, New Business, Cancellation Rates)": {},
+                        "Reinsurance Performance": {},
+                        "Investment Performance": {}
+                    }
+                }
+            }
+        };
+
+        // --- SPA LOGIC ---
+        const contentArea = document.getElementById('content-area');
+        const pageTitle = document.getElementById('page-title');
+        const pageSubtitle = document.getElementById('page-subtitle');
+        const breadcrumbContainer = document.getElementById('breadcrumb-container');
+        const navigationHistory = [];
+        const idToTitleMap = {};
+
+        function createUniqueId(title, parentId) {
+            const cleanTitle = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+            return parentId ? `${parentId}--${cleanTitle}` : cleanTitle;
+        }
+
+        function createPage(title, children, parentId) {
+            const pageId = createUniqueId(title, parentId);
+            idToTitleMap[pageId] = title;
+
+            const page = document.createElement('div');
+            page.id = pageId;
+            page.className = 'page';
+
+            let backButtonHtml = '';
+            if (parentId) {
+                backButtonHtml = `
+                    <button onclick="goBack()" class="absolute top-4 left-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition-all duration-300 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                          <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        </svg>
+                        Back
+                    </button>
+                `;
+            }
+
+            const childKeys = Object.keys(children);
+
+            if (childKeys.length > 0) {
+                const cardsHtml = childKeys.map(childTitle => {
+                    const childId = createUniqueId(childTitle, pageId);
+                    return `
+                        <div onclick="navigateTo('${childId}', '${pageId}')" class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transform transition-all duration-300 cursor-pointer border-2 border-transparent hover:border-orange-400">
+                            <h3 class="text-lg font-semibold text-blue-800">${childTitle}</h3>
+                        </div>
+                    `;
+                }).join('');
+                page.innerHTML = `<div class="relative">${backButtonHtml}<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-16 sm:pt-0">${cardsHtml}</div></div>`;
+            } else {
+                page.innerHTML = `<div class="relative bg-white p-8 rounded-xl shadow-lg">${backButtonHtml}<div class="mt-12 text-center"><h2 class="text-2xl font-bold mb-4">${title}</h2><p class="text-blue-700">Detailed content for <strong class="text-orange-600 font-semibold">${title}</strong> will be added here.</p></div></div>`;
+            }
+            contentArea.appendChild(page);
+            
+            childKeys.forEach(childTitle => createPage(childTitle, children[childTitle], pageId));
+        }
+        
+        function updateBreadcrumbs(currentPageId) {
+            breadcrumbContainer.innerHTML = '';
+            
+            const homeLink = document.createElement('span');
+            homeLink.textContent = 'Home';
+            homeLink.className = 'breadcrumb-link';
+            homeLink.onclick = goToHome;
+            breadcrumbContainer.appendChild(homeLink);
+
+            navigationHistory.forEach((pageId, index) => {
+                const separator = document.createElement('span');
+                separator.textContent = '>';
+                separator.className = 'mx-2';
+                breadcrumbContainer.appendChild(separator);
+
+                const link = document.createElement('span');
+                link.textContent = idToTitleMap[pageId];
+                link.className = 'breadcrumb-link';
+                link.onclick = () => jumpTo(index);
+                breadcrumbContainer.appendChild(link);
+            });
+
+            const rootId = createUniqueId(Object.keys(mindmapData)[0], null);
+            if (currentPageId !== rootId) {
+                 const separator = document.createElement('span');
+                separator.textContent = '>';
+                separator.className = 'mx-2';
+                breadcrumbContainer.appendChild(separator);
+
+                const currentText = document.createElement('span');
+                currentText.textContent = idToTitleMap[currentPageId];
+                currentText.className = 'font-semibold';
+                breadcrumbContainer.appendChild(currentText);
+            }
+        }
+        
+        window.navigateTo = function(pageId, currentId = null) {
+            if (currentId) {
+                navigationHistory.push(currentId);
+            }
+
+            const pages = document.querySelectorAll('.page');
+            let newPageTitle = "General Insurance Principles";
+            let newPageSubtitle = "An Interactive Guide";
+
+            pages.forEach(page => {
+                if (page.id === pageId) {
+                    page.classList.add('active');
+                    const title = idToTitleMap[pageId];
+                    newPageTitle = title;
+                    const isLeafNode = page.querySelector('h2');
+                    const rootId = createUniqueId(Object.keys(mindmapData)[0], null);
+                    const isHomePage = pageId === rootId;
+                    if (isHomePage) newPageSubtitle = "An Interactive Guide";
+                    else if (isLeafNode) newPageSubtitle = `Details for ${title}`;
+                    else newPageSubtitle = `Sub-topics for ${title}`;
+                } else {
+                    page.classList.remove('active');
+                }
+            });
+            
+            document.getElementById('page-title').textContent = newPageTitle;
+            document.getElementById('page-subtitle').textContent = newPageSubtitle;
+            updateBreadcrumbs(pageId);
+            window.scrollTo(0, 0);
+        }
+
+        window.goBack = function() {
+            if (navigationHistory.length > 0) {
+                const lastPageId = navigationHistory.pop();
+                navigateTo(lastPageId, null);
+            }
+        }
+        
+        window.goToHome = function() {
+            navigationHistory.length = 0;
+            const rootId = createUniqueId(Object.keys(mindmapData)[0], null);
+            navigateTo(rootId, null);
+        }
+
+        window.jumpTo = function(index) {
+            const pageIdToNavigateTo = navigationHistory[index];
+            navigationHistory.splice(index);
+            navigateTo(pageIdToNavigateTo, null);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const rootTitle = Object.keys(mindmapData)[0];
+            const rootChildren = mindmapData[rootTitle];
+            createPage(rootTitle, rootChildren, null);
+            const initialPageId = createUniqueId(rootTitle, null);
+            navigateTo(initialPageId, null);
+        });
+    </script>
+</body>
+</html>
