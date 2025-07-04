@@ -38,15 +38,15 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
     <style>
         body { font-family: 'Source Serif 4', serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-        h1, h2, h3, .nav-link, .post-title, .accordion-button { font-family: 'Source Sans 3', sans-serif; font-weight: 600; }
-        .link-style { color: #d9534f; text-decoration: underline; text-decoration-color: #f0c3c2; text-underline-offset: 2px; transition: color 0.2s ease-in-out; }
-        .nav-link { text-decoration: none; transition: color 0.2s ease-in-out; color: #d9534f; }
+        h1, h2, h3, .post-title, .accordion-button { font-family: 'Source Sans 3', sans-serif; font-weight: 600; }
+        .nav-link { font-family: 'Source Sans 3', sans-serif; text-decoration: none; transition: color 0.2s ease-in-out; color: #d9534f; }
         .nav-link:hover { color: #bf4340; }
+        .link-style { color: #d9534f; text-decoration: none; transition: color 0.2s ease-in-out; }
+        .link-style:hover { text-decoration: underline; text-decoration-color: #f0c3c2; text-underline-offset: 2px; }
         .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-out, padding 0.5s ease-out; }
         .accordion-button.open .arrow { transform: rotate(180deg); }
         .chart-container { position: relative; width: 100%; max-width: 700px; margin-left: auto; margin-right: auto; height: 300px; }
         @media (min-width: 640px) { .chart-container { height: 350px; } }
-        @media (min-width: 1024px) { .chart-container { height: 400px; } }
     </style>
 </head>
 <body class="bg-white flex justify-center">
@@ -56,14 +56,14 @@
         <!-- Header from your website -->
         <header class="pb-10 mb-10 border-b border-gray-200">
             <div class="flex items-start space-x-4">
-                <a href="https://priyamalok.me">
-                    <img src="/logo.jpg" alt="Priyam Alok" class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover flex-shrink-0" onerror="this.onerror=null;this.src='https://placehold.co/80x80/e2e8f0/334155?text=PA';">
+                <a href="/">
+                    <img src="logo.jpg" alt="Priyam Alok" class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover flex-shrink-0" onerror="this.onerror=null;this.src='https://placehold.co/80x80/e2e8f0/334155?text=PA';">
                 </a>
                 <div class="flex-grow">
                     <div class="flex justify-between items-center">
                         <div>
-                            <a href="https://priyamalok.me">
-                                <img src="/Capturelogo-removebg-preview.png" alt="Priyam Alok Title" class="h-8" onerror="this.onerror=null;this.src='https://placehold.co/200x40/ffffff/1a1a1a?text=Priyam+Alok';">
+                            <a href="/">
+                                <img src="Capturelogo-removebg-preview.png" alt="Priyam Alok Title" class="h-8" onerror="this.onerror=null;this.src='https://placehold.co/200x40/ffffff/1a1a1a?text=Priyam+Alok';">
                             </a>
                         </div>
                         <nav class="flex items-center space-x-6 text-base">
