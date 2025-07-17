@@ -276,8 +276,8 @@
         // This function now fetches the data and starts the app
         async function initializeApp() {
             try {
-                // !!! IMPORTANT: Replace this with your actual Render API URL !!!
-                const apiUrl = 'https://priyam-gi-api.onrender.com/api/mindmap';
+                // !!! Using your live Render API URL !!!
+                const apiUrl = 'https://gi-mindmap-backend.onrender.com/api/mindmap';
                 const response = await fetch(apiUrl);
                 
                 if (!response.ok) {
