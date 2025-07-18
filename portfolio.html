@@ -350,8 +350,8 @@
         const filterLinks = document.querySelectorAll('.filter-link');
         const otherThingsToggle = document.getElementById('other-things-toggle');
         const otherThingsContent = document.getElementById('other-things-content');
-        const scrollArrow = document.getElementById('scroll-arrow'); // ADDED: Get the scroll arrow
-        const projectsSection = document.getElementById('projects'); // ADDED: Get the projects section
+        const scrollArrow = document.getElementById('scroll-arrow');
+        const projectsSection = document.getElementById('projects');
 
         const displayProjects = (filter = 'all') => {
             projectGrid.innerHTML = '';
@@ -394,10 +394,15 @@
             otherThingsContent.classList.toggle('hidden');
         });
 
-        // ADDED: Event listener for smooth scrolling
+        // MODIFIED: Event listener for smooth scrolling to the exact top of the projects section
         scrollArrow.addEventListener('click', (e) => {
             e.preventDefault();
-            projectsSection.scrollIntoView({ behavior: 'smooth' });
+            const projectsSectionTop = projectsSection.offsetTop;
+            
+            window.scrollTo({
+                top: projectsSectionTop,
+                behavior: 'smooth'
+            });
         });
 
         displayProjects();
