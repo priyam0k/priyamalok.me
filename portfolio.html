@@ -153,17 +153,25 @@
                 <div class="w-full md:w-1/4">
                     <h2 class="section-title">learning track</h2>
                 </div>
-                <!-- MODIFIED: Restructured this container for better layout -->
+                <!-- MODIFIED: Re-structured this section for better layout and added dates -->
                 <div class="w-full md:w-3/4 space-y-8">
                     <!-- Item 1 -->
-                    <div>
-                        <img src="ifoa-foundati-protagion.png" alt="Protagion & IFOA Foundation" class="max-w-full h-auto mb-4">
-                        <p class="text-main text-sm leading-relaxed">Selected for a structured mentorship with senior industry professionals, exploring career strategies, pricing frameworks, and long-term development in P&C insurance.</p>
+                    <div class="flex items-start gap-4">
+                        <img src="ifoa-foundati-protagion.png" alt="Protagion & IFOA Foundation" class="h-10 w-auto flex-shrink-0">
+                        <div>
+                            <h3 class="text-base text-main">Mentorship Cohort Member | 2024 - 2025</h3>
+                            <p class="text-sm text-subtle">Protagion & IFOA Foundation</p>
+                            <p class="mt-2 text-main text-sm leading-relaxed">Selected for a structured mentorship with senior industry professionals, exploring career strategies, pricing frameworks, and long-term development in P&C insurance.</p>
+                        </div>
                     </div>
                     <!-- Item 2 -->
-                    <div>
-                         <img src="pricewriter.png" alt="Price Writers" class="max-w-full h-auto mb-4">
-                         <p class="text-main text-sm leading-relaxed">Deep-diving into advanced pricing techniques through monthly masterclasses, guided by the PriceWriter book and its applied case studies.</p>
+                    <div class="flex items-start gap-4">
+                         <img src="pricewriter.png" alt="Price Writers" class="h-10 w-auto flex-shrink-0">
+                        <div>
+                            <h3 class="text-base text-main">Active Learner | Oct 2023 - Present</h3>
+                            <p class="text-sm text-subtle">Price Writers</p>
+                            <p class="mt-2 text-main text-sm leading-relaxed">Deep-diving into advanced pricing techniques through monthly masterclasses, guided by the PriceWriter book and its applied case studies.</p>
+                        </div>
                     </div>
                 </div>
              </div>
@@ -245,12 +253,10 @@
         </section>
 
         <!-- Other Things Section -->
+        <!-- MODIFIED: Left-aligned this section by removing the empty title column -->
         <section id="other-things-section" class="mb-16" data-aos="fade-up">
             <div class="flex flex-col md:flex-row gap-8 md:gap-16">
-                <div class="w-full md:w-1/4">
-                    <h2 class="section-title"></h2>
-                </div>
-                <div class="w-full md:w-3/4">
+                <div class="w-full">
                     <p>You can check out the other things I do <span id="other-things-toggle" class="link-here">here.</span></p>
                     <div id="other-things-content" class="hidden mt-8 space-y-8 text-main leading-relaxed">
                         <div>
@@ -311,7 +317,7 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // MODIFIED: Wrapped AOS.init in a window load event listener
+        // MODIFIED: Wrapped AOS.init in a window load event listener to prevent page shift
         window.addEventListener('load', () => {
             AOS.init({
                 duration: 800,
