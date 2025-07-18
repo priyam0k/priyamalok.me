@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Priyam Alok | Portfolio</title>
+    <title>Priyam • Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,24 +32,16 @@
             font-family: 'Source Serif 4', serif;
             background-color: var(--bg-color);
             color: var(--text-main);
+            font-size: 16px; /* Base font size to match reference */
         }
        
         .section-title {
-            font-weight: 600;
-            color: var(--accent-color);
+            font-weight: 400; /* Matching reference */
+            color: var(--accent-color); /* Changed to accent color */
             text-transform: lowercase;
+            font-size: 1.5rem; /* Matching .major class from reference */
         }
-        .nav-link {
-            transition: color 0.3s;
-            color: var(--text-subtle);
-            text-decoration: none;
-        }
-        .nav-link:hover {
-            color: var(--accent-color);
-            text-decoration: underline;
-            text-decoration-color: var(--underline-color);
-            text-underline-offset: 3px;
-        }
+        
         .project-card {
             background-color: #ffffff;
             transition: all 0.3s ease;
@@ -63,13 +55,11 @@
             transition: all 0.3s ease;
             color: var(--text-subtle);
             text-decoration: none;
+            margin: 0 8px;
         }
         .filter-link.active {
             font-weight: 600;
             color: var(--accent-color);
-            text-decoration: underline;
-            text-decoration-color: var(--underline-color);
-            text-underline-offset: 3px;
         }
         .filter-link:not(.active):hover {
              color: var(--accent-color);
@@ -116,23 +106,8 @@
     </style>
 </head>
 <body>
-
-    <!-- Header -->
-    <header class="w-full py-6 px-4 sm:px-6 lg:px-8 bg-white/50 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-200/80">
-        <div class="container mx-auto max-w-5xl flex justify-end items-center">
-            <nav class="hidden md:flex space-x-8 text-sm">
-                <a href="#about" class="nav-link">About</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#learning-track" class="nav-link">Learning</a>
-                <a href="#internships" class="nav-link">Internships</a>
-                <a href="#tools" class="nav-link">Tools</a>
-                <a href="#resume" class="nav-link">Resume</a>
-            </nav>
-        </div>
-    </header>
-
     <!-- Main Content -->
-    <div class="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <div class="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-10">
 
         <!-- Landing Section -->
         <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center -mt-20 relative">
@@ -152,13 +127,13 @@
         </section>
 
         <!-- About Me Section -->
-        <section id="about" class="py-12 md:py-16" data-aos="fade-up">
+        <section id="about" class="pt-16 mb-16" data-aos="fade-up">
             <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full md:w-1/4">
-                    <h2 class="section-title text-xl">about me</h2>
+                    <h2 class="section-title">about me</h2>
                 </div>
-                <div class="w-full md:w-3/4 space-y-5 text-lg text-main leading-relaxed">
-                    <p class="font-semibold text-xl">Actuarial model developer | P&C Insurance</p>
+                <div class="w-full md:w-3/4 space-y-4 text-base text-main leading-relaxed">
+                    <p class="text-lg">Actuarial model developer | P&C Insurance</p>
                     <p>An aspiring pricing specialist in General Insurance, combining actuarial thinking with data science and machine learning.</p>
                     <p>I'm passionate about building technical pricing models that drive smarter underwriting decisions across P&C insurance. My journey blends statistical methods, domain intuition, and hands-on learning from some of the most credible industry platforms.</p>
                     <p>What began as an interest in capital markets has evolved into a deep commitment to advancing pricing sophistication through modern tools and actuarial modelling.</p>
@@ -167,19 +142,19 @@
         </section>
 
         <!-- Selected Projects Section -->
-        <section id="projects" class="py-12 md:py-16" data-aos="fade-up">
+        <section id="projects" class="mb-16" data-aos="fade-up">
             <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full md:w-1/4">
-                    <h2 class="section-title text-xl">selected projects</h2>
+                    <h2 class="section-title">selected projects</h2>
                 </div>
                 <div class="w-full md:w-3/4">
-                    <div class="flex flex-wrap gap-x-6 gap-y-2 mb-8 text-sm">
-                        <a class="filter-link active" data-filter="all">All</a>
-                        <a class="filter-link" data-filter="dataviz">Data-Viz</a>
-                        <a class="filter-link" data-filter="web">Web/Programming</a>
+                    <div class="flex flex-wrap items-center mb-8 text-sm">
+                        <a class="filter-link active" data-filter="all">All</a> |
+                        <a class="filter-link" data-filter="dataviz">Data-Viz</a> |
+                        <a class="filter-link" data-filter="web">Web/Programming</a> |
                         <a class="filter-link" data-filter="research">Research</a>
                     </div>
-                    <div id="project-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div id="project-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                         <!-- Projects will be injected here by JS -->
                     </div>
                 </div>
@@ -187,26 +162,26 @@
         </section>
 
         <!-- Learning Track Section -->
-        <section id="learning-track" class="py-12 md:py-16" data-aos="fade-up">
+        <section id="learning-track" class="mb-16" data-aos="fade-up">
              <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full md:w-1/4">
-                    <h2 class="section-title text-xl">learning track</h2>
+                    <h2 class="section-title">learning track</h2>
                 </div>
-                <div class="w-full md:w-3/4 space-y-10">
-                    <div class="flex items-start gap-6">
+                <div class="w-full md:w-3/4 space-y-8">
+                    <div class="flex items-start gap-4">
                         <img src="https://i.postimg.cc/c1R7tBw4/protagion-logo.png" alt="Protagion & IFOA Foundation" class="w-12 h-12 flex-shrink-0 mt-1 rounded-md">
                         <div>
-                            <h3 class="text-lg font-semibold text-main">Mentorship Cohort Member | 2024 - 2025</h3>
+                            <h3 class="text-base text-main">Mentorship Cohort Member | 2024 - 2025</h3>
                             <p class="text-sm text-subtle">Protagion & IFOA Foundation</p>
-                            <p class="mt-2 text-main">Selected for a structured mentorship with senior industry professionals, exploring career strategies, pricing frameworks, and long-term development in P&C insurance.</p>
+                            <p class="mt-2 text-main text-sm leading-relaxed">Selected for a structured mentorship with senior industry professionals, exploring career strategies, pricing frameworks, and long-term development in P&C insurance.</p>
                         </div>
                     </div>
-                    <div class="flex items-start gap-6">
+                    <div class="flex items-start gap-4">
                          <img src="https://i.postimg.cc/P50wzYvy/price_writers-logo.png" alt="Price Writers" class="w-12 h-12 flex-shrink-0 mt-1 rounded-md">
                         <div>
-                            <h3 class="text-lg font-semibold text-main">Active Learner | Oct 2023 - Present</h3>
+                            <h3 class="text-base text-main">Active Learner | Oct 2023 - Present</h3>
                             <p class="text-sm text-subtle">Price Writers</p>
-                            <p class="mt-2 text-main">Deep-diving into advanced pricing techniques through monthly masterclasses, guided by the PriceWriter book and its applied case studies.</p>
+                            <p class="mt-2 text-main text-sm leading-relaxed">Deep-diving into advanced pricing techniques through monthly masterclasses, guided by the PriceWriter book and its applied case studies.</p>
                         </div>
                     </div>
                 </div>
@@ -214,99 +189,95 @@
         </section>
 
         <!-- Internships Section -->
-        <section id="internships" class="py-12 md:py-16" data-aos="fade-up">
+        <section id="internships" class="mb-16" data-aos="fade-up">
             <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full md:w-1/4">
-                    <h2 class="section-title text-xl">internships</h2>
+                    <h2 class="section-title">internships</h2>
                 </div>
                 <div class="w-full md:w-3/4 space-y-10">
-                    <!-- Add internship items here -->
                     <p class="text-subtle">Details about internships will be added here soon.</p>
                 </div>
             </div>
         </section>
 
         <!-- Conferences Section -->
-        <section id="conferences" class="py-12 md:py-16" data-aos="fade-up">
+        <section id="conferences" class="mb-16" data-aos="fade-up">
             <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full md:w-1/4">
-                    <h2 class="section-title text-xl">conferences</h2>
+                    <h2 class="section-title">conferences</h2>
                 </div>
                 <div class="w-full md:w-3/4 space-y-10">
-                    <!-- Add conference items here -->
                      <p class="text-subtle">Details about conferences will be added here soon.</p>
                 </div>
             </div>
         </section>
 
         <!-- Competitions Section -->
-        <section id="competitions" class="py-12 md:py-16" data-aos="fade-up">
+        <section id="competitions" class="mb-16" data-aos="fade-up">
             <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full md:w-1/4">
-                    <h2 class="section-title text-xl">competitions</h2>
+                    <h2 class="section-title">competitions</h2>
                 </div>
                 <div class="w-full md:w-3/4 space-y-10">
-                     <!-- Add competition items here -->
                      <p class="text-subtle">Details about competitions will be added here soon.</p>
                 </div>
             </div>
         </section>
 
         <!-- Featured Section -->
-        <section id="featured" class="py-12 md:py-16" data-aos="fade-up">
+        <section id="featured" class="mb-16" data-aos="fade-up">
             <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full md:w-1/4">
-                    <h2 class="section-title text-xl">featured</h2>
+                    <h2 class="section-title">featured</h2>
                 </div>
                 <div class="w-full md:w-3/4 space-y-10">
-                    <!-- Add featured items here -->
                      <p class="text-subtle">Details about features will be added here soon.</p>
                 </div>
             </div>
         </section>
 
         <!-- Tools Section -->
-        <section id="tools" class="py-12 md:py-16" data-aos="fade-up">
+        <section id="tools" class="mb-16" data-aos="fade-up">
             <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full md:w-1/4">
-                    <h2 class="section-title text-xl">tools</h2>
+                    <h2 class="section-title">tools</h2>
                 </div>
-                <div class="w-full md:w-3/4 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+                <div class="w-full md:w-3/4 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8">
                     <div>
-                        <h4 class="font-semibold text-main">[ WEB DEVELOPMENT ]</h4>
-                        <p class="mt-1">HTML, CSS, Javascript, Python, Flask</p>
+                        <h4 class="text-main text-sm">[ WEB DEVELOPMENT ]</h4>
+                        <p class="mt-1 text-sm">HTML, CSS, Javascript, Python, Flask</p>
                     </div>
                      <div>
-                        <h4 class="font-semibold text-main">[ DATA SCIENCE ]</h4>
-                        <p class="mt-1">Pandas, NumPy, Scikit-learn, SQL</p>
+                        <h4 class="text-main text-sm">[ DATA SCIENCE ]</h4>
+                        <p class="mt-1 text-sm">Pandas, NumPy, Scikit-learn, SQL</p>
                     </div>
                      <div>
-                        <h4 class="font-semibold text-main">[ DATA VISUALIZATION ]</h4>
-                        <p class="mt-1">Matplotlib, Seaborn, Plotly, D3.js</p>
+                        <h4 class="text-main text-sm">[ DATA VISUALIZATION ]</h4>
+                        <p class="mt-1 text-sm">Matplotlib, Seaborn, Plotly, D3.js</p>
                     </div>
                      <div>
-                        <h4 class="font-semibold text-main">[ DESIGN ]</h4>
-                        <p class="mt-1">Figma, Canva</p>
+                        <h4 class="text-main text-sm">[ DESIGN ]</h4>
+                        <p class="mt-1 text-sm">Figma, Canva</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Other Things Section -->
-        <section id="other-things-section" class="py-12 md:py-16" data-aos="fade-up">
+        <section id="other-things-section" class="mb-16" data-aos="fade-up">
             <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full md:w-1/4">
-                    <h2 class="section-title text-xl"></h2>
+                    <h2 class="section-title"></h2>
                 </div>
                 <div class="w-full md:w-3/4">
                     <p>You can check out the other things I do <span id="other-things-toggle" class="link-here">here.</span></p>
                     <div id="other-things-content" class="hidden mt-8 space-y-8 text-main leading-relaxed">
                         <div>
-                            <h4 class="font-semibold text-main">[ WRITING ]</h4>
+                            <h4 class="text-main">[ WRITING ]</h4>
                             <p class="mt-1">I sometimes write about my learnings and experiences on my blog. It's a space for reflection and sharing ideas on topics that I find interesting in the world of insurance, tech, and finance.</p>
                         </div>
                         <div>
-                            <h4 class="font-semibold text-main">[ MUSIC & FITNESS ]</h4>
+                            <h4 class="text-main">[ MUSIC & FITNESS ]</h4>
                             <p class="mt-1">Outside of work, I enjoy playing the guitar/ukulele and singing. I also love staying active, whether it's working out, running, cycling, or playing tennis and basketball.</p>
                         </div>
                     </div>
@@ -315,10 +286,10 @@
         </section>
 
         <!-- Resume Section -->
-        <section id="resume" class="py-12 md:py-16" data-aos="fade-up">
+        <section id="resume" class="mb-16" data-aos="fade-up">
             <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full md:w-1/4">
-                    <h2 class="section-title text-xl">resume</h2>
+                    <h2 class="section-title">resume</h2>
                 </div>
                 <div class="w-full md:w-3/4">
                     <p>Thank you for your time. You can find my resume <a href="#" class="link-here">here.</a></p>
@@ -329,10 +300,20 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-transparent mt-12">
+    <footer class="bg-transparent">
         <div class="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-8 border-t border-gray-200/80">
             <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                <div class="flex justify-center space-x-6 order-3 md:order-1">
+                <div class="text-sm text-subtle flex items-center order-2 md:order-1">
+                    Made with
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="bouncing-heart w-5 h-5 mx-1.5 text-accent">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+                    </svg>
+                    by priyam
+                </div>
+                <div class="text-sm text-subtle order-1 md:order-2">
+                    musings on insurance tech, finance and life
+                </div>
+                <div class="flex justify-center space-x-6 order-3">
                     <a href="#" class="text-accent hover:opacity-80 transition-opacity" aria-label="LinkedIn">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
                     </a>
@@ -342,16 +323,6 @@
                      <a href="#" class="text-accent hover:opacity-80 transition-opacity" aria-label="Twitter">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.627l-5.21-6.815-6.041 6.815h-3.308l7.73-8.805-7.993-10.69h6.772l4.643 6.242 5.38-6.242z"/></svg>
                     </a>
-                </div>
-                <div class="text-sm text-subtle flex items-center order-1 md:order-2">
-                    Made with
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="bouncing-heart w-5 h-5 mx-1.5 text-accent">
-                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
-                    </svg>
-                    by priyam
-                </div>
-                <div class="text-sm text-subtle order-2 md:order-3">
-                    musings on insurance tech, finance and life
                 </div>
             </div>
         </div>
