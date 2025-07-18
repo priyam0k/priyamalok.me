@@ -99,15 +99,13 @@
     <div class="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-10">
 
         <!-- Landing Section -->
-        <!-- MODIFIED: Removed -mt-20 to prevent page shift on load -->
         <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center relative">
             <div data-aos="fade-up">
-                <!-- Replace the src with your logo image URL -->
-                <img src="your-text.png" alt="Logo" class="w-32 h-32 rounded-full mx-auto mb-8" onerror="this.src='https://placehold.co/128x128/f5f1e9/3C2A21?text=Logo'">
+                <!-- MODIFIED: Added width and height attributes to prevent layout shift on load -->
+                <img src="your-text.png" alt="Logo" class="w-32 h-32 rounded-full mx-auto mb-8" width="128" height="128" onerror="this.src='https://placehold.co/128x128/f5f1e9/3C2A21?text=Logo'">
                 <h1 class="text-5xl md:text-7xl font-normal text-main tracking-tighter">priyam</h1>
                 <p class="text-main mt-8">Alright universe, work your magic!</p>
             </div>
-            <!-- MODIFIED: Removed bouncing-arrow class -->
             <a id="scroll-arrow" class="absolute bottom-6 group cursor-pointer">
                 <div class="w-10 h-10 rounded-full flex items-center justify-center group-hover:opacity-80 transition-all" style="background-color: var(--accent-color);">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -132,7 +130,7 @@
             </div>
         </section>
 
-        <!-- MODIFIED: Selected Projects Section Layout Changed -->
+        <!-- Selected Projects Section -->
         <section id="projects" class="mb-16 text-center" data-aos="fade-up">
             <h2 class="section-title mb-4">selected projects</h2>
             <div class="flex justify-center flex-wrap items-center mb-8 text-sm">
@@ -141,7 +139,6 @@
                 <a class="filter-link" data-filter="web">Web/Programming</a> |
                 <a class="filter-link" data-filter="research">Research</a>
             </div>
-            <!-- The project grid is now wider and centered -->
             <div id="project-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
                 <!-- Projects will be injected here by JS -->
             </div>
@@ -153,25 +150,29 @@
                 <div class="w-full md:w-1/4">
                     <h2 class="section-title">learning track</h2>
                 </div>
-                <!-- MODIFIED: Re-structured this section for better layout and added dates -->
+                <!-- MODIFIED: Restructured layout to match reference and added descriptions -->
                 <div class="w-full md:w-3/4 space-y-8">
                     <!-- Item 1 -->
-                    <div class="flex items-start gap-4">
-                        <img src="ifoa-foundati-protagion.png" alt="Protagion & IFOA Foundation" class="h-10 w-auto flex-shrink-0">
-                        <div>
-                            <h3 class="text-base text-main">Mentorship Cohort Member | 2024 - 2025</h3>
-                            <p class="text-sm text-subtle">Protagion & IFOA Foundation</p>
-                            <p class="mt-2 text-main text-sm leading-relaxed">Selected for a structured mentorship with senior industry professionals, exploring career strategies, pricing frameworks, and long-term development in P&C insurance.</p>
+                    <div>
+                        <div class="flex items-center gap-4">
+                            <img src="ifoa-foundati-protagion.png" alt="Protagion & IFOA Foundation" class="h-10 w-auto flex-shrink-0">
+                            <div>
+                                <h3 class="text-base text-main">Mentorship Cohort Member | 2024 - 2025</h3>
+                                <p class="text-sm text-subtle">Protagion & IFOA Foundation</p>
+                            </div>
                         </div>
+                        <p class="mt-2 text-main text-sm leading-relaxed md:pl-16">Selected for a structured mentorship with senior industry professionals, exploring career strategies, pricing frameworks, and long-term development in P&C insurance.</p>
                     </div>
                     <!-- Item 2 -->
-                    <div class="flex items-start gap-4">
-                         <img src="pricewriter.png" alt="Price Writers" class="h-10 w-auto flex-shrink-0">
-                        <div>
-                            <h3 class="text-base text-main">Active Learner | Oct 2023 - Present</h3>
-                            <p class="text-sm text-subtle">Price Writers</p>
-                            <p class="mt-2 text-main text-sm leading-relaxed">Deep-diving into advanced pricing techniques through monthly masterclasses, guided by the PriceWriter book and its applied case studies.</p>
+                    <div>
+                        <div class="flex items-center gap-4">
+                             <img src="pricewriter.png" alt="Price Writers" class="h-10 w-auto flex-shrink-0">
+                            <div>
+                                <h3 class="text-base text-main">Active Learner | Oct 2023 - Present</h3>
+                                <p class="text-sm text-subtle">Price Writers</p>
+                            </div>
                         </div>
+                        <p class="mt-2 text-main text-sm leading-relaxed md:pl-16">Deep-diving into advanced pricing techniques through monthly masterclasses, guided by the PriceWriter book and its applied case studies.</p>
                     </div>
                 </div>
              </div>
@@ -253,7 +254,6 @@
         </section>
 
         <!-- Other Things Section -->
-        <!-- MODIFIED: Left-aligned this section by removing the empty title column -->
         <section id="other-things-section" class="mb-16" data-aos="fade-up">
             <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full">
