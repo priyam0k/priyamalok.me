@@ -153,24 +153,17 @@
                 <div class="w-full md:w-1/4">
                     <h2 class="section-title">learning track</h2>
                 </div>
+                <!-- MODIFIED: Restructured this container for better layout -->
                 <div class="w-full md:w-3/4 space-y-8">
-                    <div class="flex items-start gap-4">
-                        <!-- MODIFIED: Added object-cover and updated src -->
-                        <img src="ifoa-foundati-protagion.png" alt="Protagion & IFOA Foundation">
-                        <div>
-                            <h3 class="text-base text-main">Mentorship Cohort Member | 2024 - 2025</h3>
-                            <p class="text-sm text-subtle">Protagion & IFOA Foundation</p>
-                            <p class="mt-2 text-main text-sm leading-relaxed">Selected for a structured mentorship with senior industry professionals, exploring career strategies, pricing frameworks, and long-term development in P&C insurance.</p>
-                        </div>
+                    <!-- Item 1 -->
+                    <div>
+                        <img src="ifoa-foundati-protagion.png" alt="Protagion & IFOA Foundation" class="max-w-full h-auto mb-4">
+                        <p class="text-main text-sm leading-relaxed">Selected for a structured mentorship with senior industry professionals, exploring career strategies, pricing frameworks, and long-term development in P&C insurance.</p>
                     </div>
-                    <div class="flex items-start gap-4">
-                         <!-- MODIFIED: Added object-cover and updated src -->
-                         <img src="pricewriter.png" alt="Price Writers">
-                        <div>
-                            <h3 class="text-base text-main">Active Learner | Oct 2023 - Present</h3>
-                            <p class="text-sm text-subtle">Price Writers</p>
-                            <p class="mt-2 text-main text-sm leading-relaxed">Deep-diving into advanced pricing techniques through monthly masterclasses, guided by the PriceWriter book and its applied case studies.</p>
-                        </div>
+                    <!-- Item 2 -->
+                    <div>
+                         <img src="pricewriter.png" alt="Price Writers" class="max-w-full h-auto mb-4">
+                         <p class="text-main text-sm leading-relaxed">Deep-diving into advanced pricing techniques through monthly masterclasses, guided by the PriceWriter book and its applied case studies.</p>
                     </div>
                 </div>
              </div>
@@ -318,10 +311,13 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 100,
+        // MODIFIED: Wrapped AOS.init in a window load event listener
+        window.addEventListener('load', () => {
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 100,
+            });
         });
 
         const projects = [
