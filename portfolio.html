@@ -17,8 +17,9 @@
             --bg-color: #f5f1e9;
             --text-main: #3C2A21; /* Deep Chocolate Brown */
             --text-subtle: #7B6860; /* Muted Chocolate Brown */
-            --accent-color: #d9534f; /* Muted Red from reference */
-            --underline-color: #f0c3c2; /* Light Red underline from reference */
+            /* MODIFIED: Changed accent color to a glowing orange-reddish hue */
+            --accent-color: #F97316; /* Tailwind Orange 500 */
+            --underline-color: #FDBA74; /* Tailwind Orange 300 */
             --highlight-bg: #fafad2; /* Light, visible yellow highlighter */
         }
         ::selection {
@@ -52,31 +53,36 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
         }
-        .filter-link {
+        /* MODIFIED: Added :visited pseudo-class to keep link styling consistent */
+        .filter-link, .filter-link:visited {
             cursor: pointer;
             transition: all 0.3s ease;
             color: var(--text-subtle);
             text-decoration: none;
             margin: 0 8px;
         }
+        .filter-link.active, .filter-link:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+            text-decoration-color: var(--underline-color);
+            text-underline-offset: 3px;
+        }
         .filter-link.active {
             font-weight: 600;
-            color: var(--accent-color);
-        }
-        .filter-link:not(.active):hover {
-             color: var(--accent-color);
         }
         .text-main { color: var(--text-main); }
         .text-subtle { color: var(--text-subtle); }
         .text-accent { color: var(--accent-color); }
         
-        .link-here {
+        /* MODIFIED: Added :visited pseudo-class to keep link styling consistent */
+        .link-here, .link-here:visited {
             cursor: pointer;
             color: var(--accent-color);
             text-decoration: underline;
             text-decoration-color: var(--underline-color);
             text-underline-offset: 3px;
             font-weight: 600;
+            transition: color 0.2s ease-in-out;
         }
 
         /* Bouncing heart animation */
@@ -101,9 +107,10 @@
         <!-- Landing Section -->
         <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center relative">
             <div data-aos="fade-up">
-                <!-- MODIFIED: Added width and height attributes to prevent layout shift on load -->
-                <img src="your-text.png" alt="Logo" class="w-32 h-32 rounded-full mx-auto mb-8" width="128" height="128" onerror="this.src='https://placehold.co/128x128/f5f1e9/3C2A21?text=Logo'">
-                <h1 class="text-5xl md:text-7xl font-normal text-main tracking-tighter">priyam</h1>
+                <!-- MODIFIED: Made logo bigger and added width/height attributes -->
+                <img src="your-text.png" alt="Logo" class="w-40 h-40 rounded-full mx-auto mb-8" width="160" height="160" onerror="this.src='https://placehold.co/160x160/f5f1e9/3C2A21?text=Logo'">
+                <!-- MODIFIED: Made name smaller -->
+                <h1 class="text-4xl md:text-6xl font-normal text-main tracking-tighter">priyam</h1>
                 <p class="text-main mt-8">Alright universe, work your magic!</p>
             </div>
             <a id="scroll-arrow" class="absolute bottom-6 group cursor-pointer">
@@ -150,7 +157,6 @@
                 <div class="w-full md:w-1/4">
                     <h2 class="section-title">learning track</h2>
                 </div>
-                <!-- MODIFIED: Restructured layout to match reference and properly align text -->
                 <div class="w-full md:w-3/4 space-y-8">
                     <!-- Item 1 -->
                     <div>
