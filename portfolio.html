@@ -371,7 +371,6 @@
                 projectEl.innerHTML = `
                     <div>
                         <div class="overflow-hidden rounded-t-lg">
-                            <!-- MODIFIED: Added width, height, and loading attributes for performance -->
                             <img src="https://placehold.co/600x400/e9ecef/495057?text=${project.title.replace(/ /g, '+')}" alt="${project.title}" class="w-full h-auto object-cover" width="600" height="400" loading="lazy">
                         </div>
                         <div class="p-5">
@@ -401,7 +400,9 @@
 
         scrollArrow.addEventListener('click', (e) => {
             e.preventDefault();
-            const projectsSectionTop = projectsSection.offsetTop;
+            // We need to find the main content container to calculate the correct scroll position
+            const mainContent = document.querySelector('.container');
+            const projectsSectionTop = projectsSection.offsetTop - mainContent.offsetTop;
             
             window.scrollTo({
                 top: projectsSectionTop,
