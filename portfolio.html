@@ -111,11 +111,11 @@
 </head>
 <body>
     <!-- Main Content -->
-    <div class="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-10">
+    <!-- MODIFIED: Removed pt-10 to fix vertical centering issue -->
+    <div class="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
 
         <!-- Landing Section -->
         <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center relative">
-            <!-- MODIFIED: Removed data-aos animation to prevent page shift on load -->
             <div>
                 <img src="your-text.png" alt="Logo" class="w-40 h-40 rounded-full mx-auto mb-8" width="160" height="160" onerror="this.src='https://placehold.co/160x160/f5f1e9/3C2A21?text=Logo'">
                 <h1 class="text-4xl md:text-6xl font-normal text-main tracking-tighter">priyam</h1>
@@ -131,6 +131,7 @@
         </section>
 
         <!-- About Me Section -->
+        <!-- MODIFIED: Added pt-16 here to maintain spacing without breaking the landing page layout -->
         <section id="about" class="pt-16 mb-16">
             <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full md:w-1/4">
@@ -146,7 +147,6 @@
         </section>
 
         <!-- Selected Projects Section -->
-        <!-- MODIFIED: Removed animation from section, will be applied to individual cards by JS -->
         <section id="projects" class="mb-16 text-center">
             <h2 class="section-title mb-4">selected projects</h2>
             <div class="flex justify-center flex-wrap items-center mb-8 text-sm">
@@ -370,7 +370,6 @@
 
             filteredProjects.forEach(project => {
                 const projectEl = document.createElement('div');
-                // MODIFIED: Added data-aos to each project card for row-by-row animation
                 projectEl.setAttribute('data-aos', 'fade-up');
                 projectEl.classList.add('project-card', 'rounded-lg', 'overflow-hidden');
                 projectEl.setAttribute('data-category', project.category);
@@ -378,7 +377,8 @@
                 projectEl.innerHTML = `
                     <div>
                         <div class="overflow-hidden rounded-t-lg">
-                            <img src="https://placehold.co/600x400/e9ecef/495057?text=${project.title.replace(/ /g, '+')}" alt="${project.title}" class="w-full h-48 object-cover">
+                            <!-- MODIFIED: Added width, height, and loading attributes for performance -->
+                            <img src="https://placehold.co/600x400/e9ecef/495057?text=${project.title.replace(/ /g, '+')}" alt="${project.title}" class="w-full h-auto object-cover" width="600" height="400" loading="lazy">
                         </div>
                         <div class="p-5">
                             <h3 class="text-lg font-semibold text-accent">${project.title}</h3>
