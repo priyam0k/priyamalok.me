@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- MODIFIED: Removed scroll-smooth class to prevent slow scroll on refresh -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- MODIFIED: Added rel="preload" for faster font loading and better page speed scores -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&display=swap" onload="this.rel='stylesheet'">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         /* Custom color palette and selection style */
@@ -17,7 +17,6 @@
             --bg-color: #f5f1e9;
             --text-main: #3C2A21; /* Deep Chocolate Brown */
             --text-subtle: #7B6860; /* Muted Chocolate Brown */
-            /* MODIFIED: Changed accent color to a more subtle reddish hue */
             --accent-color: #d9534f;
             --underline-color: #f0c3c2;
             --highlight-bg: #fafad2; /* Light, visible yellow highlighter */
@@ -53,7 +52,6 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
         }
-        /* MODIFIED: Added :visited pseudo-class to keep link styling consistent */
         .filter-link, .filter-link:visited {
             cursor: pointer;
             transition: all 0.3s ease;
@@ -67,7 +65,6 @@
             text-decoration-color: var(--underline-color);
             text-underline-offset: 3px;
         }
-        /* MODIFIED: Added glow effect on hover */
         .filter-link:hover {
             text-shadow: 0 0 6px var(--underline-color);
         }
@@ -78,7 +75,6 @@
         .text-subtle { color: var(--text-subtle); }
         .text-accent { color: var(--accent-color); }
         
-        /* MODIFIED: Added :visited pseudo-class and hover glow effect */
         .link-here, .link-here:visited {
             cursor: pointer;
             color: var(--accent-color);
@@ -114,9 +110,7 @@
         <!-- Landing Section -->
         <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center relative">
             <div data-aos="fade-up">
-                <!-- MODIFIED: Made logo bigger and added width/height attributes -->
                 <img src="your-text.png" alt="Logo" class="w-40 h-40 rounded-full mx-auto mb-8" width="160" height="160" onerror="this.src='https://placehold.co/160x160/f5f1e9/3C2A21?text=Logo'">
-                <!-- MODIFIED: Made name smaller -->
                 <h1 class="text-4xl md:text-6xl font-normal text-main tracking-tighter">priyam</h1>
                 <p class="text-main mt-8">Alright universe, work your magic!</p>
             </div>
@@ -130,7 +124,8 @@
         </section>
 
         <!-- About Me Section -->
-        <section id="about" class="pt-16 mb-16" data-aos="fade-up">
+        <!-- MODIFIED: Removed data-aos animation -->
+        <section id="about" class="pt-16 mb-16">
             <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full md:w-1/4">
                     <h2 class="section-title">about me</h2>
@@ -145,14 +140,15 @@
         </section>
 
         <!-- Selected Projects Section -->
+        <!-- MODIFIED: Kept data-aos animation as requested -->
         <section id="projects" class="mb-16 text-center" data-aos="fade-up">
             <h2 class="section-title mb-4">selected projects</h2>
             <div class="flex justify-center flex-wrap items-center mb-8 text-sm">
                 <a class="filter-link active" data-filter="all">All</a> |
-                <a class="filter-link active" data-filter="all">P&C</a> |
-                <a class="filter-link" data-filter="dataviz">Data-Eng</a> |
-                <a class="filter-link" data-filter="web">Data-Viz</a> |
-                <a class="filter-link" data-filter="web">ML</a> |
+                <a class="filter-link" data-filter="p&c">P&C</a> |
+                <a class="filter-link" data-filter="data-eng">Data-Eng</a> |
+                <a class="filter-link" data-filter="data-viz">Data-Viz</a> |
+                <a class="filter-link" data-filter="ml">ML</a> |
                 <a class="filter-link" data-filter="research">Research</a>
             </div>
             <div id="project-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
@@ -161,7 +157,8 @@
         </section>
 
         <!-- Learning Track Section -->
-        <section id="learning-track" class="mb-16" data-aos="fade-up">
+        <!-- MODIFIED: Removed data-aos animation -->
+        <section id="learning-track" class="mb-16">
              <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full md:w-1/4">
                     <h2 class="section-title">learning track</h2>
@@ -194,7 +191,8 @@
         </section>
 
         <!-- Internships Section -->
-        <section id="internships" class="mb-16" data-aos="fade-up">
+        <!-- MODIFIED: Removed data-aos animation -->
+        <section id="internships" class="mb-16">
             <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full md:w-1/4">
                     <h2 class="section-title">internships</h2>
@@ -206,7 +204,8 @@
         </section>
 
         <!-- Conferences Section -->
-        <section id="conferences" class="mb-16" data-aos="fade-up">
+        <!-- MODIFIED: Removed data-aos animation -->
+        <section id="conferences" class="mb-16">
             <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full md:w-1/4">
                     <h2 class="section-title">conferences</h2>
@@ -218,7 +217,8 @@
         </section>
 
         <!-- Competitions Section -->
-        <section id="competitions" class="mb-16" data-aos="fade-up">
+        <!-- MODIFIED: Removed data-aos animation -->
+        <section id="competitions" class="mb-16">
             <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full md:w-1/4">
                     <h2 class="section-title">competitions</h2>
@@ -230,7 +230,8 @@
         </section>
 
         <!-- Featured Section -->
-        <section id="featured" class="mb-16" data-aos="fade-up">
+        <!-- MODIFIED: Removed data-aos animation -->
+        <section id="featured" class="mb-16">
             <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full md:w-1/4">
                     <h2 class="section-title">featured</h2>
@@ -242,7 +243,8 @@
         </section>
 
         <!-- Tools Section -->
-        <section id="tools" class="mb-16" data-aos="fade-up">
+        <!-- MODIFIED: Removed data-aos animation -->
+        <section id="tools" class="mb-16">
             <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full md:w-1/4">
                     <h2 class="section-title">tools</h2>
@@ -269,7 +271,8 @@
         </section>
 
         <!-- Other Things Section -->
-        <section id="other-things-section" class="mb-16" data-aos="fade-up">
+        <!-- MODIFIED: Removed data-aos animation -->
+        <section id="other-things-section" class="mb-16">
             <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full">
                     <p>You can check out the other things I do <span id="other-things-toggle" class="link-here">here.</span></p>
@@ -288,7 +291,8 @@
         </section>
 
         <!-- Resume Section -->
-        <section id="resume" class="mb-16" data-aos="fade-up">
+        <!-- MODIFIED: Removed data-aos animation -->
+        <section id="resume" class="mb-16">
             <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full md:w-1/4">
                     <h2 class="section-title">resume</h2>
@@ -316,7 +320,6 @@
                     musings on insurance tech, finance and life
                 </div>
                 <div class="flex justify-center space-x-6 order-3">
-                    <!-- MODIFIED: Added social media links -->
                     <a href="https://www.linkedin.com/in/priyamalok/" target="_blank" rel="noopener noreferrer" class="text-accent hover:opacity-80 transition-opacity" aria-label="LinkedIn">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
                     </a>
@@ -331,7 +334,8 @@
         </div>
     </footer>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- MODIFIED: Added defer attribute for faster page load -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
     <script>
         // MODIFIED: Wrapped AOS.init in a window load event listener to prevent page shift
         window.addEventListener('load', () => {
@@ -343,15 +347,14 @@
         });
 
         const projects = [
-            { title: 'India in Pixels', year: '2018', type: 'Self Project', desc: 'Series of dynamic bar ranking videos illustrating social and entertainment stats centred around India.', category: 'dataviz' },
-            { title: 'Facebook Clusters Visualization', year: '2018', type: 'Self Project', desc: 'A visual exploration of my facebook friend list to study clustering in social networks.', category: 'dataviz' },
-            { title: 'Alter Ego', year: '2018', type: 'MIT Media Lab', desc: 'Silent-Speech Interface for Assistive and Intelligence Augmentation.', category: 'research' },
-            { title: 'Mathland', year: '2017', type: 'MIT Media Lab', desc: 'An Augmented Reality application that makes learning physics fun.', category: 'web' },
-            { title: 'Roses in Resonance', year: '2015', type: 'Self Project', desc: 'Music transformed into rose through traced motion of a cube.', category: 'web' },
-            { title: '13 x 29', year: '2018', type: 'Self Project', desc: 'Analysis of reactions to the Supreme Court Verdict to decriminalize homosexuality.', category: 'dataviz' },
-            { title: 'A Date With Yourself', year: '2017', type: 'MIT Media Lab', desc: 'An artistic experience to trace how your identity has moulded in subtle ways.', category: 'research' },
-            { title: 'Indiascoded', year: '2016', type: 'Self Project', desc: 'A data visualization project that illustrates facts about India through animated cartograms.', category: 'dataviz' },
-            { title: 'The Happiness Project', year: '2016', type: 'Self Project', desc: 'An attempt to quantify happiness and make a formula with 713 test subjects.', category: 'research' }
+            // NOTE: For best page speed scores, replace these placeholder images
+            // with your actual project images and add width/height attributes to the <img> tags.
+            { title: 'P&C Reserving Model', year: '2024', type: 'Self Project', desc: 'Developed a chain-ladder reserving model to forecast ultimate claims for a P&C insurer.', category: 'p&c' },
+            { title: 'Customer Segmentation', year: '2023', type: 'Self Project', desc: 'Used clustering algorithms to segment policyholders for targeted marketing campaigns.', category: 'ml' },
+            { title: 'Claims Data Pipeline', year: '2023', type: 'Self Project', desc: 'Built an ETL pipeline to process and clean raw claims data for downstream analysis.', category: 'data-eng' },
+            { title: 'Loss Ratio Dashboard', year: '2024', type: 'Self Project', desc: 'Created an interactive dashboard in Plotly to visualize loss ratio trends by business line.', category: 'data-viz' },
+            { title: 'Actuarial Research Paper', year: '2022', type: 'Academic', desc: 'Co-authored a paper on the impact of climate change on property insurance pricing.', category: 'research' },
+            { title: 'Rate Filing Analysis', year: '2023', type: 'Self Project', desc: 'Analyzed competitor rate filings to identify market trends and pricing opportunities.', category: 'p&c' }
         ];
 
         const projectGrid = document.getElementById('project-grid');
@@ -402,7 +405,6 @@
             otherThingsContent.classList.toggle('hidden');
         });
 
-        // MODIFIED: Event listener for smooth scrolling to the exact top of the projects section
         scrollArrow.addEventListener('click', (e) => {
             e.preventDefault();
             const projectsSectionTop = projectsSection.offsetTop;
