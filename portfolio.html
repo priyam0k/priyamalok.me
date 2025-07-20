@@ -36,6 +36,14 @@
             color: var(--text-main);
         }
 
+        /* MODIFIED: Added a simple CSS reset to fix layout shifts and centering issues */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
         body {
             font-family: 'Source Serif 4', serif;
             background-color: var(--bg-color);
@@ -110,7 +118,6 @@
     </style>
 </head>
 <body>
-    <!-- MODIFIED: Removed px-4 from this section to fix mobile centering -->
     <!-- Landing Section -->
     <section id="home" class="h-screen flex flex-col justify-center items-center text-center relative">
         <div>
