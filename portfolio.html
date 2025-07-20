@@ -8,9 +8,15 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- MODIFIED: Added rel="preload" for faster font loading and better page speed scores -->
+    <!-- MODIFIED: Preload critical resources for huge performance gains -->
+    <link rel="preload" as="image" href="your-text.png">
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&display=swap" onload="this.rel='stylesheet'">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preload" as="style" href="https://unpkg.com/aos@2.3.1/dist/aos.css" onload="this.rel='stylesheet'">
+    <!-- Fallback for users with JavaScript disabled -->
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&display=swap">
+        <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    </noscript>
     <style>
         /* Custom color palette and selection style */
         :root {
@@ -109,7 +115,8 @@
 
         <!-- Landing Section -->
         <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center relative">
-            <div data-aos="fade-up">
+            <!-- MODIFIED: Removed data-aos animation to prevent page shift on load -->
+            <div>
                 <img src="your-text.png" alt="Logo" class="w-40 h-40 rounded-full mx-auto mb-8" width="160" height="160" onerror="this.src='https://placehold.co/160x160/f5f1e9/3C2A21?text=Logo'">
                 <h1 class="text-4xl md:text-6xl font-normal text-main tracking-tighter">priyam</h1>
                 <p class="text-main mt-8">Alright universe, work your magic!</p>
@@ -124,7 +131,6 @@
         </section>
 
         <!-- About Me Section -->
-        <!-- MODIFIED: Removed data-aos animation -->
         <section id="about" class="pt-16 mb-16">
             <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full md:w-1/4">
@@ -140,8 +146,8 @@
         </section>
 
         <!-- Selected Projects Section -->
-        <!-- MODIFIED: Kept data-aos animation as requested -->
-        <section id="projects" class="mb-16 text-center" data-aos="fade-up">
+        <!-- MODIFIED: Removed animation from section, will be applied to individual cards by JS -->
+        <section id="projects" class="mb-16 text-center">
             <h2 class="section-title mb-4">selected projects</h2>
             <div class="flex justify-center flex-wrap items-center mb-8 text-sm">
                 <a class="filter-link active" data-filter="all">All</a> |
@@ -157,7 +163,6 @@
         </section>
 
         <!-- Learning Track Section -->
-        <!-- MODIFIED: Removed data-aos animation -->
         <section id="learning-track" class="mb-16">
              <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full md:w-1/4">
@@ -167,7 +172,7 @@
                     <!-- Item 1 -->
                     <div>
                         <div class="flex items-start gap-4">
-                            <img src="ifoa-foundati-protagion.png" alt="Protagion & IFOA Foundation" class="h-10 w-auto flex-shrink-0">
+                            <img src="ifoa-foundati-protagion.png" alt="Protagion & IFOA Foundation" class="h-10 w-auto flex-shrink-0" width="242" height="66">
                             <div>
                                 <h3 class="text-base text-main">Mentorship Cohort Member | 2024 - 2025</h3>
                                 <p class="text-sm text-subtle">Protagion & IFOA Foundation</p>
@@ -178,7 +183,7 @@
                     <!-- Item 2 -->
                     <div>
                         <div class="flex items-start gap-4">
-                             <img src="pricewriter.png" alt="Price Writers" class="h-10 w-auto flex-shrink-0">
+                             <img src="pricewriter.png" alt="Price Writers" class="h-10 w-auto flex-shrink-0" width="215" height="40">
                             <div>
                                 <h3 class="text-base text-main">Active Learner | Oct 2023 - Present</h3>
                                 <p class="text-sm text-subtle">Price Writers</p>
@@ -191,7 +196,6 @@
         </section>
 
         <!-- Internships Section -->
-        <!-- MODIFIED: Removed data-aos animation -->
         <section id="internships" class="mb-16">
             <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full md:w-1/4">
@@ -204,7 +208,6 @@
         </section>
 
         <!-- Conferences Section -->
-        <!-- MODIFIED: Removed data-aos animation -->
         <section id="conferences" class="mb-16">
             <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full md:w-1/4">
@@ -217,7 +220,6 @@
         </section>
 
         <!-- Competitions Section -->
-        <!-- MODIFIED: Removed data-aos animation -->
         <section id="competitions" class="mb-16">
             <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full md:w-1/4">
@@ -230,7 +232,6 @@
         </section>
 
         <!-- Featured Section -->
-        <!-- MODIFIED: Removed data-aos animation -->
         <section id="featured" class="mb-16">
             <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full md:w-1/4">
@@ -243,7 +244,6 @@
         </section>
 
         <!-- Tools Section -->
-        <!-- MODIFIED: Removed data-aos animation -->
         <section id="tools" class="mb-16">
             <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full md:w-1/4">
@@ -271,7 +271,6 @@
         </section>
 
         <!-- Other Things Section -->
-        <!-- MODIFIED: Removed data-aos animation -->
         <section id="other-things-section" class="mb-16">
             <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full">
@@ -291,7 +290,6 @@
         </section>
 
         <!-- Resume Section -->
-        <!-- MODIFIED: Removed data-aos animation -->
         <section id="resume" class="mb-16">
             <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full md:w-1/4">
@@ -372,6 +370,8 @@
 
             filteredProjects.forEach(project => {
                 const projectEl = document.createElement('div');
+                // MODIFIED: Added data-aos to each project card for row-by-row animation
+                projectEl.setAttribute('data-aos', 'fade-up');
                 projectEl.classList.add('project-card', 'rounded-lg', 'overflow-hidden');
                 projectEl.setAttribute('data-category', project.category);
                 
