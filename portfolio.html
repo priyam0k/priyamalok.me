@@ -119,9 +119,10 @@
 </head>
 <body>
     <!-- Landing Section -->
-    <section id="home" class="h-screen text-center relative">
-        <!-- MODIFIED: Removed px-4 to prevent overflow and fix mobile centering -->
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full">
+    <!-- MODIFIED: Changed to h-screen and overflow-hidden for definitive mobile centering fix -->
+    <section id="home" class="h-screen flex flex-col justify-center items-center text-center relative overflow-hidden">
+        <!-- MODIFIED: Removed data-aos from this div to prevent initial page shift -->
+        <div>
             <img src="your-text.png" alt="Logo" class="w-40 h-40 rounded-full mx-auto mb-8" width="160" height="160" onerror="this.src='https://placehold.co/160x160/f5f1e9/3C2A21?text=Logo'">
             <h1 class="text-4xl md:text-6xl font-normal text-main tracking-tighter">priyam</h1>
             <p class="text-main mt-8">Alright universe, work your magic!</p>
