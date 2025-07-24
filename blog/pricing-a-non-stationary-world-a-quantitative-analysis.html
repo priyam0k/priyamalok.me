@@ -46,15 +46,14 @@
             color: #bf4340;
         }
         .link-style {
-            color: #f97316; /* Orange for in-article links */
+            color: #d9534f; /* Muted Red from index.html */
             text-decoration: underline;
-            text-decoration-color: #fed7aa;
+            text-decoration-color: #f0c3c2; /* Light red underline from index.html */
             text-underline-offset: 2px;
             transition: color 0.2s ease-in-out;
-            font-weight: 600;
         }
         .link-style:hover {
-            color: #ea580c;
+            color: #bf4340; /* Darker muted red from index.html */
         }
         .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-out, padding 0.5s ease-out; }
         .accordion-button.open .arrow { transform: rotate(180deg); }
@@ -172,7 +171,7 @@
                     <h2 class="text-2xl font-semibold text-center mb-8 text-blue-900">Section 3 & 4: Model Critiques & Data Deficits</h2>
                     <p class="text-slate-600 max-w-3xl mx-auto mb-10">A model is only as good as its data and its assumptions. Current approaches face significant challenges on both fronts, leading to critiques that they systematically underestimate the true scale of risk.</p>
                     
-                    <div class="bg-slate-50 p-6 rounded-lg border-l-4 border-orange-500 my-8">
+                    <div class="bg-slate-50 p-6 rounded-lg border-l-4 my-8" style="border-left-color: #d9534f;">
                         <h3 class="font-semibold text-blue-900">The IFOA's Warning: "The Emperor's New Climate Scenarios"</h3>
                         <p class="mt-2 text-base text-slate-600">The <a href="https://actuaries.org.uk/" target="_blank" rel="noopener noreferrer" class="link-style">Institute and Faculty of Actuaries (IFOA)</a> argues that widely used climate scenarios are "deeply flawed" and "far too benign." They systematically exclude catastrophic risks like climate tipping points and cascading system failures, creating a dangerous disconnect between modeled risk and potential reality.</p>
                     </div>
@@ -272,7 +271,8 @@
                     datasets: [{
                         label: 'Price-to-Risk Correlation',
                         data: [0.85, 0.15],
-                        backgroundColor: ['#60a5fa', '#f97316'],
+                        backgroundColor: ['#60a5fa', '#d9534f'],
+                        borderColor: ['#2563EB', '#bf4340'],
                         borderWidth: 1
                     }]
                 },
