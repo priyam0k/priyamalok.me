@@ -167,11 +167,12 @@
             return parentId ? `${parentId}--${cleanTitle}` : cleanTitle;
         }
 
-        // ADDED: Creates a simple ID for markdown file names, which are in a flat directory
+        // Creates a simple, consistent ID for markdown file names.
         function createContentId(title) {
-            return title.toLowerCase().replace(/[^a-z0-9\s_():]/g, '').replace(/[\s_():]+/g, '-').replace(/(^-|-$)/g, '');
+            return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
         }
 
+        // MODIFIED: createPage function to handle hybrid nodes (content + children) and fix layout
         function createPage(title, children, parentId) {
             const pageId = createUniqueId(title, parentId);
             idToTitleMap[pageId] = title;
@@ -183,7 +184,7 @@
             let backButtonHtml = '';
             if (parentId) {
                 backButtonHtml = `
-                    <button onclick="goBack()" class="absolute top-4 left-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition-all duration-300 flex items-center z-10">
+                    <button onclick="goBack()" class="absolute top-0 left-0 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition-all duration-300 flex items-center z-10">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                           <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
                         </svg>
@@ -193,9 +194,10 @@
             }
 
             const childKeys = Object.keys(children);
+            let cardsHtml = '';
 
             if (childKeys.length > 0) {
-                const cardsHtml = childKeys.map(childTitle => {
+                cardsHtml = childKeys.map(childTitle => {
                     const childId = createUniqueId(childTitle, pageId);
                     return `
                         <div onclick="navigateTo('${childId}', '${pageId}')" class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transform transition-all duration-300 cursor-pointer border-2 border-transparent hover:border-orange-400">
@@ -203,33 +205,40 @@
                         </div>
                     `;
                 }).join('');
-                page.innerHTML = `<div class="relative">${backButtonHtml}<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-16 sm:pt-0">${cardsHtml}</div></div>`;
-            } else {
-                // MODIFIED: Leaf node now has a container for markdown content
-                page.innerHTML = `
-                    <div class="relative bg-white p-6 sm:p-8 rounded-xl shadow-lg">
-                        ${backButtonHtml}
-                        <div class="mt-12 sm:mt-0">
-                            <h2 class="text-2xl sm:text-3xl font-bold mb-6 text-center text-blue-900">${title}</h2>
-                            <div id="md-content-${pageId}" class="prose max-w-none text-blue-800">
-                                <p class="text-center text-blue-700">Loading content...</p>
-                            </div>
-                        </div>
-                    </div>`;
             }
+
+            // This new structure accommodates both content and child cards, and fixes the back button overlap
+            page.innerHTML = `
+                <div class="relative bg-white p-6 sm:p-8 rounded-xl shadow-lg">
+                    ${backButtonHtml}
+                    <div class="pt-16">
+                        <!-- Container for markdown content for this page -->
+                        <div id="md-content-${pageId}" class="prose max-w-none text-blue-800 mb-8" style="display: none;"></div>
+                        
+                        <!-- Grid for child topics -->
+                        ${childKeys.length > 0 ? `<h3 class="text-xl font-bold text-blue-900 border-b-2 border-blue-200 pb-2 mb-6 ${ parentId ? '' : 'hidden' }">Sub-topics</h3>` : ''}
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            ${cardsHtml}
+                        </div>
+                    </div>
+                </div>`;
+            
             contentArea.appendChild(page);
             
             childKeys.forEach(childTitle => createPage(childTitle, children[childTitle], pageId));
         }
         
-        // ADDED: Function to load and render markdown content
+        // MODIFIED: loadMarkdownContent function to fetch from the correct GitHub repo
         async function loadMarkdownContent(pageId, title) {
             const contentId = createContentId(title);
             const container = document.getElementById(`md-content-${pageId}`);
             if (!container) return;
 
-            // Assumes content is in a /content/ folder relative to the HTML file
-            const url = `content/${contentId}.md`;
+            // This URL points to the raw content in your GitHub repository.
+            // Make sure the username, repo name, and branch are correct.
+            const url = `https://raw.githubusercontent.com/priyamalok/gi-mindmap-backend/main/content/${contentId}.md`;
+            
+            console.log(`Attempting to fetch content from: ${url}`);
 
             try {
                 const response = await fetch(url);
@@ -238,15 +247,17 @@
                 }
                 const markdownText = await response.text();
                 
-                // Use showdown to convert markdown to HTML
                 const converter = new showdown.Converter({ tables: true, strikethrough: true, tasklists: true, openLinksInNewWindow: true });
                 const html = converter.makeHtml(markdownText);
                 
                 container.innerHTML = html;
+                container.style.display = 'block'; // Show the container
 
             } catch (error) {
-                console.warn(`Could not load content for "${title}" from ${url}:`, error);
-                container.innerHTML = `<p class="text-center text-blue-700">Detailed content for <strong class="text-orange-600 font-semibold">${title}</strong> will be added here soon.</p>`;
+                // If file not found, just keep the container hidden
+                container.innerHTML = '';
+                container.style.display = 'none';
+                console.warn(`Could not load content for "${title}" from ${url}. This is normal if no content file exists for this topic.`);
             }
         }
 
@@ -287,6 +298,7 @@
             });
         }
         
+        // MODIFIED: navigateTo function to always check for content
         window.navigateTo = function(pageId, currentId = null) {
             if (currentId) {
                  if(!navigationHistory.includes(currentId)) {
@@ -304,19 +316,18 @@
                     const title = idToTitleMap[pageId];
                     newPageTitle = title;
                     
-                    // MODIFIED: Check for leaf node and load content
-                    const contentContainer = page.querySelector(`[id^=md-content-]`);
-                    const isLeafNode = contentContainer !== null;
-                    
                     const rootId = createUniqueId(Object.keys(mindmapData)[0], null);
                     const isHomePage = pageId === rootId;
 
-                    if (isHomePage) newPageSubtitle = "An Interactive Guide";
-                    else if (isLeafNode) {
-                        newPageSubtitle = `Details for ${title}`;
-                        loadMarkdownContent(pageId, title); // Load the markdown
+                    if (isHomePage) {
+                        newPageSubtitle = "An Interactive Guide";
+                    } else {
+                         newPageSubtitle = `Exploring ${title}`;
                     }
-                    else newPageSubtitle = `Sub-topics for ${title}`;
+
+                    // Always try to load markdown content for the current page
+                    loadMarkdownContent(pageId, title);
+
                 } else {
                     page.classList.remove('active');
                 }
@@ -346,7 +357,7 @@
 
         window.jumpTo = function(index) {
             const pageIdToNavigateTo = navigationHistory[index];
-            navigationHistory.splice(index);
+            navigationHistory.splice(index + 1); // Use index + 1 to keep the page we jump to
             navigateTo(pageIdToNavigateTo, null);
         }
 
