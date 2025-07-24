@@ -27,12 +27,35 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        body { font-family: 'Source Serif 4', serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-        h1, h2, h3, h4, .post-title, .accordion-button { font-family: 'Source Sans 3', sans-serif; font-weight: 600; }
-        .nav-link { font-family: 'Source Sans 3', sans-serif; text-decoration: none; transition: color 0.2s ease-in-out; color: #d9534f; }
-        .nav-link:hover { color: #bf4340; }
-        .link-style { color: #f97316; text-decoration: none; transition: color 0.2s ease-in-out; font-weight: 600;}
-        .link-style:hover { text-decoration: underline; text-decoration-color: #fed7aa; text-underline-offset: 2px; }
+        body {
+            font-family: 'Source Serif 4', serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        h1, h2, h3, h4, .post-title, .accordion-button {
+            font-family: 'Source Sans 3', sans-serif;
+            font-weight: 600;
+        }
+        .nav-link {
+            font-family: 'Source Sans 3', sans-serif;
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+            color: #d9534f;
+        }
+        .nav-link:hover {
+            color: #bf4340;
+        }
+        .link-style {
+            color: #f97316; /* Orange for in-article links */
+            text-decoration: underline;
+            text-decoration-color: #fed7aa;
+            text-underline-offset: 2px;
+            transition: color 0.2s ease-in-out;
+            font-weight: 600;
+        }
+        .link-style:hover {
+            color: #ea580c;
+        }
         .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-out, padding 0.5s ease-out; }
         .accordion-button.open .arrow { transform: rotate(180deg); }
         .chart-container { position: relative; width: 100%; max-width: 700px; margin-left: auto; margin-right: auto; height: 300px; }
@@ -42,7 +65,7 @@
 </head>
 <body class="bg-white flex justify-center">
 
-    <div class="max-w-4xl w-full px-4 sm:px-6 lg:px-8 py-16">
+    <div class="max-w-3xl w-full px-4 sm:px-6 lg:px-8 py-16">
 
         <header class="pb-10 mb-10 border-b border-gray-200">
             <div class="flex items-start space-x-4">
@@ -72,7 +95,7 @@
             </nav>
         </header>
 
-        <main class="text-lg leading-relaxed text-slate-800">
+        <main class="text-base sm:text-lg leading-relaxed text-gray-800">
             <article class="prose max-w-none">
                 <h1 class="post-title text-3xl sm:text-4xl mb-4 text-black">Pricing a Non-Stationary World: A Quantitative Analysis</h1>
                 <p class="text-sm text-gray-500 mb-8 !-mt-2">Published on July 24, 2025</p>
@@ -81,7 +104,7 @@
                 
                 <section id="s1" class="my-16">
                     <h2 class="text-2xl font-semibold text-center mb-8 text-blue-900">Section 1: The New Economics of Property Risk</h2>
-                    <p class="text-center text-slate-600 max-w-3xl mx-auto mb-10">The P&C insurance market is undergoing a fundamental repricing of risk. The evidence is unequivocal, with rising losses driving premium hikes and market exits. This section establishes the empirical basis of the crisis and deconstructs its underlying causes.</p>
+                    <p class="text-slate-600 max-w-3xl mx-auto mb-10">The P&C insurance market is undergoing a fundamental repricing of risk. The evidence is unequivocal, with rising losses driving premium hikes and market exits. This section establishes the empirical basis of the crisis and deconstructs its underlying causes.</p>
                     
                     <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
                         <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-start">
@@ -99,7 +122,7 @@
                     </div>
 
                     <h3 class="text-xl font-semibold text-center text-blue-800 mt-12 mb-6">Deconstructing Loss Cost Inflation</h3>
-                    <p class="text-center text-slate-600 max-w-3xl mx-auto mb-10">Rising losses are a product of escalating physical hazards interacting with evolving socioeconomic landscapes. Click each driver to understand its role.</p>
+                    <p class="text-slate-600 max-w-3xl mx-auto mb-10">Rising losses are a product of escalating physical hazards interacting with evolving socioeconomic landscapes. Click each driver to understand its role.</p>
                     <div class="flex flex-row flex-wrap items-center justify-center gap-2 md:gap-4 text-center">
                         <div id="driver-physical" class="driver-card p-3 md:p-4 border-2 border-transparent rounded-lg cursor-pointer">
                             <h4 class="text-base md:text-lg font-semibold text-blue-800">Physical Risk</h4>
@@ -120,7 +143,7 @@
 
                 <section id="s2" class="my-16">
                     <h2 class="text-2xl font-semibold text-center mb-8 text-blue-900">Section 2: The Modern Actuarial Toolkit</h2>
-                    <p class="text-center text-slate-600 max-w-3xl mx-auto mb-10">Traditional ratemaking is challenged by a non-stationary climate. This has led to the adoption of sophisticated Catastrophe (CAT) models to simulate future possibilities. This section deconstructs these models and their statistical underpinnings.</p>
+                    <p class="text-slate-600 max-w-3xl mx-auto mb-10">Traditional ratemaking is challenged by a non-stationary climate. This has led to the adoption of sophisticated Catastrophe (CAT) models to simulate future possibilities. This section deconstructs these models and their statistical underpinnings.</p>
                     
                     <h3 class="text-xl font-semibold text-center text-blue-800 mb-6">Anatomy of a Catastrophe (CAT) Model</h3>
                     <div id="accordion-container" class="space-y-3">
@@ -147,7 +170,7 @@
 
                 <section id="s4" class="my-16">
                     <h2 class="text-2xl font-semibold text-center mb-8 text-blue-900">Section 3 & 4: Model Critiques & Data Deficits</h2>
-                    <p class="text-center text-slate-600 max-w-3xl mx-auto mb-10">A model is only as good as its data and its assumptions. Current approaches face significant challenges on both fronts, leading to critiques that they systematically underestimate the true scale of risk.</p>
+                    <p class="text-slate-600 max-w-3xl mx-auto mb-10">A model is only as good as its data and its assumptions. Current approaches face significant challenges on both fronts, leading to critiques that they systematically underestimate the true scale of risk.</p>
                     
                     <div class="bg-slate-50 p-6 rounded-lg border-l-4 border-orange-500 my-8">
                         <h3 class="font-semibold text-blue-900">The IFOA's Warning: "The Emperor's New Climate Scenarios"</h3>
@@ -170,7 +193,7 @@
 
                 <section id="s5" class="my-16">
                     <h2 class="text-2xl font-semibold text-center mb-8 text-blue-900">Section 5: The Regulatory Environment</h2>
-                    <p class="text-center text-slate-600 max-w-3xl mx-auto mb-10">The final premium is not a pure product of actuarial models; it is heavily mediated by a complex and politically sensitive system of state-level regulation. This creates market-warping effects, including a system of unseen cross-state subsidies.</p>
+                    <p class="text-slate-600 max-w-3xl mx-auto mb-10">The final premium is not a pure product of actuarial models; it is heavily mediated by a complex and politically sensitive system of state-level regulation. This creates market-warping effects, including a system of unseen cross-state subsidies.</p>
                     <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
                         <h3 class="text-xl font-semibold mb-4 text-center text-blue-800">The Regulatory Friction Factor</h3>
                         <div class="chart-container" style="height:350px;"><canvas id="regulatoryFrictionChart"></canvas></div>
@@ -180,7 +203,7 @@
 
                 <section id="s6" class="my-16">
                     <h2 class="text-2xl font-semibold text-center mb-8 text-blue-900">Section 6: Charting a Course Through the Crisis</h2>
-                    <p class="text-center text-slate-600 max-w-3xl mx-auto mb-10">The industry faces the growing specter of uninsurability. The only viable long-term solution is to reduce physical risk through mitigation, innovation, and new forms of partnership.</p>
+                    <p class="text-slate-600 max-w-3xl mx-auto mb-10">The industry faces the growing specter of uninsurability. The only viable long-term solution is to reduce physical risk through mitigation, innovation, and new forms of partnership.</p>
                     <div class="grid md:grid-cols-3 gap-6">
                         <div class="bg-slate-50/70 p-6 rounded-lg text-center border border-slate-200"><h3 class="font-semibold text-xl mb-2 text-blue-800">Mitigation & Adaptation</h3><p class="text-base text-slate-600">The most effective path is reducing physical risk through stronger building codes and property-level hardening, incentivized by premium discounts.</p></div>
                         <div class="bg-slate-50/70 p-6 rounded-lg text-center border border-slate-200"><h3 class="font-semibold text-xl mb-2 text-blue-800">Innovations in Risk Transfer</h3><p class="text-base text-slate-600">New products like parametric insurance can provide rapid, transparent liquidity after a disaster, bypassing slow claims adjustment.</p></div>
