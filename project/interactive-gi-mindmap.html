@@ -228,22 +228,25 @@
             childKeys.forEach(childTitle => createPage(childTitle, children[childTitle], pageId));
         }
         
-        // MODIFIED: loadMarkdownContent function to fetch from the correct GitHub repo
+        // FIXED: loadMarkdownContent function to fetch from the correct GitHub repo with the correct username
         async function loadMarkdownContent(pageId, title) {
             const contentId = createContentId(title);
             const container = document.getElementById(`md-content-${pageId}`);
             if (!container) return;
 
-            // This URL points to the raw content in your GitHub repository.
-            // Make sure the username, repo name, and branch are correct.
-            const url = `https://raw.githubusercontent.com/priyamalok/gi-mindmap-backend/main/content/${contentId}.md`;
+            // This URL now points to the raw content in your GitHub repository with the correct username 'priyam0k'.
+            const url = `https://raw.githubusercontent.com/priyam0k/gi-mindmap-backend/main/content/${contentId}.md`;
             
             console.log(`Attempting to fetch content from: ${url}`);
 
             try {
                 const response = await fetch(url);
                 if (!response.ok) {
-                    throw new Error(`File not found: ${response.status}`);
+                    // If the repo is private, this will fail. For now, we assume it's public.
+                    if (response.status === 404) {
+                         throw new Error(`File not found at ${url}. Note: Private repos cannot be fetched this way.`);
+                    }
+                    throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const markdownText = await response.text();
                 
@@ -257,7 +260,7 @@
                 // If file not found, just keep the container hidden
                 container.innerHTML = '';
                 container.style.display = 'none';
-                console.warn(`Could not load content for "${title}" from ${url}. This is normal if no content file exists for this topic.`);
+                console.warn(`Could not load content for "${title}" from ${url}. This is normal if no content file exists for this topic or if the repository is private.`);
             }
         }
 
