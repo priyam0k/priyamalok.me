@@ -161,18 +161,13 @@
         const navigationHistory = [];
         const idToTitleMap = {};
 
-        // Creates a unique ID for DOM elements, which need to be unique across the hierarchy
+        // Creates a unique ID for DOM elements based on its hierarchy
         function createUniqueId(title, parentId) {
             const cleanTitle = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
             return parentId ? `${parentId}--${cleanTitle}` : cleanTitle;
         }
 
-        // Creates a simple, consistent ID for markdown file names.
-        function createContentId(title) {
-            return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-        }
-
-        // MODIFIED: createPage function to handle hybrid nodes (content + children) and fix layout
+        // createPage function to handle hybrid nodes (content + children) and fix layout
         function createPage(title, children, parentId) {
             const pageId = createUniqueId(title, parentId);
             idToTitleMap[pageId] = title;
@@ -207,7 +202,7 @@
                 }).join('');
             }
 
-            // This new structure accommodates both content and child cards, and fixes the back button overlap
+            // This new structure accommodates both content and child cards
             page.innerHTML = `
                 <div class="relative bg-white p-6 sm:p-8 rounded-xl shadow-lg">
                     ${backButtonHtml}
@@ -228,23 +223,24 @@
             childKeys.forEach(childTitle => createPage(childTitle, children[childTitle], pageId));
         }
         
-        // FIXED: loadMarkdownContent function to fetch from the correct GitHub repo with the correct username
+        // MODIFIED: loadMarkdownContent now generates a unique filename from the page's full ID
         async function loadMarkdownContent(pageId, title) {
-            const contentId = createContentId(title);
             const container = document.getElementById(`md-content-${pageId}`);
             if (!container) return;
 
-            // This URL now points to the raw content in your GitHub repository with the correct username 'priyam0k'.
-            const url = `https://raw.githubusercontent.com/priyam0k/gi-mindmap-backend/main/content/${contentId}.md`;
+            // Create a unique filename from the full pageId to prevent collisions.
+            // e.g., 'general-insurance-principles--reserving--definition' becomes 'general-insurance-principles-reserving-definition'
+            const uniqueFilename = pageId.replace(/--/g, '-');
+            
+            const url = `https://raw.githubusercontent.com/priyam0k/gi-mindmap-backend/main/content/${uniqueFilename}.md`;
             
             console.log(`Attempting to fetch content from: ${url}`);
 
             try {
                 const response = await fetch(url);
                 if (!response.ok) {
-                    // If the repo is private, this will fail. For now, we assume it's public.
                     if (response.status === 404) {
-                         throw new Error(`File not found at ${url}. Note: Private repos cannot be fetched this way.`);
+                         throw new Error(`File not found at ${url}.`);
                     }
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -260,7 +256,7 @@
                 // If file not found, just keep the container hidden
                 container.innerHTML = '';
                 container.style.display = 'none';
-                console.warn(`Could not load content for "${title}" from ${url}. This is normal if no content file exists for this topic or if the repository is private.`);
+                console.warn(`Could not load content for "${title}" from ${url}. This is normal if no content file exists for this topic.`);
             }
         }
 
@@ -301,7 +297,6 @@
             });
         }
         
-        // MODIFIED: navigateTo function to always check for content
         window.navigateTo = function(pageId, currentId = null) {
             if (currentId) {
                  if(!navigationHistory.includes(currentId)) {
