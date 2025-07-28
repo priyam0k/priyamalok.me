@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Journey Through PriceWriter Podcasts - Priyam Alok</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Source Serif 4', serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        h1, h2, h3, .post-title { font-family: 'Source Sans 3', sans-serif; font-weight: 600; }
+        .nav-link { font-family: 'Source Sans 3', sans-serif; text-decoration: none; transition: color 0.2s ease-in-out; color: #d9534f; }
+        .nav-link:hover { color: #bf4340; }
+        .link-style { color: #d9534f; text-decoration: none; transition: color 0.2s ease-in-out; }
+        .link-style:hover { text-decoration: underline; text-decoration-color: #f0c3c2; text-underline-offset: 2px; }
+        .podcast-card {
+            background-color: #f8f9fa;
+            border-left: 4px solid #d9534f;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+        }
+        .podcast-card h3 {
+            color: #343a40;
+        }
+    </style>
+</head>
+<body class="bg-white flex justify-center">
+
+    <div class="max-w-3xl w-full px-4 sm:px-6 lg:px-8 py-16">
+
+        <!-- Header from your website -->
+        <header class="pb-10 mb-10 border-b border-gray-200">
+            <div class="flex items-start space-x-4">
+                <a href="https://priyamalok.me">
+                    <img src="logo.jpg" alt="Priyam Alok" class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover flex-shrink-0" onerror="this.onerror=null;this.src='https://placehold.co/80x80/e2e8f0/334155?text=PA';">
+                </a>
+                <div class="flex-grow">
+                    <div class="flex justify-between items-center">
+                        <div>
+                             <a href="https://priyamalok.me">
+                                <img src="Capturelogo-removebg-preview.png" alt="Priyam Alok Title" class="h-8" onerror="this.onerror=null;this.src='https://placehold.co/200x40/ffffff/1a1a1a?text=Priyam+Alok';">
+                            </a>
+                        </div>
+                        <nav class="flex items-center space-x-6 text-base">
+                            <a href="/" class="nav-link hidden sm:block text-lg">Home</a>
+                            <a href="/project" class="nav-link hidden sm:block text-lg">Projects</a>
+                            <a href="/blog" class="nav-link hidden sm:block text-lg">Musings</a>
+                        </nav>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-1">Musings on insurance tech, finance<br>and life</p>
+                </div>
+            </div>
+             <nav class="flex sm:hidden items-center justify-around space-x-4 text-base pt-6 border-t border-gray-200 mt-6">
+                <a href="/" class="nav-link text-lg">Home</a>
+                <a href="/project" class="nav-link text-lg">Projects</a>
+                <a href="/blog" class="nav-link text-lg">Musings</a>
+            </nav>
+        </header>
+
+        <!-- Blog Post Content -->
+        <main class="text-lg leading-relaxed text-gray-800">
+            <article>
+                <h1 class="post-title text-3xl sm:text-4xl mb-4 text-black">A Journey Through PriceWriter Podcasts</h1>
+                <p class="text-sm text-gray-500 mb-8 !-mt-2">Published on July 28, 2025</p>
+
+                <p class="mb-6">
+                    Here we go. After following the <a href="https://pricewriters.com/" target="_blank" rel="noopener noreferrer" class="link-style">PriceWriter</a> podcasts by <a href="https://www.linkedin.com/in/jeremy-keating/" target="_blank" rel="noopener noreferrer" class="link-style">Jeremy Keating</a> for over a year now, I just felt it was necessary today to take a pause and look back at how much I have gained. So, I came up with this idea of preparing a blog post of some of my favorite parts of the podcasts and the learnings I continue to bear on.
+                </p>
+
+                <!-- Extra Focus Podcasts -->
+                <h2 class="text-2xl font-semibold mt-12 mb-6 text-gray-900 border-b pb-2">Highlights & Reflections: My Key Takeaways</h2>
+
+                <div class="podcast-card">
+                    <h3 class="text-xl font-semibold">Ep 3: Dawid Kopczyk on Building an End-to-End Pricing Platform</h3>
+                    <p class="mt-2 text-base">This one really resonated with me. Dawid, co-founder of Quanti, talked about the mission to make insurance pricing more individualized and fair. The idea of an end-to-end platform that handles everything from GLMs to A/B testing is powerful. It’s a huge challenge, which is why it’s not common, but it points to a future where actuaries can implement changes in hours, not weeks. His vision of actuaries moving beyond rating to automate underwriting with generative AI is something I see as the next frontier.</p>
+                </div>
+
+                <div class="podcast-card">
+                    <h3 class="text-xl font-semibold">Ep 6: Jack Boult on Intellectual Diversity in Pricing</h3>
+                    <p class="mt-2 text-base">Jack's journey is fascinating, from life assurance to becoming Head of Pricing at Napo, a pet insurance startup. What struck me was his emphasis on intellectual diversity. He argues that the most successful pricing teams will blend actuaries, data scientists, and even experts from other industries like airlines. It’s not just about the models (like combining XGBoost and GLMs), but about building a team with varied perspectives. This is a crucial insight for any leader looking to innovate.</p>
+                </div>
+                
+                <div class="podcast-card">
+                    <h3 class="text-xl font-semibold">Ep 7: Anthony Sanderson on the Human Touch in Recruitment</h3>
+                    <p class="mt-2 text-base">As someone building a career, Anthony's perspective from Ascensio Partners was invaluable. He stressed that while AI can find candidates, the human element—understanding culture, aspirations, and value—remains key. His push for diversifying the talent pool beyond traditional math backgrounds is what the industry needs to foster real innovation. It's about creating space for new ideas, even when times are tough.</p>
+                </div>
+
+                <div class="podcast-card">
+                    <h3 class="text-xl font-semibold">Ep 10: Reuven Shnaps on Revolutionizing Pricing with Earnix</h3>
+                    <p class="mt-2 text-base">Hearing from the Chief Analytics Officer of Earnix was a highlight. Ren's point about moving beyond "Cost Plus" pricing to incorporate customer behavior and competition was a game-changer. Earnix's mission to enable real-time, intelligent dynamic pricing is ambitious. His vision of open analytics and democratizing AI to build trust among business users is the direction we need to be heading.</p>
+                </div>
+
+                <div class="podcast-card">
+                    <h3 class="text-xl font-semibold">Ep 14: Jeremy Keating on the 'Goldilocks Price'</h3>
+                    <p class="mt-2 text-base">It was great to hear from the host himself. Jeremy's mission to support pricing professionals at critical transition points—joining a team and becoming a manager—is so needed. His vision of every customer being charged the "Goldilocks price" (the exact right price at the right time) is the ultimate goal. It’s a powerful reminder of the responsibility and potential of our profession.</p>
+                </div>
+
+                <div class="podcast-card">
+                    <h3 class="text-xl font-semibold">Ep 15: Yiannis Parizas on State-of-the-Art Pricing</h3>
+                    <p class="mt-2 text-base">Yiannis has such a diverse background, and his passion for continuous learning is infectious. His mission to deliver state-of-the-art pricing by transitioning from GLMs to boosting and neural networks is where the industry is moving. I particularly liked his advice for leaders: invest in technology and upskill your people. It’s a long-term play that will pay dividends.</p>
+                </div>
+
+                <div class="podcast-card">
+                    <h3 class="text-xl font-semibold">Ep 16: George Wright on Streamlining Actuarial Operations</h3>
+                    <p class="mt-2 text-base">George from Vanda Analytics is solving a problem every actuary knows: messy data pipelines. His software, BDX View, which cleans up bordereaux, is a practical solution to an age-old issue. His mission to make better data technology accessible to smaller agents is fantastic. Better data flow leads to better decisions and, ultimately, better outcomes for consumers.</p>
+                </div>
+
+                <div class="podcast-card">
+                    <h3 class="text-xl font-semibold">Ep 5 & 17: Joost Van Bruggen & Rick de Jager on Maven Blue's Vision</h3>
+                    <p class="mt-2 text-base">Combining these two gives a full picture of Maven Blue. Joost’s focus on deep integration with core systems is a key differentiator. Rick’s insights on balancing pricing with customer value and his innovative ideas—like mobility insurance and multi-year P&C policies—are forward-thinking. Their philosophy of allowing clients to deploy rates from any platform is a testament to their open approach.</p>
+                </div>
+
+                <div class="podcast-card">
+                    <h3 class="text-xl font-semibold">Ep 18: Ralph Clayton on the Modern Pricing Process</h3>
+                    <p class="mt-2 text-base">Ralph's journey from actuarial exams to machine learning and cloud computing is a roadmap for the modern pricing professional. His mission is to bring data science and software engineering practices to insurance. The key insight for me was that the value isn't just in a slightly better model, but in automating and streamlining the entire pricing pipeline. Pricing is software development, and we need the tools and skills to match.</p>
+                </div>
+
+                <div class="podcast-card">
+                    <h3 class="text-xl font-semibold">Ep 19: Duncan Minty on the Ethics of Pricing</h3>
+                    <p class="mt-2 text-base">Duncan's perspective as an ethics consultant is a crucial one. He challenges the idea that personalized prices are automatically fair. His focus on the fairness of access and the social impact of pricing, especially with AI and social scoring, is a conversation the industry needs to have. He rightly points out that insurers are accountable for the outcomes of their complex models, whether they fully understand them or not.</p>
+                </div>
+
+                <div class="podcast-card">
+                    <h3 class="text-xl font-semibold">Ep 20: Martin Ellingsworth on Pricing and Real-World Conditions</h3>
+                    <p class="mt-2 text-base">Marty's experience across healthcare and P&C is extensive. His emphasis on accurate pricing reflecting real-world conditions is fundamental. He shared how inaccurate pricing led to the downfall of Fireman's Fund, a stark reminder of the stakes. His vision of leveraging telematics for individual-level pricing is where the personal auto market is headed, despite privacy concerns.</p>
+                </div>
+
+                <div class="podcast-card">
+                    <h3 class="text-xl font-semibold">Ep 22: Simon Pollack on the Bayesian Approach to Portfolio Management</h3>
+                    <p class="mt-2 text-base">Simon's critique of traditional pricing really hit home. His evolution towards portfolio management as a discipline where human decision-making is informed by analytical insight is brilliant. The idea of a "single version of the truth" achieved through a Bayesian process of updating assumptions with new data is powerful. It’s about breaking down silos between pricing, reserving, and underwriting to nurture a portfolio for enduring value.</p>
+                </div>
+
+                <div class="podcast-card">
+                    <h3 class="text-xl font-semibold">Ep 26: Max Wicks on Transitioning from GLMs to GBMs</h3>
+                    <p class="mt-2 text-base">Max's journey balancing professional boxing with a pricing career is incredible. His mission to transition from GLMs to GBMs for efficiency and automation is very practical. He acknowledges the explainability challenges but points to tools like SHAP plots as the solution. His vision of pricing teams operating at a software engineering level of skill is a recurring theme and one I fully endorse.</p>
+                </div>
+
+
+                <!-- Moderate Focus Podcasts -->
+                <h2 class="text-2xl font-semibold mt-12 mb-6 text-gray-900 border-b pb-2">More Valuable Insights</h2>
+                
+                <p class="mb-6">Beyond my highlights, almost every episode offered something to chew on. From Jason Cabral (Ep 1) discussing the blend of data and common sense at AAA Underwriting, to Kinga Kita (Ep 2) transforming geographical data at Skyrise. Waseem Malik (Ep 4) from Aviva shared a noble vision for claims, while Sarah Vaughan (Ep 8) of Angelica Solutions spoke of enabling the next generation. Alan Strange (Ep 9) emphasized understanding the 'why' behind data, and Amin Abdullah (Ep 12) brought lessons from the Saudi Arabian market. Amit Patel (Ep 13) from WTW stressed customer-centricity, and Thomas Saliba (Ep 21) highlighted the need for domain knowledge alongside coding skills. The discussions on team dynamics (Ep 27) and diversity of thought (Ep 28) were also profoundly useful for anyone in a leadership role.</p>
+
+
+                <!-- Less Focus Podcasts -->
+                 <h2 class="text-2xl font-semibold mt-12 mb-6 text-gray-900 border-b pb-2">Personal Growth and Other Musings</h2>
+                <p class="mb-6">The podcast isn't just about pricing. The book review episodes (Ep 23 & 25) are always a treat, and I've added several titles to my reading list. While episodes on leadership with Julia Lessing (Ep 24), the discussions on award-winning books (Ep 30), and inspiring STEM books (Ep 31) might not be directly about my day-to-day professional work, they are fantastic for personal growth, broadening perspectives, and staying motivated. They remind me that being a good professional is also about being a well-rounded, curious individual.</p>
+
+
+                <p class="mt-12">
+                    This is just the beginning of my reflections. I look forward to delving deeper into the wealth of knowledge from PriceWriter, including their books and masterclasses, and sharing more of my journey here in the future.
+                </p>
+            </article>
+        </main>
+
+        <!-- Footer from your website -->
+        <footer class="mt-12 pt-8 border-t border-gray-200 text-base text-gray-600">
+            <p>Find me on <a href="https://www.linkedin.com/in/priyamalok/" target="_blank" rel="noopener noreferrer" class="link-style">linkedin</a>, <a href="https://x.com/priyam0k" target="_blank" rel="noopener noreferrer" class="link-style">twitter(x.com)</a></p>
+        </footer>
+    </div>
+</body>
+</html>
