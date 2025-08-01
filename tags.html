@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tags - Priyam Alok</title>
-    <!-- SEO Improvement: Added a meta description -->
     <meta name="description" content="Browse posts by tags on the personal site of Priyam Alok. Find content related to insurance tech, finance, and life.">
     <link rel="icon" type="image/png" href="/favicon.png">
 
@@ -18,7 +17,10 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Combined and organized styles */
+        /* UX Improvement: Enables smooth scrolling for the entire page */
+        html {
+            scroll-behavior: smooth;
+        }
         body { 
             font-family: 'Source Serif 4', serif; 
             -webkit-font-smoothing: antialiased; 
@@ -67,12 +69,10 @@
         <!-- Header -->
         <header class="pb-10 mb-10 border-b border-gray-200">
             <div class="flex items-start space-x-4">
-                <!-- Performance: Added width, height, loading, and decoding attributes to prevent CLS -->
                 <a href="/"><img src="/logo.jpg" alt="Priyam Alok" class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover flex-shrink-0" width="80" height="80" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/80x80/e2e8f0/334155?text=PA';"></a>
                 <div class="flex-grow">
                     <div class="flex justify-between items-center">
                         <div>
-                             <!-- Performance: Added width, height, loading, and decoding attributes to prevent CLS -->
                              <a href="/"><img src="/Capturelogo-removebg-preview.png" alt="Priyam Alok Title" class="h-8" width="152" height="32" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/200x40/ffffff/1a1a1a?text=Priyam+Alok';"></a> 
                         </div>
                          <nav class="flex items-center space-x-6 text-base">
@@ -96,7 +96,6 @@
             <section class="mb-12">
                 <h1 class="page-title text-3xl mb-6 text-black">Tags</h1>
                 <ul id="tags-list" class="space-y-2">
-                    <!-- A placeholder is shown while tags are loading -->
                     <li><p class="text-gray-500">Loading tags...</p></li>
                 </ul>
             </section>
@@ -115,7 +114,6 @@
         </footer>
     </div>
     
-    <!-- Performance: Deferred script loading so it doesn't block HTML parsing -->
     <script src="post.js" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -124,9 +122,7 @@
             const postsHeading = document.getElementById('posts-heading');
             const postsListContainer = document.getElementById('posts-list');
 
-            // Ensure posts data is available
             if (typeof posts !== 'undefined' && posts.length > 0) {
-                // Clear the loading placeholder
                 tagsList.innerHTML = '';
 
                 const tagCounts = {};
@@ -186,7 +182,8 @@
                         postsListContainer.appendChild(postElement);
                     });
                     
-                    // Scroll the relevant section into view for better UX
+                    // Scroll the relevant section into view smoothly.
+                    // This is kept for browsers that may not fully support the CSS 'scroll-behavior' property.
                     postsSection.scrollIntoView({ behavior: 'smooth' });
                 };
 
@@ -195,12 +192,10 @@
                         event.preventDefault();
                         const selectedTag = event.target.dataset.tag;
                         displayPostsForTag(selectedTag);
-                        // Update URL hash for better navigation and sharing
                         history.pushState(null, '', `#${selectedTag}`);
                     }
                 });
 
-                // Check for a tag in the URL on page load
                 if (window.location.hash) {
                     const tagFromUrl = decodeURIComponent(window.location.hash.substring(1));
                     if (tagCounts[tagFromUrl]) {
