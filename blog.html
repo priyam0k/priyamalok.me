@@ -54,7 +54,8 @@
                 <p>An assorted collection of thoughts on insurance tech, finance and life. Browse by<a href="/tags.html" class="link-style"> tags</a>.</p>
             </section>
 
-            <section id="posts-container" class="space-y-10">
+            <!-- DESIGN CHANGE: Reduced vertical spacing from space-y-10 to space-y-8 -->
+            <section id="posts-container" class="space-y-8">
                 <!-- Blog posts will be dynamically inserted here -->
             </section>
         </main>
@@ -79,8 +80,7 @@
                     const isExternal = !post.url.startsWith('/') && !post.url.startsWith('blog');
                     const targetAttribute = isExternal ? 'target="_blank" rel="noopener noreferrer"' : '';
                     
-                    // --- DESIGN CHANGE: Date formatting ---
-                    const dateParts = post.date.replace(',', '').split(' '); // "Aug 01, 2025" -> ["Aug", "01", "2025"]
+                    const dateParts = post.date.replace(',', '').split(' ');
                     const day = dateParts[1];
                     const monthYear = `${dateParts[0]} ${dateParts[2]}`;
 
@@ -102,7 +102,8 @@
 
                     if (index < posts.length - 1) {
                         const hr = document.createElement('hr');
-                        hr.className = 'border-gray-200 !mt-10';
+                        // DESIGN CHANGE: Removed extra margin class (!mt-10) to reduce gap
+                        hr.className = 'border-gray-200';
                         postsContainer.appendChild(hr);
                     }
                 });
