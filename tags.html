@@ -17,15 +17,8 @@
         .nav-link:hover { color: #bf4340; }
         h1, .page-title, .post-title { font-family: 'Source Sans 3', sans-serif; font-weight: 600; }
         .tag-count { color: #6b7280; }
-        /* --- DESIGN CHANGE: Blue tag links --- */
-        .tag-link {
-            color: #2563eb; /* A nice blue color */
-            text-decoration: none;
-        }
-        .tag-link:hover {
-            text-decoration: underline;
-            text-decoration-color: #93c5fd; /* A lighter blue for the underline */
-        }
+        .tag-link { color: #2563eb; text-decoration: none; }
+        .tag-link:hover { text-decoration: underline; text-decoration-color: #93c5fd; }
     </style>
 </head>
 <body class="bg-white flex justify-center">
@@ -62,7 +55,8 @@
             <section class="mb-12">
                 <h1 class="page-title text-3xl mb-6 text-black">Tags</h1>
                 <ul id="tags-list" class="space-y-2">
-                    <!-- Tags will be dynamically inserted here -->
+                    <!-- DESIGN CHANGE: Added a loading placeholder -->
+                    <li><p class="text-gray-500">Loading tags...</p></li>
                 </ul>
             </section>
 
@@ -88,6 +82,9 @@
             const postsHeading = document.getElementById('posts-heading');
             const postsListContainer = document.getElementById('posts-list');
 
+            // Clear the loading placeholder before adding content
+            tagsList.innerHTML = '';
+
             if (typeof posts !== 'undefined' && posts.length > 0) {
                 const tagCounts = {};
                 posts.forEach(post => {
@@ -98,15 +95,20 @@
 
                 const sortedTags = Object.keys(tagCounts).sort((a, b) => tagCounts[b] - tagCounts[a]);
 
-                sortedTags.forEach(tag => {
-                    const li = document.createElement('li');
-                    li.innerHTML = `
-                        <a href="#${tag}" data-tag="${tag}" class="tag-link text-lg">
-                            ${tag}</a>
-                        <sup class="tag-count text-sm">${tagCounts[tag]}</sup>
-                    `;
-                    tagsList.appendChild(li);
-                });
+                if (sortedTags.length > 0) {
+                    sortedTags.forEach(tag => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `
+                            <a href="#${tag}" data-tag="${tag}" class="tag-link text-lg">
+                                ${tag}</a>
+                            <sup class="tag-count text-sm">${tagCounts[tag]}</sup>
+                        `;
+                        tagsList.appendChild(li);
+                    });
+                } else {
+                     tagsList.innerHTML = '<li><p class="text-gray-600">No tags found.</p></li>';
+                }
+
 
                 const displayPostsForTag = (selectedTag) => {
                     postsListContainer.innerHTML = '';
@@ -142,8 +144,7 @@
                         postsListContainer.appendChild(postElement);
                     });
                     
-                    // --- DESIGN CHANGE: Instant jump ---
-                    postsSection.scrollIntoView(); // Removed { behavior: 'smooth' }
+                    postsSection.scrollIntoView();
                 };
 
                 tagsList.addEventListener('click', (event) => {
