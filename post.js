@@ -49,7 +49,7 @@ const posts = [
         date: "Jul 26, 2025",
         description: "A comparative analysis of parametric insurance markets in India, the U.S., and the U.K., unpacking the actuarial foundations and product innovations.",
         source: "priyamalok.me",
-        tags: ["parametric insurance", "insurance", "analysis", "actuarial"]
+        tags: ["parametric insurance", "insurance", "actuarial"]
     },
     {
         title: "Pricing a non-stationary world: a quantitative analysis",
@@ -57,7 +57,7 @@ const posts = [
         date: "Jul 24, 2025",
         description: "An analysis of the escalating crisis in property insurance, driven by the increasing frequency and severity of climate-related catastrophes.",
         source: "priyamalok.me",
-        tags: ["pricing", "analysis", "climate risk", "insurance"]
+        tags: ["pricing", "climate risk", "insurance"]
     },
     {
         title: "Project: Interactive guide to general insurance principles",
