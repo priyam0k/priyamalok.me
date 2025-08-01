@@ -10,34 +10,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body {
-            font-family: 'Source Serif 4', serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        .link-style {
-            color: #d9534f;
-            text-decoration: none; /* remove default underline */
-            transition: color 0.2s ease-in-out;
-        }
-        .link-style:hover {
-             text-decoration: underline;
-             text-decoration-color: #f0c3c2;
-             text-underline-offset: 2px;
-        }
-        .nav-link {
-            font-family: 'Source Sans 3', sans-serif;
-            text-decoration: none;
-            transition: color 0.2s ease-in-out;
-            color: #d9534f; /* Set base color for nav links */
-        }
-        .nav-link:hover {
-            color: #bf4340; /* Slightly darker/muted red for hover */
-        }
-        h1, .page-title, .post-title {
-            font-family: 'Source Sans 3', sans-serif;
-            font-weight: 600;
-        }
+        body { font-family: 'Source Serif 4', serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        .link-style { color: #d9534f; text-decoration: none; transition: color 0.2s ease-in-out; }
+        .link-style:hover { text-decoration: underline; text-decoration-color: #f0c3c2; text-underline-offset: 2px; }
+        .nav-link { font-family: 'Source Sans 3', sans-serif; text-decoration: none; transition: color 0.2s ease-in-out; color: #d9534f; }
+        .nav-link:hover { color: #bf4340; }
+        h1, .page-title, .post-title { font-family: 'Source Sans 3', sans-serif; font-weight: 600; }
     </style>
 </head>
 <body class="bg-white flex justify-center">
@@ -72,162 +50,12 @@
         <!-- Main Content -->
         <main class="text-base leading-relaxed text-gray-800">
             <section class="mb-12">
-                <h2 class="page-title text-2xl mb-2 text-black">Musings</h2>
-                <p>An assorted collection of thoughts on insurance tech, finance and life.</p>
+                <h1 class="page-title text-2xl mb-2 text-black">Musings</h1>
+                <p>An assorted collection of thoughts on insurance tech, finance and life. Browse by <a href="/tags.html" class="link-style">tags</a>.</p>
             </section>
 
-            <section class="space-y-10">
-
-                <!-- Blog Post 9 -->
-                <article class="flex flex-col sm:flex-row gap-6">
-                    <div class="w-28 text-sm text-gray-500 flex-shrink-0">
-                        <p class="font-semibold">01</p>
-                        <p>Aug 2025</p>
-                    </div>
-                    <div>
-                        <h3 class="post-title text-xl mb-1">
-                            <a href="https://youtu.be/NP1AU5O9pC0?list=LM" class="link-style">City of the sun :)</a>
-                        </h3>
-                        <p class="text-sm text-gray-400 mb-2">youtube.com</p>
-                        <p> procrastination and missed opportunities, desire for a more fulfilling life,  passage of time and the realization of missed moments </p>
-                    </div>
-                </article>
-
-                <hr class="border-gray-200">
-                
-                <!-- Blog Post 8 -->
-                <article class="flex flex-col sm:flex-row gap-6">
-                    <div class="w-28 text-sm text-gray-500 flex-shrink-0">
-                        <p class="font-semibold">31</p>
-                        <p>Jul 2025</p>
-                    </div>
-                    <div>
-                        <h3 class="post-title text-xl mb-1">
-                            <a href="blog/an-analysis-of-blockchain-in-insurance-sparked-by-curiosity.html" class="link-style">An analysis of blockchain in insurance, sparked by curiosity</a>
-                        </h3>
-                        <p class="text-sm text-gray-400 mb-2">priyamalok.me</p>
-                        <p> A recent mentorship session sparked a memory of ...</p>
-                    </div>
-                </article>
-
-                <hr class="border-gray-200">
-                
-                <!-- Blog Post 7 -->
-                <article class="flex flex-col sm:flex-row gap-6">
-                    <div class="w-28 text-sm text-gray-500 flex-shrink-0">
-                        <p class="font-semibold">28</p>
-                        <p>Jul 2025</p>
-                    </div>
-                    <div>
-                        <h3 class="post-title text-xl mb-1">
-                            <a href="/blog/a-journey-through-pricewriter-podcasts.html" class="link-style">A journey through PriceWriter podcasts</a>
-                        </h3>
-                        <p class="text-sm text-gray-400 mb-2">priyamalok.me</p>
-                        <p> Here we go. After following the PriceWriter podcasts by...</p>
-                    </div>
-                </article>
-
-                <hr class="border-gray-200">
-                
-                <!-- Blog Post 6 -->
-                <article class="flex flex-col sm:flex-row gap-6">
-                    <div class="w-28 text-sm text-gray-500 flex-shrink-0">
-                        <p class="font-semibold">26</p>
-                        <p>Jul 2025</p>
-                    </div>
-                    <div>
-                        <h3 class="post-title text-xl mb-1">
-                            <a href="/blog/parametric-insurance-global-comparative-analysis.html" class="link-style">Parametric insurance: global comparative analysis</a>
-                        </h3>
-                        <p class="text-sm text-gray-400 mb-2">priyamalok.me</p>
-                        <p> I just came across a project asked in a technical...</p>
-                    </div>
-                </article>
-
-                <hr class="border-gray-200">
-                
-                <!-- Blog Post 5 -->
-                <article class="flex flex-col sm:flex-row gap-6">
-                    <div class="w-28 text-sm text-gray-500 flex-shrink-0">
-                        <p class="font-semibold">24</p>
-                        <p>Jul 2025</p>
-                    </div>
-                    <div>
-                        <h3 class="post-title text-xl mb-1">
-                            <a href="/blog/pricing-a-non-stationary-world-a-quantitative-analysis.html" class="link-style">Pricing a non-stationary world: a quantitative analysis</a>
-                        </h3>
-                        <p class="text-sm text-gray-400 mb-2">priyamalok.me</p>
-                        <p> Crisis in property insurance, driven by the increasing climate-related catastrophes...</p>
-                    </div>
-                </article>
-
-                <hr class="border-gray-200">
-                
-                <!-- Blog Post 4 -->
-                <article class="flex flex-col sm:flex-row gap-6">
-                    <div class="w-28 text-sm text-gray-500 flex-shrink-0">
-                        <p class="font-semibold">04</p>
-                        <p>Jul 2025</p>
-                    </div>
-                    <div>
-                        <h3 class="post-title text-xl mb-1">
-                            <a href="/blog/a-deep-dive-into-the-predictri-framework.html" class="link-style">A deep dive into the PredicTri framework</a>
-                        </h3>
-                        <p class="text-sm text-gray-400 mb-2">priyamalok.me</p>
-                        <p>In the world of P&C reserving, the quest for accuracy, transparency...</p>
-                    </div>
-                </article>
-
-                <hr class="border-gray-200">
-                
-                <!-- Blog Post 3 -->
-                <article class="flex flex-col sm:flex-row gap-6">
-                    <div class="w-28 text-sm text-gray-500 flex-shrink-0">
-                        <p class="font-semibold">03</p>
-                        <p>Jul 2025</p>
-                    </div>
-                    <div>
-                        <h3 class="post-title text-xl mb-1">
-                            <a href="/blog/post-gi-mindmap.html" class="link-style">Project: Interactive guide to general insurance principles</a>
-                        </h3>
-                        <p class="text-sm text-gray-400 mb-2">priyamalok.me</p>
-                        <p>This is an interactive mind map designed to explore the core...</p>
-                    </div>
-                </article>
-
-                <hr class="border-gray-200">
-                
-                <!-- Blog Post 2 -->
-                <article class="flex flex-col sm:flex-row gap-6">
-                    <div class="w-28 text-sm text-gray-500 flex-shrink-0">
-                        <p class="font-semibold">21</p>
-                        <p>May 2025</p>
-                    </div>
-                    <div>
-                        <h3 class="post-title text-xl mb-1">
-                            <a href="/blog/reading-between-the-yields.html" class="link-style">Reading between the yields: a global risk barometer</a>
-                        </h3>
-                        <p class="text-sm text-gray-400 mb-2">priyamalok.me</p>
-                        <p>As the global economy adjusts to inflation cycles...</p>
-                    </div>
-                </article>
-
-                <hr class="border-gray-200">
-
-                <!-- Blog Post 1 -->
-                 <article class="flex flex-col sm:flex-row gap-6">
-                    <div class="w-28 text-sm text-gray-500 flex-shrink-0">
-                        <p class="font-semibold">05</p>
-                        <p>Dec 2024</p>
-                    </div>
-                    <div>
-                        <h3 class="post-title text-xl mb-1">
-                            <a href="/" class="link-style">Hi, I am Priyam, This is my personal homepage.</a>
-                        </h3>
-                         <p class="text-sm text-gray-400 mb-2">priyamalok.me</p>
-                        <p>An aspiring actuarial model developer...</p>
-                    </div>
-                </article>
+            <section id="posts-container" class="space-y-10">
+                <!-- Blog posts will be dynamically inserted here -->
             </section>
         </main>
 
@@ -237,5 +65,50 @@
         </footer>
     </div>
     
+    <script src="posts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const postsContainer = document.getElementById('posts-container');
+            postsContainer.innerHTML = ''; // Clear existing content
+
+            posts.forEach((post, index) => {
+                const postElement = document.createElement('article');
+                postElement.className = 'flex flex-col sm:flex-row gap-6';
+
+                const isExternal = !post.url.startsWith('/') && !post.url.startsWith('blog');
+                const targetAttribute = isExternal ? 'target="_blank" rel="noopener noreferrer"' : '';
+                
+                const tagsHTML = post.tags.map(tag => 
+                    `<a href="tags.html#${tag}" class="link-style text-sm text-gray-500 hover:text-red-500">#${tag}</a>`
+                ).join(' ');
+
+                postElement.innerHTML = `
+                    <div class="w-28 text-sm text-gray-500 flex-shrink-0">
+                        <p>${post.date.split(',')[0]}</p>
+                        <p>${post.date.split(',')[1]}</p>
+                    </div>
+                    <div>
+                        <h3 class="post-title text-xl mb-1">
+                            <a href="${post.url}" class="link-style" ${targetAttribute}>${post.title}</a>
+                        </h3>
+                        <p class="text-sm text-gray-400 mb-2">${post.source}</p>
+                        <p>${post.description}</p>
+                        <div class="mt-2 flex flex-wrap gap-x-3">
+                            ${tagsHTML}
+                        </div>
+                    </div>
+                `;
+                
+                postsContainer.appendChild(postElement);
+
+                // Add a horizontal rule after each post except the last one
+                if (index < posts.length - 1) {
+                    const hr = document.createElement('hr');
+                    hr.className = 'border-gray-200 !mt-10'; // Use !mt-10 to override space-y-10
+                    postsContainer.appendChild(hr);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
