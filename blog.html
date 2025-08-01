@@ -25,11 +25,11 @@
         <!-- Header -->
         <header class="pb-10 mb-10 border-b border-gray-200">
             <div class="flex items-start space-x-4">
-                <a href="/"><img src="logo.jpg" alt="Priyam Alok" class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover flex-shrink-0" onerror="this.onerror=null;this.src='https://placehold.co/80x80/e2e8f0/334155?text=PA';"></a>
+                <a href="/"><img src="/logo.jpg" alt="Priyam Alok" class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover flex-shrink-0" onerror="this.onerror=null;this.src='https://placehold.co/80x80/e2e8f0/334155?text=PA';"></a>
                 <div class="flex-grow">
                     <div class="flex justify-between items-center">
                         <div>
-                             <a href="/"><img src="Capturelogo-removebg-preview.png" alt="Priyam Alok Title" class="h-8" onerror="this.onerror=null;this.src='https://placehold.co/200x40/ffffff/1a1a1a?text=Priyam+Alok';"></a> 
+                             <a href="/"><img src="/Capturelogo-removebg-preview.png" alt="Priyam Alok Title" class="h-8" onerror="this.onerror=null;this.src='https://placehold.co/200x40/ffffff/1a1a1a?text=Priyam+Alok';"></a> 
                         </div>
                          <nav class="flex items-center space-x-6 text-base">
                             <a href="/" class="nav-link hidden sm:block text-lg">Home</a>
@@ -51,7 +51,7 @@
         <main class="text-base leading-relaxed text-gray-800">
             <section class="mb-12">
                 <h1 class="page-title text-2xl mb-2 text-black">Musings</h1>
-                <p>An assorted collection of thoughts on insurance tech, finance and life. Browse by <a href="/tags.html" class="link-style">tags</a>.</p>
+                <p>An assorted collection of thoughts on insurance tech, finance and life. Browse by<a href="/tags.html" class="link-style"> tags</a>.</p>
             </section>
 
             <section id="posts-container" class="space-y-10">
@@ -65,49 +65,53 @@
         </footer>
     </div>
     
-    <script src="posts.js"></script>
+    <script src="post.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const postsContainer = document.getElementById('posts-container');
             postsContainer.innerHTML = ''; // Clear existing content
 
-            posts.forEach((post, index) => {
-                const postElement = document.createElement('article');
-                postElement.className = 'flex flex-col sm:flex-row gap-6';
+            // Check if the 'posts' variable exists from post.js
+            if (typeof posts !== 'undefined' && posts.length > 0) {
+                posts.forEach((post, index) => {
+                    const postElement = document.createElement('article');
+                    postElement.className = 'flex flex-col sm:flex-row gap-6';
 
-                const isExternal = !post.url.startsWith('/') && !post.url.startsWith('blog');
-                const targetAttribute = isExternal ? 'target="_blank" rel="noopener noreferrer"' : '';
-                
-                const tagsHTML = post.tags.map(tag => 
-                    `<a href="tags.html#${tag}" class="link-style text-sm text-gray-500 hover:text-red-500">#${tag}</a>`
-                ).join(' ');
+                    const isExternal = !post.url.startsWith('/') && !post.url.startsWith('blog');
+                    const targetAttribute = isExternal ? 'target="_blank" rel="noopener noreferrer"' : '';
+                    
+                    const tagsHTML = post.tags.map(tag => 
+                        `<a href="/tags.html#${tag}" class="link-style text-sm text-gray-500 hover:text-red-500">#${tag}</a>`
+                    ).join(' ');
 
-                postElement.innerHTML = `
-                    <div class="w-28 text-sm text-gray-500 flex-shrink-0">
-                        <p>${post.date.split(',')[0]}</p>
-                        <p>${post.date.split(',')[1]}</p>
-                    </div>
-                    <div>
-                        <h3 class="post-title text-xl mb-1">
-                            <a href="${post.url}" class="link-style" ${targetAttribute}>${post.title}</a>
-                        </h3>
-                        <p class="text-sm text-gray-400 mb-2">${post.source}</p>
-                        <p>${post.description}</p>
-                        <div class="mt-2 flex flex-wrap gap-x-3">
-                            ${tagsHTML}
+                    postElement.innerHTML = `
+                        <div class="w-28 text-sm text-gray-500 flex-shrink-0">
+                            <p>${post.date.split(',')[0]}</p>
+                            <p>${post.date.split(',')[1]}</p>
                         </div>
-                    </div>
-                `;
-                
-                postsContainer.appendChild(postElement);
+                        <div>
+                            <h3 class="post-title text-xl mb-1">
+                                <a href="${post.url}" class="link-style" ${targetAttribute}>${post.title}</a>
+                            </h3>
+                            <p class="text-sm text-gray-400 mb-2">${post.source}</p>
+                            <p>${post.description}</p>
+                            <div class="mt-2 flex flex-wrap gap-x-3">
+                                ${tagsHTML}
+                            </div>
+                        </div>
+                    `;
+                    
+                    postsContainer.appendChild(postElement);
 
-                // Add a horizontal rule after each post except the last one
-                if (index < posts.length - 1) {
-                    const hr = document.createElement('hr');
-                    hr.className = 'border-gray-200 !mt-10'; // Use !mt-10 to override space-y-10
-                    postsContainer.appendChild(hr);
-                }
-            });
+                    if (index < posts.length - 1) {
+                        const hr = document.createElement('hr');
+                        hr.className = 'border-gray-200 !mt-10';
+                        postsContainer.appendChild(hr);
+                    }
+                });
+            } else {
+                 postsContainer.innerHTML = '<p class="text-center text-gray-600">Could not load posts. Please ensure post.js is available.</p>';
+            }
         });
     </script>
 </body>
