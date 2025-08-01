@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tags - Priyam Alok</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Source Serif 4', serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        .link-style { color: #d9534f; text-decoration: none; transition: color 0.2s ease-in-out; }
+        .link-style:hover { text-decoration: underline; text-decoration-color: #f0c3c2; text-underline-offset: 2px; }
+        .nav-link { font-family: 'Source Sans 3', sans-serif; text-decoration: none; transition: color 0.2s ease-in-out; color: #d9534f; }
+        .nav-link:hover { color: #bf4340; }
+        h1, .page-title, .post-title { font-family: 'Source Sans 3', sans-serif; font-weight: 600; }
+        .tag-count { color: #6b7280; }
+    </style>
+</head>
+<body class="bg-white flex justify-center">
+
+    <div class="max-w-3xl w-full px-4 sm:px-6 lg:px-8 py-16">
+
+        <!-- Header -->
+        <header class="pb-10 mb-10 border-b border-gray-200">
+            <div class="flex items-start space-x-4">
+                <a href="/"><img src="/logo.jpg" alt="Priyam Alok" class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover flex-shrink-0" onerror="this.onerror=null;this.src='https://placehold.co/80x80/e2e8f0/334155?text=PA';"></a>
+                <div class="flex-grow">
+                    <div class="flex justify-between items-center">
+                        <div>
+                             <a href="/"><img src="/Capturelogo-removebg-preview.png" alt="Priyam Alok Title" class="h-8" onerror="this.onerror=null;this.src='https://placehold.co/200x40/ffffff/1a1a1a?text=Priyam+Alok';"></a> 
+                        </div>
+                         <nav class="flex items-center space-x-6 text-base">
+                            <a href="/" class="nav-link hidden sm:block text-lg">Home</a>
+                            <a href="/project.html" class="nav-link hidden sm:block text-lg">Projects</a>
+                            <a href="/blog.html" class="nav-link hidden sm:block text-lg">Musings</a>
+                        </nav>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-1">Musings on insurance tech, finance<br>and life</p>
+                </div>
+            </div>
+             <nav class="flex sm:hidden items-center justify-around space-x-4 text-base pt-6 border-t border-gray-200 mt-6">
+                <a href="/" class="nav-link text-lg">Home</a>
+                <a href="/project.html" class="nav-link text-lg">Projects</a>
+                <a href="/blog.html" class="nav-link text-lg">Musings</a>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="text-base leading-relaxed text-gray-800">
+            <section class="mb-12">
+                <h1 class="page-title text-3xl mb-6 text-black">Tags</h1>
+                <ul id="tags-list" class="space-y-2">
+                    <!-- Tags will be dynamically inserted here -->
+                </ul>
+            </section>
+
+            <section id="posts-section" class="hidden">
+                <h2 id="posts-heading" class="page-title text-2xl mb-6 text-black border-t border-gray-200 pt-8"></h2>
+                <div id="posts-list" class="space-y-10">
+                    <!-- Filtered posts will be dynamically inserted here -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-12 pt-8 border-t border-gray-200 text-base text-gray-600">
+            <p>Find me on <a href="https://www.linkedin.com/in/priyamalok/" target="_blank" rel="noopener noreferrer" class="link-style">linkedin</a>, <a href="https://x.com/priyam0k" target="_blank" rel="noopener noreferrer" class="link-style">twitter(x.com)</a></p>
+        </footer>
+    </div>
+    
+    <script src="posts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tagsList = document.getElementById('tags-list');
+            const postsSection = document.getElementById('posts-section');
+            const postsHeading = document.getElementById('posts-heading');
+            const postsListContainer = document.getElementById('posts-list');
+
+            // 1. Calculate tag counts
+            const tagCounts = {};
+            posts.forEach(post => {
+                post.tags.forEach(tag => {
+                    tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+                });
+            });
+
+            // 2. Create sorted array of tags
+            const sortedTags = Object.keys(tagCounts).sort((a, b) => tagCounts[b] - tagCounts[a]);
+
+            // 3. Display all tags
+            sortedTags.forEach(tag => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <a href="#${tag}" data-tag="${tag}" class="tag-link link-style text-lg">
+                        ${tag}</a>
+                    <sup class="tag-count text-sm">${tagCounts[tag]}</sup>
+                `;
+                tagsList.appendChild(li);
+            });
+
+            // Function to display posts for a given tag
+            const displayPostsForTag = (selectedTag) => {
+                postsListContainer.innerHTML = '';
+                const filteredPosts = posts.filter(post => post.tags.includes(selectedTag));
+
+                postsHeading.textContent = `Posts tagged with "${selectedTag}"`;
+                postsSection.classList.remove('hidden');
+
+                filteredPosts.forEach(post => {
+                    const postElement = document.createElement('article');
+                    postElement.className = 'flex flex-col sm:flex-row gap-6';
+                    
+                    const isExternal = !post.url.startsWith('/') && !post.url.startsWith('blog');
+                    const targetAttribute = isExternal ? 'target="_blank" rel="noopener noreferrer"' : '';
+
+                    postElement.innerHTML = `
+                        <div class="w-28 text-sm text-gray-500 flex-shrink-0">
+                            <p>${post.date.split(',')[0]}</p>
+                            <p>${post.date.split(',')[1]}</p>
+                        </div>
+                        <div>
+                            <h3 class="post-title text-xl mb-1">
+                                <a href="${post.url}" class="link-style" ${targetAttribute}>${post.title}</a>
+                            </h3>
+                            <p class="text-sm text-gray-400 mb-2">${post.source}</p>
+                            <p>${post.description}</p>
+                        </div>
+                    `;
+                    postsListContainer.appendChild(postElement);
+                });
+                
+                // Scroll to the posts section
+                postsSection.scrollIntoView({ behavior: 'smooth' });
+            };
+
+            // 4. Add click event listener to tags
+            tagsList.addEventListener('click', (event) => {
+                if (event.target.classList.contains('tag-link')) {
+                    event.preventDefault();
+                    const selectedTag = event.target.dataset.tag;
+                    displayPostsForTag(selectedTag);
+                    history.pushState(null, '', `#${selectedTag}`);
+                }
+            });
+
+            // 5. Check for tag in URL on page load
+            if (window.location.hash) {
+                const tagFromUrl = window.location.hash.substring(1);
+                if (tagCounts[tagFromUrl]) {
+                    displayPostsForTag(decodeURIComponent(tagFromUrl));
+                }
+            }
+        });
+    </script>
+</body>
+</html>
