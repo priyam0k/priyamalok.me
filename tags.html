@@ -113,10 +113,15 @@
                         const isExternal = !post.url.startsWith('/') && !post.url.startsWith('blog');
                         const targetAttribute = isExternal ? 'target="_blank" rel="noopener noreferrer"' : '';
 
+                        // --- DESIGN CHANGE: Date formatting ---
+                        const dateParts = post.date.replace(',', '').split(' ');
+                        const day = dateParts[1];
+                        const monthYear = `${dateParts[0]} ${dateParts[2]}`;
+
                         postElement.innerHTML = `
                             <div class="w-28 text-sm text-gray-500 flex-shrink-0">
-                                <p>${post.date.split(',')[0]}</p>
-                                <p>${post.date.split(',')[1]}</p>
+                                <p>${day}</p>
+                                <p>${monthYear}</p>
                             </div>
                             <div>
                                 <h3 class="post-title text-xl mb-1">
