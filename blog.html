@@ -4,18 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Musings - Priyam Alok</title>
+    <!-- SEO Improvement: Added a meta description -->
+    <meta name="description" content="An assorted collection of thoughts and musings on insurance tech, finance, and life by Priyam Alok.">
     <link rel="icon" type="image/png" href="/favicon.png">
+    
+    <!-- Performance: Preconnect to Google Fonts domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Performance: Load fonts asynchronously to prevent render-blocking -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600&family=Source+Sans+3:wght@400;600&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600&family=Source+Sans+3:wght@400;600&display=swap"></noscript>
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <style>
-        body { font-family: 'Source Serif 4', serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-        .link-style { color: #d9534f; text-decoration: none; transition: color 0.2s ease-in-out; }
-        .link-style:hover { text-decoration: underline; text-decoration-color: #f0c3c2; text-underline-offset: 2px; }
-        .nav-link { font-family: 'Source Sans 3', sans-serif; text-decoration: none; transition: color 0.2s ease-in-out; color: #d9534f; }
-        .nav-link:hover { color: #bf4340; }
-        h1, .page-title, .post-title { font-family: 'Source Sans 3', sans-serif; font-weight: 600; }
+        /* Combined styles for better organization */
+        body { 
+            font-family: 'Source Serif 4', serif; 
+            -webkit-font-smoothing: antialiased; 
+            -moz-osx-font-smoothing: grayscale; 
+        }
+        .link-style { 
+            color: #d9534f; 
+            text-decoration: none; 
+            transition: color 0.2s ease-in-out; 
+        }
+        .link-style:hover { 
+            text-decoration: underline; 
+            text-decoration-color: #f0c3c2; 
+            text-underline-offset: 2px; 
+        }
+        .nav-link { 
+            font-family: 'Source Sans 3', sans-serif; 
+            text-decoration: none; 
+            transition: color 0.2s ease-in-out; 
+            color: #d9534f; 
+        }
+        .nav-link:hover { 
+            color: #bf4340; 
+        }
+        h1, .page-title, .post-title { 
+            font-family: 'Source Sans 3', sans-serif; 
+            font-weight: 600; 
+        }
     </style>
 </head>
 <body class="bg-white flex justify-center">
@@ -25,11 +57,13 @@
         <!-- Header -->
         <header class="pb-10 mb-10 border-b border-gray-200">
             <div class="flex items-start space-x-4">
-                <a href="/"><img src="/logo.jpg" alt="Priyam Alok" class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover flex-shrink-0" onerror="this.onerror=null;this.src='https://placehold.co/80x80/e2e8f0/334155?text=PA';"></a>
+                <!-- Performance: Added width, height, loading, and decoding attributes to prevent CLS -->
+                <a href="/"><img src="/logo.jpg" alt="Priyam Alok" class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover flex-shrink-0" width="80" height="80" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/80x80/e2e8f0/334155?text=PA';"></a>
                 <div class="flex-grow">
                     <div class="flex justify-between items-center">
                         <div>
-                             <a href="/"><img src="/Capturelogo-removebg-preview.png" alt="Priyam Alok Title" class="h-8" onerror="this.onerror=null;this.src='https://placehold.co/200x40/ffffff/1a1a1a?text=Priyam+Alok';"></a> 
+                             <!-- Performance: Added width, height, loading, and decoding attributes to prevent CLS -->
+                             <a href="/"><img src="/Capturelogo-removebg-preview.png" alt="Priyam Alok Title" class="h-8" width="152" height="32" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/200x40/ffffff/1a1a1a?text=Priyam+Alok';"></a> 
                         </div>
                          <nav class="flex items-center space-x-6 text-base">
                             <a href="/" class="nav-link hidden sm:block text-lg">Home</a>
@@ -55,7 +89,7 @@
             </section>
 
             <section id="posts-container" class="space-y-8">
-                <!-- DESIGN CHANGE: Added a loading placeholder -->
+                <!-- A placeholder is shown while posts are loading -->
                 <div class="text-center py-10">
                     <p class="text-gray-500">Loading posts...</p>
                 </div>
@@ -68,13 +102,18 @@
         </footer>
     </div>
     
-    <script src="post.js"></script>
+    <!-- Performance: Deferred script loading so it doesn't block HTML parsing -->
+    <script src="post.js" defer></script>
     <script>
+        // This script will run after the HTML is parsed and the deferred post.js is executed.
         document.addEventListener('DOMContentLoaded', function () {
             const postsContainer = document.getElementById('posts-container');
-            postsContainer.innerHTML = ''; 
-
+            
+            // Ensure posts data is available
             if (typeof posts !== 'undefined' && posts.length > 0) {
+                // Clear loading placeholder
+                postsContainer.innerHTML = ''; 
+                
                 posts.forEach((post, index) => {
                     const postElement = document.createElement('article');
                     postElement.className = 'flex flex-col sm:flex-row gap-6';
@@ -102,6 +141,7 @@
                     
                     postsContainer.appendChild(postElement);
 
+                    // Add a divider, but not after the last post
                     if (index < posts.length - 1) {
                         const hr = document.createElement('hr');
                         hr.className = 'border-gray-200';
@@ -109,6 +149,7 @@
                     }
                 });
             } else {
+                 // Show an error if posts couldn't be loaded
                  postsContainer.innerHTML = '<p class="text-center text-gray-600">Could not load posts. Please ensure post.js is available.</p>';
             }
         });
