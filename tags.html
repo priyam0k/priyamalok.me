@@ -71,7 +71,7 @@
         </footer>
     </div>
     
-    <script src="posts.js"></script>
+    <script src="post.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const tagsList = document.getElementById('tags-list');
@@ -79,79 +79,76 @@
             const postsHeading = document.getElementById('posts-heading');
             const postsListContainer = document.getElementById('posts-list');
 
-            // 1. Calculate tag counts
-            const tagCounts = {};
-            posts.forEach(post => {
-                post.tags.forEach(tag => {
-                    tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+            if (typeof posts !== 'undefined' && posts.length > 0) {
+                const tagCounts = {};
+                posts.forEach(post => {
+                    post.tags.forEach(tag => {
+                        tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+                    });
                 });
-            });
 
-            // 2. Create sorted array of tags
-            const sortedTags = Object.keys(tagCounts).sort((a, b) => tagCounts[b] - tagCounts[a]);
+                const sortedTags = Object.keys(tagCounts).sort((a, b) => tagCounts[b] - tagCounts[a]);
 
-            // 3. Display all tags
-            sortedTags.forEach(tag => {
-                const li = document.createElement('li');
-                li.innerHTML = `
-                    <a href="#${tag}" data-tag="${tag}" class="tag-link link-style text-lg">
-                        ${tag}</a>
-                    <sup class="tag-count text-sm">${tagCounts[tag]}</sup>
-                `;
-                tagsList.appendChild(li);
-            });
-
-            // Function to display posts for a given tag
-            const displayPostsForTag = (selectedTag) => {
-                postsListContainer.innerHTML = '';
-                const filteredPosts = posts.filter(post => post.tags.includes(selectedTag));
-
-                postsHeading.textContent = `Posts tagged with "${selectedTag}"`;
-                postsSection.classList.remove('hidden');
-
-                filteredPosts.forEach(post => {
-                    const postElement = document.createElement('article');
-                    postElement.className = 'flex flex-col sm:flex-row gap-6';
-                    
-                    const isExternal = !post.url.startsWith('/') && !post.url.startsWith('blog');
-                    const targetAttribute = isExternal ? 'target="_blank" rel="noopener noreferrer"' : '';
-
-                    postElement.innerHTML = `
-                        <div class="w-28 text-sm text-gray-500 flex-shrink-0">
-                            <p>${post.date.split(',')[0]}</p>
-                            <p>${post.date.split(',')[1]}</p>
-                        </div>
-                        <div>
-                            <h3 class="post-title text-xl mb-1">
-                                <a href="${post.url}" class="link-style" ${targetAttribute}>${post.title}</a>
-                            </h3>
-                            <p class="text-sm text-gray-400 mb-2">${post.source}</p>
-                            <p>${post.description}</p>
-                        </div>
+                sortedTags.forEach(tag => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <a href="#${tag}" data-tag="${tag}" class="tag-link link-style text-lg">
+                            ${tag}</a>
+                        <sup class="tag-count text-sm">${tagCounts[tag]}</sup>
                     `;
-                    postsListContainer.appendChild(postElement);
+                    tagsList.appendChild(li);
                 });
-                
-                // Scroll to the posts section
-                postsSection.scrollIntoView({ behavior: 'smooth' });
-            };
 
-            // 4. Add click event listener to tags
-            tagsList.addEventListener('click', (event) => {
-                if (event.target.classList.contains('tag-link')) {
-                    event.preventDefault();
-                    const selectedTag = event.target.dataset.tag;
-                    displayPostsForTag(selectedTag);
-                    history.pushState(null, '', `#${selectedTag}`);
-                }
-            });
+                const displayPostsForTag = (selectedTag) => {
+                    postsListContainer.innerHTML = '';
+                    const filteredPosts = posts.filter(post => post.tags.includes(selectedTag));
 
-            // 5. Check for tag in URL on page load
-            if (window.location.hash) {
-                const tagFromUrl = window.location.hash.substring(1);
-                if (tagCounts[tagFromUrl]) {
-                    displayPostsForTag(decodeURIComponent(tagFromUrl));
+                    postsHeading.textContent = `Posts tagged with "${selectedTag}"`;
+                    postsSection.classList.remove('hidden');
+
+                    filteredPosts.forEach(post => {
+                        const postElement = document.createElement('article');
+                        postElement.className = 'flex flex-col sm:flex-row gap-6';
+                        
+                        const isExternal = !post.url.startsWith('/') && !post.url.startsWith('blog');
+                        const targetAttribute = isExternal ? 'target="_blank" rel="noopener noreferrer"' : '';
+
+                        postElement.innerHTML = `
+                            <div class="w-28 text-sm text-gray-500 flex-shrink-0">
+                                <p>${post.date.split(',')[0]}</p>
+                                <p>${post.date.split(',')[1]}</p>
+                            </div>
+                            <div>
+                                <h3 class="post-title text-xl mb-1">
+                                    <a href="${post.url}" class="link-style" ${targetAttribute}>${post.title}</a>
+                                </h3>
+                                <p class="text-sm text-gray-400 mb-2">${post.source}</p>
+                                <p>${post.description}</p>
+                            </div>
+                        `;
+                        postsListContainer.appendChild(postElement);
+                    });
+                    
+                    postsSection.scrollIntoView({ behavior: 'smooth' });
+                };
+
+                tagsList.addEventListener('click', (event) => {
+                    if (event.target.classList.contains('tag-link')) {
+                        event.preventDefault();
+                        const selectedTag = event.target.dataset.tag;
+                        displayPostsForTag(selectedTag);
+                        history.pushState(null, '', `#${selectedTag}`);
+                    }
+                });
+
+                if (window.location.hash) {
+                    const tagFromUrl = window.location.hash.substring(1);
+                    if (tagCounts[tagFromUrl]) {
+                        displayPostsForTag(decodeURIComponent(tagFromUrl));
+                    }
                 }
+            } else {
+                tagsList.innerHTML = '<li><p class="text-gray-600">Could not load tags. Please ensure post.js is available.</p></li>';
             }
         });
     </script>
