@@ -69,9 +69,8 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const postsContainer = document.getElementById('posts-container');
-            postsContainer.innerHTML = ''; // Clear existing content
+            postsContainer.innerHTML = ''; 
 
-            // Check if the 'posts' variable exists from post.js
             if (typeof posts !== 'undefined' && posts.length > 0) {
                 posts.forEach((post, index) => {
                     const postElement = document.createElement('article');
@@ -80,14 +79,15 @@
                     const isExternal = !post.url.startsWith('/') && !post.url.startsWith('blog');
                     const targetAttribute = isExternal ? 'target="_blank" rel="noopener noreferrer"' : '';
                     
-                    const tagsHTML = post.tags.map(tag => 
-                        `<a href="/tags.html#${tag}" class="link-style text-sm text-gray-500 hover:text-red-500">#${tag}</a>`
-                    ).join(' ');
+                    // --- DESIGN CHANGE: Date formatting ---
+                    const dateParts = post.date.replace(',', '').split(' '); // "Aug 01, 2025" -> ["Aug", "01", "2025"]
+                    const day = dateParts[1];
+                    const monthYear = `${dateParts[0]} ${dateParts[2]}`;
 
                     postElement.innerHTML = `
                         <div class="w-28 text-sm text-gray-500 flex-shrink-0">
-                            <p>${post.date.split(',')[0]}</p>
-                            <p>${post.date.split(',')[1]}</p>
+                            <p>${day}</p>
+                            <p>${monthYear}</p>
                         </div>
                         <div>
                             <h3 class="post-title text-xl mb-1">
@@ -95,9 +95,6 @@
                             </h3>
                             <p class="text-sm text-gray-400 mb-2">${post.source}</p>
                             <p>${post.description}</p>
-                            <div class="mt-2 flex flex-wrap gap-x-3">
-                                ${tagsHTML}
-                            </div>
                         </div>
                     `;
                     
