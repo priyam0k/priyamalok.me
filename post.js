@@ -33,7 +33,7 @@ const posts = [
         date: "Jul 31, 2025",
         description: "A recent mentorship session sparked a memory of a conversation with MJ The Fellow Actuary about the future of blockchain in insurance.",
         source: "priyamalok.me",
-        tags: ["blockchain", "insurance", "technology", "actuarial"]
+        tags: ["blockchain", "insurance"]
     },
     {
         title: "A journey through PriceWriter podcasts",
@@ -41,7 +41,7 @@ const posts = [
         date: "Jul 28, 2025",
         description: "After following the PriceWriter podcasts for over a year, I'm reflecting on my favorite parts and key learnings.",
         source: "priyamalok.me",
-        tags: ["podcast", "pricewriter", "actuarial", "pricing"]
+        tags: ["pricewriter", "actuarial", "pricing"]
     },
     {
         title: "Parametric insurance: global comparative analysis",
@@ -57,7 +57,7 @@ const posts = [
         date: "Jul 24, 2025",
         description: "An analysis of the escalating crisis in property insurance, driven by the increasing frequency and severity of climate-related catastrophes.",
         source: "priyamalok.me",
-        tags: ["pricing", "quantitative analysis", "climate risk", "insurance"]
+        tags: ["pricing", "analysis", "climate risk", "insurance"]
     },
     {
         title: "Project: Interactive guide to general insurance principles",
@@ -65,7 +65,7 @@ const posts = [
         date: "Jul 03, 2025",
         description: "An interactive mind map designed to explore the core principles of General Insurance, from financial management to reinsurance.",
         source: "priyamalok.me",
-        tags: ["project", "mindmap", "general insurance", "studying"]
+        tags: ["project", "insurance", "studying"]
     },
     {
         title: "A deep dive into the PredicTri framework",
@@ -73,7 +73,7 @@ const posts = [
         date: "Jul 04, 2025",
         description: "An interactive analysis of the PredicTri framework, which aims to modernize P&C reserving using Bayesian methods and machine learning.",
         source: "priyamalok.me",
-        tags: ["predictri", "ai", "insurance", "framework", "reserving"]
+        tags: ["predictri", "insurance", "reserving"]
     },
     {
         title: "Reading between the yields: a global risk barometer",
@@ -81,7 +81,7 @@ const posts = [
         date: "May 21, 2025",
         description: "A detailed comparative analysis of 10-year government bond yields across developed, strategic, and emerging economies.",
         source: "priyamalok.me",
-        tags: ["yield curve", "finance", "economics", "risk"]
+        tags: ["finance", "economics"]
     },
     {
         title: "Hi, I am Priyam, This is my personal homepage.",
