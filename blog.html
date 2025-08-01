@@ -51,12 +51,14 @@
         <main class="text-base leading-relaxed text-gray-800">
             <section class="mb-12">
                 <h1 class="page-title text-2xl mb-2 text-black">Musings</h1>
-                <p>An assorted collection of thoughts on insurance tech, finance and life. Browse by<a href="/tags.html" class="link-style"> tags</a>.</p>
+                <p>An assorted collection of thoughts on insurance tech, finance and life. Browse by <a href="/tags.html" class="link-style">tags</a>.</p>
             </section>
 
-            <!-- DESIGN CHANGE: Reduced vertical spacing from space-y-10 to space-y-8 -->
             <section id="posts-container" class="space-y-8">
-                <!-- Blog posts will be dynamically inserted here -->
+                <!-- DESIGN CHANGE: Added a loading placeholder -->
+                <div class="text-center py-10">
+                    <p class="text-gray-500">Loading posts...</p>
+                </div>
             </section>
         </main>
 
@@ -102,7 +104,6 @@
 
                     if (index < posts.length - 1) {
                         const hr = document.createElement('hr');
-                        // DESIGN CHANGE: Removed extra margin class (!mt-10) to reduce gap
                         hr.className = 'border-gray-200';
                         postsContainer.appendChild(hr);
                     }
