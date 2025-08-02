@@ -41,7 +41,7 @@ const posts = [
         date: "Jul 28, 2025",
         description: "After following the PriceWriter podcasts for over a year, I'm reflecting on my favorite parts and key learnings.",
         source: "priyamalok.me",
-        tags: ["pricewriter", "actuarial", "pricing"]
+        tags: ["pricewriter"]
     },
     {
         title: "Parametric insurance: global comparative analysis",
@@ -49,7 +49,7 @@ const posts = [
         date: "Jul 26, 2025",
         description: "A comparative analysis of parametric insurance markets in India, the U.S., and the U.K., unpacking the actuarial foundations and product innovations.",
         source: "priyamalok.me",
-        tags: ["parametric insurance", "actuarial"]
+        tags: ["parametric-insurance"]
     },
     {
         title: "Pricing a non-stationary world: a quantitative analysis",
@@ -57,7 +57,7 @@ const posts = [
         date: "Jul 24, 2025",
         description: "An analysis of the escalating crisis in property insurance, driven by the increasing frequency and severity of climate-related catastrophes.",
         source: "priyamalok.me",
-        tags: ["pricing", "climate risk"]
+        tags: ["pricing", "climate-risk", "cat-modeling"]
     },
     {
         title: "Project: Interactive guide to general insurance principles",
@@ -65,7 +65,7 @@ const posts = [
         date: "Jul 03, 2025",
         description: "An interactive mind map designed to explore the core principles of General Insurance, from financial management to reinsurance.",
         source: "priyamalok.me",
-        tags: ["project"]
+        tags: ["project", "pricing", "reserving"]
     },
     {
         title: "A deep dive into the PredicTri framework",
