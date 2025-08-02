@@ -33,7 +33,7 @@ const posts = [
         date: "Jul 31, 2025",
         description: "A recent mentorship session sparked a memory of a conversation with MJ The Fellow Actuary about the future of blockchain in insurance.",
         source: "priyamalok.me",
-        tags: ["blockchain", "insurance"]
+        tags: ["blockchain"]
     },
     {
         title: "A journey through PriceWriter podcasts",
@@ -49,7 +49,7 @@ const posts = [
         date: "Jul 26, 2025",
         description: "A comparative analysis of parametric insurance markets in India, the U.S., and the U.K., unpacking the actuarial foundations and product innovations.",
         source: "priyamalok.me",
-        tags: ["parametric insurance", "insurance", "actuarial"]
+        tags: ["parametric insurance", "actuarial"]
     },
     {
         title: "Pricing a non-stationary world: a quantitative analysis",
@@ -57,7 +57,7 @@ const posts = [
         date: "Jul 24, 2025",
         description: "An analysis of the escalating crisis in property insurance, driven by the increasing frequency and severity of climate-related catastrophes.",
         source: "priyamalok.me",
-        tags: ["pricing", "climate risk", "insurance"]
+        tags: ["pricing", "climate risk"]
     },
     {
         title: "Project: Interactive guide to general insurance principles",
@@ -65,7 +65,7 @@ const posts = [
         date: "Jul 03, 2025",
         description: "An interactive mind map designed to explore the core principles of General Insurance, from financial management to reinsurance.",
         source: "priyamalok.me",
-        tags: ["project", "insurance", "studying"]
+        tags: ["project"]
     },
     {
         title: "A deep dive into the PredicTri framework",
@@ -73,7 +73,7 @@ const posts = [
         date: "Jul 04, 2025",
         description: "An interactive analysis of the PredicTri framework, which aims to modernize P&C reserving using Bayesian methods and machine learning.",
         source: "priyamalok.me",
-        tags: ["predictri", "insurance", "reserving"]
+        tags: ["predictri", "reserving"]
     },
     {
         title: "Reading between the yields: a global risk barometer",
