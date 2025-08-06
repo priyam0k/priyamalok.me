@@ -20,6 +20,14 @@
 
 const posts = [
     {
+        title: "50% Tariffs on India: Navigating the Trade Storm",
+        url: "blog/50%-tariffs-on-india-navigating-the-trade-storm.html",
+        date: "Aug 06, 2025",
+        description: "The world of international trade often feels like a high-stakes chess match, and the latest move from the U.S. has certainly shaken the board.",
+        source: "priyamalok.me",
+        tags: ["economics"]
+    },
+    {
         title: "City of the sun :)",
         url: "https://youtu.be/NP1AU5O9pC0?list=LM",
         date: "Aug 01, 2025",
