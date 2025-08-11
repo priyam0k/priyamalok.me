@@ -42,6 +42,7 @@
             padding: 0;
             width: 100%;
             overflow-x: hidden;
+            /* MODIFIED: Removed 'scroll-behavior: smooth;' for instant jumping on anchor links */
         }
 
         body {
@@ -128,7 +129,8 @@
             <h1 class="text-4xl md:text-6xl font-normal text-main tracking-tighter">priyam</h1>
             <p class="text-main mt-8">Alright universe, work your magic!</p>
         </div>
-        <a id="scroll-arrow" href="#projects" class="absolute bottom-6 left-1/2 -translate-x-1/2 group cursor-pointer">
+        <!-- MODIFIED: Scroll arrow now uses default anchor behavior for scrolling -->
+        <a href="#projects" class="absolute bottom-6 left-1/2 -translate-x-1/2 group cursor-pointer">
             <div class="w-10 h-10 rounded-full flex items-center justify-center group-hover:opacity-80 transition-all" style="background-color: var(--accent-color);">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
@@ -157,7 +159,7 @@
         <!-- Selected Projects Section -->
         <section id="projects" class="mb-16 text-center">
             <h2 class="section-title mb-4">selected projects</h2>
-            <div class="flex justify-center flex-wrap items-center mb-8 text-sm font-bold" style="color: #3C2A21;">
+            <div class="flex justify-center flex-wrap items-center mb-8 text-sm font-semibold" style="color: #3C2A21;">
                 <a class="filter-link active" data-filter="all">All</a> |
                 <a class="filter-link" data-filter="p&c">P&C</a> |
                 <a class="filter-link" data-filter="data-eng">Data-Eng</a> |
@@ -179,33 +181,33 @@
                 <div class="w-full md:w-3/4 space-y-8">
                   <!-- Item 1 -->
                     <div>
-                        <div class="flex items-start gap-4">
+                        <!-- MODIFIED: Changed items-start to items-center for vertical alignment -->
+                        <div class="flex items-center gap-4">
                              <img src="/portfolio/ifoa.png" alt="Institute and Faculty of Actuaries" class="h-10 w-auto flex-shrink-0" width="215" height="40">
                             <div>
-                                <h3 class="text-base text-main"><b>Member, General Insurance - ML in Reserving working party | Jun 2025 - Present</b></h3>
-                                <p class="text-sm text-subtle">Institute and Faculty of Actuaries</p>
+                                <h3 class="text-base text-main font-semibold">Member, General Insurance - ML in Reserving working party | Jun 2025 - Present</h3>
                             </div>
                         </div>
                         <p class="mt-2 text-main text-sm leading-relaxed">Literature review, Test out using different environments in Anaconda to run different versions of packages, feedback on GitHub site,  GBM approaches with time series and still exploring and learning.</p>
                     </div>
                     <!-- Item 2 -->
                     <div>
-                        <div class="flex items-start gap-4">
+                        <!-- MODIFIED: Changed items-start to items-center for vertical alignment -->
+                        <div class="flex items-center gap-4">
                              <img src="/portfolio/pricewriter.png" alt="Price Writers" class="h-10 w-auto flex-shrink-0" width="215" height="40">
                             <div>
-                                <h3 class="text-base text-main"><b>Active Learner | Oct 2023 - Present</b></h3>
-                                <p class="text-sm text-subtle">Price Writers</p>
+                                <h3 class="text-base text-main font-semibold">Active Learner | Oct 2023 - Present</h3>
                             </div>
                         </div>
                         <p class="mt-2 text-main text-sm leading-relaxed">Deep-diving into advanced pricing techniques through sesssions, guided by the PriceWriter book and its applied case studies and podcasts..</p>
                     </div>
                     <!-- Item 3 -->
                     <div>
-                        <div class="flex items-start gap-4">
+                        <!-- MODIFIED: Changed items-start to items-center for vertical alignment -->
+                        <div class="flex items-center gap-4">
                             <img src="/portfolio/ifoa-foundati-protagion.png" alt="Protagion & IFOA Foundation" class="h-10 w-auto flex-shrink-0" width="242" height="66">
                             <div>
-                                <h3 class="text-base text-main"><b>Mentorship Cohort Member | Oct 2024 - Jun 2025</b></h3>
-                                <p class="text-sm text-subtle">Protagion & IFOA Foundation</p>
+                                <h3 class="text-base text-main font-semibold">Mentorship Cohort Member | Oct 2024 - Jun 2025</h3>
                             </div>
                         </div>
                         <p class="mt-2 text-main text-sm leading-relaxed">Selected for a structured mentorship with senior industry professionals, exploring career strategies, pricing frameworks, and long-term development in P&C insurance.</p>
@@ -223,11 +225,11 @@
                 <div class="w-full md:w-3/4 space-y-10">
                     <!-- Item 1 -->
                     <div>
-                        <div class="flex items-start gap-4">
+                        <!-- MODIFIED: Changed items-start to items-center for vertical alignment -->
+                        <div class="flex items-center gap-4">
                              <img src="/portfolio/cas-logo.png" alt="Casualty Actuarial Society" class="h-10 w-auto flex-shrink-0" width="215" height="40">
                             <div>
-                                <h3 class="text-base text-main"><b>Intern- CAS East Asia Summer Program | Jul - Aug 2025</b></h3>
-                                <p class="text-sm text-subtle">Casualty Actuarial Society</p>
+                                <h3 class="text-base text-main font-semibold">Intern- CAS East Asia Summer Program | Jul - Aug 2025</h3>
                             </div>
                         </div>
                         <p class="mt-2 text-main text-sm leading-relaxed">Selected to represent the South Asia region, I participated in the CAS East Asia Summer Internship, where I led a team in a competitive insurance pricing simulation. Our objective was to drive profitable growth by developing a pricing model and setting rates for 10,000 policies while managing risk</p>
@@ -273,6 +275,7 @@
         </section>
 
         <!-- Tools Section -->
+        <!-- MODIFIED: Restructured for better readability and applied font-weight changes -->
         <section id="tools" class="mb-16">
             <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                 <div class="w-full md:w-1/4">
@@ -280,24 +283,40 @@
                 </div>
                 <div class="w-full md:w-3/4 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8">
                     <div>
-                        <h4 class="text-main text-sm">[ P&C ]</h4>
-                        <p class="mt-1 text-sm"><b>Modeling Concepts:</b> Ratemaking, Reserving, Loss Analysis<br><b>Open-Source Application:</b> Building P&C models using Python/R</p>
+                        <h4 class="text-main text-sm font-semibold tracking-wider">[ P&C ]</h4>
+                        <div class="mt-2 text-sm text-subtle space-y-1">
+                            <p><span class="font-semibold text-main">Modeling Concepts:</span> Ratemaking, Reserving, Loss Analysis</p>
+                            <p><span class="font-semibold text-main">Open-Source Application:</span> Building P&C models using Python/R</p>
+                        </div>
                     </div>
                      <div>
-                        <h4 class="text-main text-sm">[ Data-Eng ]</h4>
-                        <p class="mt-1 text-sm"><b>Languages:</b> Python, R, Rust<br><b>Databases:</b> SQL, PostgreSQL, SQL Server<br><b>Cloud Platforms:</b>Azure, GCP</p>
+                        <h4 class="text-main text-sm font-semibold tracking-wider">[ Data-Eng ]</h4>
+                        <div class="mt-2 text-sm text-subtle space-y-1">
+                            <p><span class="font-semibold text-main">Languages:</span> Python, R, Rust</p>
+                            <p><span class="font-semibold text-main">Databases:</span> SQL, PostgreSQL, SQL Server</p>
+                            <p><span class="font-semibold text-main">Cloud Platforms:</span> Azure, GCP</p>
+                        </div>
                     </div>
                      <div>
-                        <h4 class="text-main text-sm">[ ML ]</h4>
-                        <p class="mt-1 text-sm"><b>Core Libraries:</b> Pandas, NumPy, Scikit-learn<br><b>Modeling Techniques:</b> GLMs, Gradient Boosting, Neural Networks</p>
+                        <h4 class="text-main text-sm font-semibold tracking-wider">[ ML ]</h4>
+                        <div class="mt-2 text-sm text-subtle space-y-1">
+                            <p><span class="font-semibold text-main">Core Libraries:</span> Pandas, NumPy, Scikit-learn</p>
+                            <p><span class="font-semibold text-main">Modeling Techniques:</span> GLMs, Gradient Boosting, Neural Networks</p>
+                        </div>
                     </div>
                      <div>
-                        <h4 class="text-main text-sm">[ Data-Viz ]</h4>
-                        <p class="mt-1 text-sm"><b>Visualization Libraries:</b> Matplotlib, Seaborn, Plotly<br><b>Business Intelligence Tools:</b> Power BI, Tableau</p>
+                        <h4 class="text-main text-sm font-semibold tracking-wider">[ Data-Viz ]</h4>
+                        <div class="mt-2 text-sm text-subtle space-y-1">
+                            <p><span class="font-semibold text-main">Visualization Libraries:</span> Matplotlib, Seaborn, Plotly</p>
+                            <p><span class="font-semibold text-main">Business Intelligence Tools:</span> Power BI, Tableau</p>
+                        </div>
                     </div>
                     <div>
-                        <h4 class="text-main text-sm">[ Workflow & Development ]</h4>
-                        <p class="mt-1 text-sm"><b>Version Control:</b> Git, GitHub<br><b>Reporting & Notebooks:</b> Jupyter Notebooks, R Markdown, VS Code, Google Collab</p>
+                        <h4 class="text-main text-sm font-semibold tracking-wider">[ Workflow & Development ]</h4>
+                        <div class="mt-2 text-sm text-subtle space-y-1">
+                            <p><span class="font-semibold text-main">Version Control:</span> Git, GitHub</p>
+                            <p><span class="font-semibold text-main">Reporting & Notebooks:</span> Jupyter Notebooks, R Markdown, VS Code, Google Collab</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -310,11 +329,11 @@
                     <p>You can check out the other things I do <span id="other-things-toggle" class="link-here">here.</span></p>
                     <div id="other-things-content" class="hidden mt-8 space-y-8 text-main leading-relaxed">
                         <div>
-                            <h4 class="text-main">[ WRITING ]</h4>
+                            <h4 class="text-main font-semibold">[ WRITING ]</h4>
                             <p class="mt-1">I sometimes write about my learnings and experiences on my <a href="/blog.html" class="link-here">blog</a>. It's a space for reflection and sharing ideas on topics that I find interesting in the world of insurance, tech, and finance.</p>
                         </div>
                         <div>
-                            <h4 class="text-main">[ MUSIC & FITNESS ]</h4>
+                            <h4 class="text-main font-semibold">[ MUSIC & FITNESS ]</h4>
                             <p class="mt-1">Outside of work, I enjoy playing the guitar/ukulele and singing. I also love staying active, whether it's working out, running, cycling, or playing tennis and basketball.</p>
                         </div>
                     </div>
@@ -388,8 +407,6 @@
         const filterLinks = document.querySelectorAll('.filter-link');
         const otherThingsToggle = document.getElementById('other-things-toggle');
         const otherThingsContent = document.getElementById('other-things-content');
-        const scrollArrow = document.getElementById('scroll-arrow');
-        const projectsSection = document.getElementById('projects');
 
         const displayProjects = (filter = 'all') => {
             projectGrid.innerHTML = '';
@@ -431,12 +448,6 @@
         
         otherThingsToggle.addEventListener('click', () => {
             otherThingsContent.classList.toggle('hidden');
-        });
-
-        // MODIFIED: Simplified scroll logic to be more robust
-        scrollArrow.addEventListener('click', (e) => {
-            e.preventDefault();
-            projectsSection.scrollIntoView({ behavior: 'smooth' });
         });
 
         displayProjects();
