@@ -20,6 +20,14 @@
 
 const posts = [
     {
+        title: "Beyond the Framework: Key Takeaways from Founders",
+        url: "blog/beyond-the-framework-key-takeways-from-founders.html",
+        date: "Aug 15, 2025",
+        description: "Key takeaways from a meeting with the PredicTri founders, on how transparency and data-driven explainability are shaping the future of actuarial work.",
+        source: "priyamalok.me",
+        tags: ["predictri","reserving"]
+    },
+    {
         title: "50% tariffs on India: navigating the trade storm",
         url: "blog/50-percent-tariffs-on-india-navigating-the-trade-storm.html",
         date: "Aug 06, 2025",
