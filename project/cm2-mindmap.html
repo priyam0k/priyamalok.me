@@ -147,125 +147,115 @@
     </div>
     
     <script>
-        // --- SPA LOGIC (NOW FETCHES DATA FROM API & MARKDOWN) ---
+        // --- SPA LOGIC (REFACTORED FOR CORRECT BREADCRUMB HANDLING) ---
 
         let mindmapData = null; 
+        let rootId = null;
+        let navigationHistory = []; // Will store the current path as an array of IDs
+
         const contentArea = document.getElementById('content-area');
         const pageTitle = document.getElementById('page-title');
         const pageSubtitle = document.getElementById('page-subtitle');
         const breadcrumbContainer = document.getElementById('breadcrumb-container');
         const mindmapContainer = document.getElementById('mindmap-container');
         const loadingIndicator = document.getElementById('loading');
-        const navigationHistory = [];
-        const idToTitleMap = {};
-
-        // Flattens the nested structure and creates a map of id to children
-        function flattenMindmap(node, parentId, map) {
-            const nodeId = createUniqueId(node.name, parentId);
-            idToTitleMap[nodeId] = node.name;
-            
-            map[nodeId] = {
-                name: node.name,
-                children: node.children.map(child => createUniqueId(child.name, nodeId))
-            };
-            
-            node.children.forEach(child => flattenMindmap(child, nodeId, map));
-            return map;
-        }
-
-
+        
         // Creates a unique ID for DOM elements based on its hierarchy
         function createUniqueId(title, parentId) {
             const cleanTitle = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
             return parentId ? `${parentId}--${cleanTitle}` : cleanTitle;
         }
+        
+        // Flattens the nested structure into a map for easy lookup
+        function flattenMindmap(node, parentId, map) {
+            const nodeId = createUniqueId(node.name, parentId);
+            map[nodeId] = {
+                name: node.name,
+                children: node.children.map(child => createUniqueId(child.name, nodeId))
+            };
+            node.children.forEach(child => flattenMindmap(child, nodeId, map));
+            return map;
+        }
 
-        // createPage now uses the flattened structure
+        // Creates a page element for a given node
         function createPage(nodeId, nodeData) {
             const page = document.createElement('div');
             page.id = nodeId;
             page.className = 'page';
 
-            const parentId = navigationHistory.length > 0 ? navigationHistory[navigationHistory.length-1] : null;
+            const isRoot = nodeId === rootId;
+            const backButtonHtml = !isRoot ? `
+                <button onclick="goBack()" class="absolute top-0 left-0 mt-4 ml-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition-all duration-300 flex items-center z-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                    Back
+                </button>
+            ` : '';
 
-            let backButtonHtml = '';
-            if (navigationHistory.length > 0) {
-                backButtonHtml = `
-                    <button onclick="goBack()" class="absolute top-0 left-0 mt-4 ml-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition-all duration-300 flex items-center z-10">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                          <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-                        </svg>
-                        Back
-                    </button>
+            const cardsHtml = (nodeData.children || []).map(childId => {
+                const childData = mindmapData[childId];
+                return `
+                    <div onclick="handleCardClick('${childId}')" class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transform transition-all duration-300 cursor-pointer border-2 border-transparent hover:border-orange-400">
+                        <h3 class="text-lg font-semibold text-blue-800">${childData.name}</h3>
+                    </div>
                 `;
-            }
-
-            let cardsHtml = '';
-            if (nodeData.children && nodeData.children.length > 0) {
-                cardsHtml = nodeData.children.map(childId => {
-                    const childData = mindmapData[childId];
-                    return `
-                        <div onclick="navigateTo('${childId}')" class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transform transition-all duration-300 cursor-pointer border-2 border-transparent hover:border-orange-400">
-                            <h3 class="text-lg font-semibold text-blue-800">${childData.name}</h3>
-                        </div>
-                    `;
-                }).join('');
-            }
+            }).join('');
 
             page.innerHTML = `
                 <div class="relative bg-white p-6 sm:p-8 rounded-xl shadow-lg">
                     ${backButtonHtml}
-                    <div class="pt-16">
+                    <div class="pt-16 sm:pt-12">
                         <div id="md-content-${nodeId}" class="prose max-w-none text-blue-800 mb-8" style="display: none;"></div>
-                        ${nodeData.children.length > 0 ? `<h3 class="text-xl font-bold text-blue-900 border-b-2 border-blue-200 pb-2 mb-6">Sub-topics</h3>` : ''}
+                        ${(nodeData.children.length > 0) ? `<h3 class="text-xl font-bold text-blue-900 border-b-2 border-blue-200 pb-2 mb-6">Sub-topics</h3>` : ''}
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                             ${cardsHtml}
                         </div>
                     </div>
                 </div>`;
-            
             contentArea.appendChild(page);
         }
         
         async function loadMarkdownContent(pageId, title) {
             const container = document.getElementById(`md-content-${pageId}`);
             if (!container) return;
-
             const uniqueFilename = pageId.replace(/--/g, '-');
             const url = `https://raw.githubusercontent.com/priyam0k/cm2-mindmap-backend/main/content/${uniqueFilename}.md`;
             
-            console.log(`Attempting to fetch content from: ${url}`);
-
             try {
                 const response = await fetch(url);
-                if (!response.ok) {
-                    if (response.status === 404) {
-                         throw new Error(`File not found at ${url}.`);
-                    }
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
+                if (!response.ok) throw new Error(`Status ${response.status}`);
                 const markdownText = await response.text();
-                
                 const converter = new showdown.Converter({ tables: true, strikethrough: true, tasklists: true, openLinksInNewWindow: true });
-                const html = converter.makeHtml(markdownText);
-                
-                container.innerHTML = html;
+                container.innerHTML = converter.makeHtml(markdownText);
                 container.style.display = 'block';
-
             } catch (error) {
-                container.innerHTML = '';
                 container.style.display = 'none';
-                console.warn(`Could not load content for "${title}" from ${url}. This is normal if no content file exists for this topic.`);
+                console.warn(`Could not load content for "${title}". This is normal if no content file exists for this topic.`);
             }
+        }
+        
+        // --- REFACTORED NAVIGATION LOGIC ---
+
+        function navigateTo(pathArray) {
+            navigationHistory = pathArray;
+            const currentPageId = navigationHistory[navigationHistory.length - 1];
+            
+            // Update UI elements
+            const nodeData = mindmapData[currentPageId];
+            pageTitle.textContent = nodeData.name;
+            pageSubtitle.textContent = navigationHistory.length > 1 ? `Exploring ${nodeData.name}` : "An Interactive Guide";
+            
+            // Show the correct page
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(currentPageId)?.classList.add('active');
+
+            loadMarkdownContent(currentPageId, nodeData.name);
+            updateBreadcrumbs();
+            mindmapContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         function updateBreadcrumbs() {
             breadcrumbContainer.innerHTML = '';
-            const path = [createUniqueId(mindmapData.root.name, null), ...navigationHistory];
-
-            path.forEach((pageId, index) => {
-                const linkText = mindmapData[pageId].name;
-
+            navigationHistory.forEach((pageId, index) => {
                 if (index > 0) {
                     const separator = document.createElement('span');
                     separator.textContent = '>';
@@ -273,80 +263,56 @@
                     breadcrumbContainer.appendChild(separator);
                 }
 
-                if (index < path.length - 1) {
+                if (index < navigationHistory.length - 1) {
                     const link = document.createElement('span');
-                    link.textContent = linkText;
+                    link.textContent = mindmapData[pageId].name;
                     link.className = 'breadcrumb-link';
                     link.onclick = () => jumpTo(index);
                     breadcrumbContainer.appendChild(link);
                 } else {
                     const currentText = document.createElement('span');
-                    currentText.textContent = linkText;
+                    currentText.textContent = mindmapData[pageId].name;
                     currentText.className = 'font-semibold text-blue-900';
                     breadcrumbContainer.appendChild(currentText);
                 }
             });
         }
-        
-        window.navigateTo = function(pageId) {
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(p => p.classList.remove('active'));
 
-            const targetPage = document.getElementById(pageId);
-            if(targetPage) {
-                targetPage.classList.add('active');
-            }
-            
-            if(navigationHistory[navigationHistory.length -1] !== pageId) {
-                navigationHistory.push(pageId);
-            }
-
-            const nodeData = mindmapData[pageId];
-            pageTitle.textContent = nodeData.name;
-            pageSubtitle.textContent = navigationHistory.length > 0 ? `Exploring ${nodeData.name}` : "An Interactive Guide";
-            
-            loadMarkdownContent(pageId, nodeData.name);
-            updateBreadcrumbs();
-            mindmapContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        window.handleCardClick = function(nextPageId) {
+            const newPath = [...navigationHistory, nextPageId];
+            navigateTo(newPath);
         }
 
         window.goBack = function() {
-            navigationHistory.pop(); // Remove current page
-            const lastPageId = navigationHistory.length > 0 ? navigationHistory.pop() : createUniqueId(mindmapData.root.name, null);
-            navigateTo(lastPageId);
+            if (navigationHistory.length > 1) {
+                const newPath = navigationHistory.slice(0, -1);
+                navigateTo(newPath);
+            }
         }
         
         window.jumpTo = function(index) {
-             const rootId = createUniqueId(mindmapData.root.name, null);
-             const path = [rootId, ...navigationHistory];
-             const pageIdToNavigateTo = path[index];
-             navigationHistory.splice(index);
-             navigationHistory.pop();
-             navigateTo(pageIdToNavigateTo);
+             const newPath = navigationHistory.slice(0, index + 1);
+             navigateTo(newPath);
         }
 
         async function initializeApp() {
             try {
                 const apiUrl = 'https://cm2-interactive-mindmap.onrender.com/api/mindmap';
                 const response = await fetch(apiUrl);
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const rawData = await response.json();
                 
                 mindmapData = flattenMindmap(rawData, null, {});
-                const rootId = createUniqueId(rawData.name, null);
-                mindmapData.root = mindmapData[rootId];
+                rootId = createUniqueId(rawData.name, null);
                 
                 loadingIndicator.style.display = 'none';
 
                 Object.keys(mindmapData).forEach(nodeId => {
-                    if(nodeId !== 'root') createPage(nodeId, mindmapData[nodeId]);
+                    createPage(nodeId, mindmapData[nodeId]);
                 });
-
-                navigateTo(rootId);
+                
+                // Start navigation at the root
+                navigateTo([rootId]);
 
             } catch (error) {
                 loadingIndicator.innerHTML = `<p class="text-red-600 font-semibold">Failed to load mind map data.</p><p class="text-sm text-gray-600 mt-2">Please check the network connection or try again later.</p><p class="text-xs text-gray-400 mt-2">${error}</p>`;
