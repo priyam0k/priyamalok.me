@@ -20,7 +20,31 @@
 
 const posts = [
     {
-        title: "Beyond the Framework: Key Takeaways from Founders",
+        title: "CS2 mindmap",
+        url: "/project/cs2-mindmap.html",
+        date: "Sep 23, 2025",
+        description: "For quick summary",
+        source: "priyamalok.me",
+        tags: ["actuarial","studies"]
+    },
+    {
+        title: "CS1 mindmap",
+        url: "/project/cs1-intractive-mindmap.html",
+        date: "Sep 23, 2025",
+        description: "For quick summary",
+        source: "priyamalok.me",
+        tags: ["actuarial","studies"]
+    },  
+    {
+        title: "CM2 mindmap",
+        url: "/project/cm2-mindmap.html",
+        date: "Sep 23, 2025",
+        description: "For quick summary",
+        source: "priyamalok.me",
+        tags: ["actuarial","studies"]
+    },
+    {
+        title: "Beyond the Framework",
         url: "blog/beyond-the-framework-key-takeways-from-founders.html",
         date: "Aug 15, 2025",
         description: "Key takeaways from a meeting with the PredicTri founders, on how transparency and data-driven explainability are shaping the future of actuarial work.",
