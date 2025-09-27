@@ -25,7 +25,7 @@ const posts = [
         date: "Sep 23, 2025",
         description: "For quick summary",
         source: "priyamalok.me",
-        tags: ["actuarial","studies"]
+        tags: ["actuarial-paper"]
     },
     {
         title: "CS1 mindmap",
@@ -33,7 +33,7 @@ const posts = [
         date: "Sep 23, 2025",
         description: "For quick summary",
         source: "priyamalok.me",
-        tags: ["actuarial","studies"]
+        tags: ["actuarial-paper"]
     },  
     {
         title: "CM2 mindmap",
@@ -41,7 +41,7 @@ const posts = [
         date: "Sep 23, 2025",
         description: "For quick summary",
         source: "priyamalok.me",
-        tags: ["actuarial","studies"]
+        tags: ["actuarial-paper"]
     },
     {
         title: "Beyond the Framework",
