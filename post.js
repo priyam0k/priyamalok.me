@@ -20,12 +20,20 @@
 
 const posts = [
     {
+        title: "A Pragmatic Guide to GLM and GBM for Actuaries",
+        url: "/blog/a-pragmatic-guide-to-glm-and-gbm-for-actuaries.html",
+        date: "Oct 01, 2025",
+        description: "A technical comparison of GLM and GBM, covering their math, applications in ratemaking and reserving, and regulatory implications.",
+        source: "priyamalok.me",
+        tags: ["glm", "gbm", "glm vs gbm", "pricing", "reserving"]
+    },
+    {
         title: "CS2 mindmap",
         url: "/project/cs2-mindmap.html",
         date: "Sep 23, 2025",
         description: "For quick summary",
         source: "priyamalok.me",
-        tags: ["actuarial-paper"]
+        tags: ["actuarial-exams"]
     },
     {
         title: "CS1 mindmap",
@@ -33,7 +41,7 @@ const posts = [
         date: "Sep 23, 2025",
         description: "For quick summary",
         source: "priyamalok.me",
-        tags: ["actuarial-paper"]
+        tags: ["actuarial-exams"]
     },  
     {
         title: "CM2 mindmap",
@@ -41,7 +49,7 @@ const posts = [
         date: "Sep 23, 2025",
         description: "For quick summary",
         source: "priyamalok.me",
-        tags: ["actuarial-paper"]
+        tags: ["actuarial-exams"]
     },
     {
         title: "Beyond the Framework",
