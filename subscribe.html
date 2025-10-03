@@ -75,8 +75,8 @@
                 <h1 class="page-title text-3xl mb-4 text-black">Subscribe</h1>
                 <p class="mb-8">Get new posts delivered to your inbox. Choose the topics you're interested in.</p>
                 
-                <!-- === CRITICAL: Update this action URL with your public Listmonk address === -->
-                <form method="post" action="https://listmonk.ipriyam.com/subscription/form" class="space-y-6">
+                <!-- Reverted action URL to localhost for local-only functionality -->
+                <form method="post" action="http://localhost:9000/subscription/form" class="space-y-6">
                     <input type="hidden" name="nonce" />
                     
                     <div class="space-y-4">
