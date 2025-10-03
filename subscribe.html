@@ -16,8 +16,31 @@
         .nav-link { font-family: 'Source Sans 3', sans-serif; text-decoration: none; transition: color 0.2s ease-in-out; color: #d9534f; }
         .nav-link:hover { color: #bf4340; }
         h1, .page-title, .post-title { font-family: 'Source Sans 3', sans-serif; font-weight: 600; }
-        .tag-checkbox:checked + label { background-color: #f0c3c2; border-color: #d9534f; color: #333; }
-        .tag-label { transition: all 0.2s ease-in-out; }
+
+        /* Styles for the tag pills */
+        .tag-checkbox, #all-tags-input {
+            display: none; /* Hide the actual checkbox */
+        }
+        .tag-label {
+            display: block;
+            cursor: pointer;
+            border: 1px solid #d1d5db; /* gray-300 */
+            border-radius: 9999px;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            color: #4b5563; /* gray-600 */
+            transition: all 0.2s ease-in-out;
+        }
+        .tag-label:hover {
+            border-color: #bf4340;
+            color: #333;
+        }
+        .tag-checkbox:checked + .tag-label, #all-tags-input:checked + .tag-label {
+            background-color: #fee2e2; /* red-100 */
+            border-color: #d9534f;
+            color: #bf4340;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body class="bg-white flex justify-center">
@@ -51,29 +74,103 @@
             <section id="subscribe-section" class="mb-12">
                 <h1 class="page-title text-3xl mb-4 text-black">Subscribe</h1>
                 <p class="mb-8">Get new posts delivered to your inbox. Choose the topics you're interested in.</p>
-                <form id="subscribe-form" class="space-y-6">
+                
+                <!-- Listmonk Static Form -->
+                <form method="post" action="http://localhost:9000/subscription/form" class="space-y-6">
+                    <input type="hidden" name="nonce" />
+                    
+                    <!-- Email and Name Inputs -->
                     <div class="space-y-4">
-                        <input type="email" id="email-input" placeholder="your.email@example.com" required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#d9534f]">
-                        <input type="text" id="name-input" placeholder="Name (optional)" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#d9534f]">
+                        <input type="email" name="email" required placeholder="your.email@example.com" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#d9534f]">
+                        <input type="text" name="name" placeholder="Name (optional)" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#d9534f]">
                     </div>
+
+                    <!-- Topics Selection -->
                     <div>
-                        <p class="font-semibold mb-3">Select your interests:</p>
-                        <div id="tags-container" class="flex flex-wrap gap-3">
-                            <!-- Tags will be dynamically inserted here -->
+                        <p class="font-semibold mb-4">Select your interests:</p>
+                        <div class="flex flex-wrap gap-3">
+                            <div>
+                                <input id="all-tags-input" type="checkbox">
+                                <label for="all-tags-input" class="tag-label">All</label>
+                            </div>
+                            <div>
+                                <input id="39a14" type="checkbox" name="l" value="39a14a24-46c2-40ff-9b48-5e5679d7b7ae" class="tag-checkbox">
+                                <label for="39a14" class="tag-label">actuarial-exams</label>
+                            </div>
+                            <div>
+                                <input id="b7b1c" type="checkbox" name="l" value="b7b1c94b-a763-42b7-8aa8-029ad9865f81" class="tag-checkbox">
+                                <label for="b7b1c" class="tag-label">blockchain</label>
+                            </div>
+                            <div>
+                                <input id="a550a" type="checkbox" name="l" value="a550ab19-20f7-4e35-b225-efe617b67548" class="tag-checkbox">
+                                <label for="a550a" class="tag-label">cat-modeling</label>
+                            </div>
+                            <div>
+                                <input id="4ac08" type="checkbox" name="l" value="4ac08855-c6f1-4b06-a543-1cba6a2bc48b" class="tag-checkbox">
+                                <label for="4ac08" class="tag-label">climate-risk</label>
+                            </div>
+                            <div>
+                                <input id="b0d98" type="checkbox" name="l" value="b0d98472-970e-424b-87af-10b0ff146680" class="tag-checkbox">
+                                <label for="b0d98" class="tag-label">economics</label>
+                            </div>
+                            <div>
+                                <input id="03677" type="checkbox" name="l" value="03677794-e3d7-4384-8654-a2515eaa6a7e" class="tag-checkbox">
+                                <label for="03677" class="tag-label">finance</label>
+                            </div>
+                            <div>
+                                <input id="f414b" type="checkbox" name="l" value="f414bf80-5e00-466a-8922-a227313f6746" class="tag-checkbox">
+                                <label for="f414b" class="tag-label">gbm</label>
+                            </div>
+                            <div>
+                                <input id="c1412" type="checkbox" name="l" value="c1412719-89e2-4ddc-8719-26f35f39f279" class="tag-checkbox">
+                                <label for="c1412" class="tag-label">glm</label>
+                            </div>
+                            <div>
+                                <input id="4a464" type="checkbox" name="l" value="4a464933-c610-45de-b9fe-f122b785fa2c" class="tag-checkbox">
+                                <label for="4a464" class="tag-label">glm vs gbm</label>
+                            </div>
+                            <div>
+                                <input id="b9f2e" type="checkbox" name="l" value="b9f2e345-d1e6-49bc-9d04-5e522bd552ce" class="tag-checkbox">
+                                <label for="b9f2e" class="tag-label">intro</label>
+                            </div>
+                            <div>
+                                <input id="39d7a" type="checkbox" name="l" value="39d7affb-1774-48a7-8a67-7fe5f335cf53" class="tag-checkbox">
+                                <label for="39d7a" class="tag-label">life</label>
+                            </div>
+                             <div>
+                                <input id="bee24" type="checkbox" name="l" value="bee242cd-b54d-460a-8822-8f154d30aeee" class="tag-checkbox">
+                                <label for="bee24" class="tag-label">music</label>
+                            </div>
+                            <div>
+                                <input id="63b37" type="checkbox" name="l" value="63b37789-b8f5-4bb5-a99b-843db350ea6f" class="tag-checkbox">
+                                <label for="63b37" class="tag-label">parametric-insurance</label>
+                            </div>
+                            <div>
+                                <input id="a7306" type="checkbox" name="l" value="a73065f4-533d-4d58-a3ea-9fc53309f29b" class="tag-checkbox">
+                                <label for="a7306" class="tag-label">predictri</label>
+                            </div>
+                            <div>
+                                <input id="7b925" type="checkbox" name="l" value="7b925f50-0ed1-49c7-b244-558f829432d1" class="tag-checkbox">
+                                <label for="7b925" class="tag-label">pricewriter</label>
+                            </div>
+                            <div>
+                                <input id="6f979" type="checkbox" name="l" value="6f979711-0628-498f-977d-a01a5920c008" class="tag-checkbox">
+                                <label for="6f979" class="tag-label">pricing</label>
+                            </div>
+                            <div>
+                                <input id="29d8f" type="checkbox" name="l" value="29d8fff5-2e90-4a29-80e0-8305e3699f22" class="tag-checkbox">
+                                <label for="29d8f" class="tag-label">project</label>
+                            </div>
+                            <div>
+                                <input id="82e5a" type="checkbox" name="l" value="82e5a3db-6e88-4b06-b6c7-cce769be3027" class="tag-checkbox">
+                                <label for="82e5a" class="tag-label">reserving</label>
+                            </div>
                         </div>
                     </div>
+                    
                     <button type="submit" class="bg-[#d9534f] text-white font-semibold px-8 py-3 rounded-md hover:bg-[#bf4340] transition-colors w-full sm:w-auto">Subscribe</button>
                 </form>
-            </section>
 
-            <section id="thank-you-section" class="hidden text-center py-16">
-                <h2 class="text-2xl font-semibold text-black">Thank you for subscribing!</h2>
-                <p class="text-gray-600 mt-2">Please check your inbox to confirm your subscription.</p>
-            </section>
-
-            <section id="error-section" class="hidden text-center py-16">
-                <h2 class="text-2xl font-semibold text-red-600">Something went wrong</h2>
-                <p class="text-gray-600 mt-2">Could not process your subscription. Please check the details and try again.</p>
             </section>
         </main>
 
@@ -82,105 +179,34 @@
             <p>Find me on <a href="https://www.linkedin.com/in/priyamalok/" target="_blank" rel="noopener noreferrer" class="link-style">linkedin</a>, <a href="https://x.com/priyam0k" target="_blank" rel="noopener noreferrer" class="link-style">twitter(x.com)</a></p>
         </footer>
     </div>
-
-    <script src="post.js"></script>
+    
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const tagsContainer = document.getElementById('tags-container');
-        const subscribeForm = document.getElementById('subscribe-form');
-        const subscribeSection = document.getElementById('subscribe-section');
-        const thankYouSection = document.getElementById('thank-you-section');
-        const errorSection = document.getElementById('error-section');
+        document.addEventListener('DOMContentLoaded', function() {
+            const allTagsInput = document.getElementById('all-tags-input');
+            const individualTagCheckboxes = document.querySelectorAll('input[name="l"]');
 
-        // Dynamically load tags from post.js
-        if (typeof posts !== 'undefined' && posts.length > 0) {
-            const allTags = [...new Set(posts.flatMap(post => post.tags))].sort();
-            allTags.forEach(tag => {
-                const tagId = `tag-${tag.replace(/\s+/g, '-')}`;
-                
-                const wrapper = document.createElement('div');
-                const checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
-                checkbox.id = tagId;
-                checkbox.name = 'tags';
-                checkbox.value = tag;
-                checkbox.className = 'hidden tag-checkbox';
-
-                const label = document.createElement('label');
-                label.htmlFor = tagId;
-                label.textContent = tag;
-                label.className = 'tag-label cursor-pointer border border-gray-300 rounded-full px-4 py-2 text-sm';
-
-                wrapper.appendChild(checkbox);
-                wrapper.appendChild(label);
-                tagsContainer.appendChild(wrapper);
-            });
-        }
-
-        // Handle form submission
-        subscribeForm.addEventListener('submit', async function(event) {
-            event.preventDefault();
-
-            // --- STEP 1: CONFIGURE YOUR LISTMONK DETAILS ---
-            // Replace with the URL from your Listmonk "Public Subscription Page" settings.
-            const listmonkApiEndpoint = 'http://localhost:9000/api/public/subscription';
-            
-            // Map your tag names to the List UUIDs from your Listmonk dashboard.
-            // Find the UUID by clicking on a list in Listmonk and copying it.
-            const tagToUuidMap = {
-                "finance": "UUID_FOR_FINANCE_LIST_HERE",
-                "economics": "UUID_FOR_ECONOMICS_LIST_HERE",
-                "pricing": "UUID_FOR_PRICING_LIST_HERE",
-                "reserving": "UUID_FOR_RESERVING_LIST_HERE",
-                "life": "UUID_FOR_LIFE_LIST_HERE",
-                "music": "UUID_FOR_MUSIC_LIST_HERE",
-                // Add all your other tags and their corresponding UUIDs here
-            };
-            // --- END OF CONFIGURATION ---
-
-
-            const name = document.getElementById('name-input').value;
-            const email = document.getElementById('email-input').value;
-            const selectedTags = Array.from(document.querySelectorAll('input[name="tags"]:checked')).map(el => el.value);
-
-            // Convert selected tag names to their UUIDs
-            const listUuids = selectedTags.map(tag => tagToUuidMap[tag]).filter(uuid => uuid && !uuid.includes("UUID_FOR"));
-
-            if (listUuids.length === 0) {
-                alert('Please select at least one topic of interest.');
-                return;
-            }
-
-            const payload = {
-                email: email,
-                name: name,
-                list_uuids: listUuids,
-            };
-
-            try {
-                const response = await fetch(listmonkApiEndpoint, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
+            function syncTagsFromAll() {
+                const isAllChecked = allTagsInput.checked;
+                individualTagCheckboxes.forEach(checkbox => {
+                    checkbox.checked = isAllChecked;
                 });
-
-                const result = await response.json();
-
-                if (response.ok) {
-                    console.log('Subscription successful:', result);
-                    subscribeSection.classList.add('hidden');
-                    thankYouSection.classList.remove('hidden');
-                } else {
-                    console.error('Subscription failed:', result);
-                    throw new Error(result.message || 'Subscription failed');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                subscribeSection.classList.add('hidden');
-                errorSection.classList.remove('hidden');
             }
+
+            function syncAllFromTags() {
+                const allAreChecked = Array.from(individualTagCheckboxes).every(cb => cb.checked);
+                allTagsInput.checked = allAreChecked;
+            }
+
+            allTagsInput.addEventListener('change', syncTagsFromAll);
+
+            individualTagCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', syncAllFromTags);
+            });
+            
+            // Set initial state on page load. Since 'all-tags-input' is now unchecked by default,
+            // this function will correctly uncheck all individual tags.
+            syncTagsFromAll();
         });
-    });
     </script>
 </body>
 </html>
