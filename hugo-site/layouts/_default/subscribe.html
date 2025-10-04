@@ -4,9 +4,7 @@
         <h1 class="page-title text-3xl mb-4 text-black">{{ .Title }}</h1>
         <p class="mb-8">{{ .Description }}</p>
         
-        <form method="post" action="https://subscribe.ipriyam.com/subscription/form" class="space-y-6">
-            <input type="hidden" name="nonce" />
-            
+        <form id="subscription-form" class="space-y-6">
             <div class="space-y-4">
                 <input type="email" name="email" required placeholder="your.email@example.com" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-d9534f">
                 <input type="text" name="name" placeholder="Name (optional)" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-d9534f">
@@ -42,6 +40,8 @@
             
             <button type="submit" class="bg-d9534f text-white font-semibold px-8 py-3 rounded-md hover:bg-bf4340 transition-colors w-full sm:w-auto" style="background-color: #d9534f;">Subscribe</button>
         </form>
+        
+        <div id="message-container" class="mt-4"></div>
     </section>
 </main>
 
@@ -75,9 +75,80 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+    const LISTMONK_URL = "https://subscribe.ipriyam.com";
+    const form = document.getElementById('subscription-form');
+    const messageContainer = document.getElementById('message-container');
     const selectAllBtn = document.getElementById('select-all-btn');
     const allTagCheckboxes = document.querySelectorAll('input[name="l"]');
     
+    // Handle form submission via API
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalText = submitButton.textContent;
+        
+        // Show loading state
+        submitButton.textContent = 'Subscribing...';
+        submitButton.disabled = true;
+        messageContainer.innerHTML = '';
+        
+        // Collect form data
+        const email = form.querySelector('input[name="email"]').value;
+        const name = form.querySelector('input[name="name"]').value;
+        const selectedLists = Array.from(form.querySelectorAll('input[name="l"]:checked')).map(cb => cb.value);
+        
+        try {
+            // Create subscriber via API
+            const response = await fetch(`${LISTMONK_URL}/api/subscribers`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: email,
+                    name: name || '',
+                    lists: selectedLists,
+                    status: 'enabled',
+                    preconfirm_subscriptions: true
+                })
+            });
+            
+            const result = await response.json();
+            
+            if (response.ok) {
+                // Success
+                form.style.display = 'none';
+                document.querySelector('.page-title').textContent = "You're subscribed!";
+                document.querySelector('.page-title').nextElementSibling.innerHTML = "Thank you! Please check your inbox to confirm your subscription.";
+                messageContainer.innerHTML = `
+                    <div class="bg-green-50 border border-green-200 rounded-md p-4">
+                        <h3 class="text-green-800 font-semibold mb-2">Successfully subscribed!</h3>
+                        <p class="text-green-700">You should receive a confirmation email shortly.</p>
+                    </div>
+                `;
+            } else {
+                // Error from API
+                throw new Error(result.message || 'Subscription failed');
+            }
+            
+        } catch (error) {
+            console.error('Subscription error:', error);
+            messageContainer.innerHTML = `
+                <div class="bg-red-50 border border-red-200 rounded-md p-4">
+                    <h3 class="text-red-800 font-semibold mb-2">Subscription failed</h3>
+                    <p class="text-red-700">${error.message}</p>
+                    <p class="text-red-600 text-sm mt-2">Please try again or contact support.</p>
+                </div>
+            `;
+        } finally {
+            // Reset button
+            submitButton.textContent = originalText;
+            submitButton.disabled = false;
+        }
+    });
+    
+    // Select All / Deselect All functionality
     selectAllBtn.addEventListener('click', () => {
         const shouldSelectAll = !Array.from(allTagCheckboxes).every(cb => cb.checked);
         allTagCheckboxes.forEach(checkbox => {
@@ -86,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function () {
         selectAllBtn.textContent = shouldSelectAll ? 'Deselect All' : 'Select All';
     });
 
-    document.querySelector('form').addEventListener('change', (e) => {
+    form.addEventListener('change', (e) => {
         if(e.target.name === 'l') {
             if (Array.from(allTagCheckboxes).every(cb => cb.checked)) {
                 selectAllBtn.textContent = 'Deselect All';
