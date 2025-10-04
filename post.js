@@ -25,7 +25,7 @@ const posts = [
         date: "Oct 04, 2025",
         description: "For the longest time, my personal website was a handful of handcrafted HTML files...",
         source: "priyamalok.me",
-        tags: ["rust", "zola"]
+        tags: ["rust"]
     },
     {
         title: "A Pragmatic Guide to GLM and GBM for Actuaries",
