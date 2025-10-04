@@ -41,11 +41,11 @@ enableGitInfo = true
     weight = 10
   [[menu.main]]
     name = "Projects"
-    url = "/project/"
+    url = "/project"
     weight = 20
   [[menu.main]]
     name = "Musings"
-    url = "/blog/"
+    url = "/blog"
     weight = 30
 
 # SEO and performance optimizations
