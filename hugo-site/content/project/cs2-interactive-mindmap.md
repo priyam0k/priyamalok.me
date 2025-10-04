@@ -4,7 +4,7 @@ date: 2025-09-23
 draft: false
 description: "Interactive mindmap for CS2 actuarial curriculum with detailed navigation"
 tags: ["actuarial-exams"]
-external_url: "/cs2-mindmap.html"
+external_url: "/project/cs2-mindmap.html"
 slug: "cs2-interactive-mindmap"
 type: "project"
 ---
