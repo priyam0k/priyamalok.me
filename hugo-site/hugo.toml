@@ -6,6 +6,7 @@ title = "Priyam Alok's personal homepage"
 publishDir = "public"
 enableRobotsTXT = true
 enableGitInfo = true
+uglyURLs = true
 
 [build]
   publish = "public"
@@ -31,8 +32,8 @@ enableGitInfo = true
     codeFences = true
 
 [permalinks]
-  blog = "/blog/:slug/"
-  project = "/project/:slug/"
+  blog = "/blog/:slug"
+  project = "/project/:slug"
 
 [menu]
   [[menu.main]]

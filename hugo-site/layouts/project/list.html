@@ -1,0 +1,43 @@
+{{ define "main" }}
+<section class="mb-12">
+    <h1 class="page-title text-2xl mb-2 text-black">Projects</h1>
+    <p>An assorted collection of personal and academic projects.</p>
+</section>
+
+<section class="space-y-10">
+    {{ $projects := where .Site.RegularPages "Section" "project" }}
+    {{ range $index, $project := $projects.ByDate.Reverse }}
+    <article class="flex flex-col sm:flex-row gap-6">
+        {{ $dateParts := split ($project.Date.Format "Jan 2 2006") " " }}
+        {{ $day := index $dateParts 1 }}
+        {{ $monthYear := printf "%s %s" (index $dateParts 0) (index $dateParts 2) }}
+        
+        <div class="w-28 text-sm text-gray-500 flex-shrink-0">
+            <p class="font-semibold">{{ $day }}</p>
+            <p>{{ $monthYear }}</p>
+        </div>
+        <div>
+            <h2 class="post-title text-xl mb-1">
+                {{ if $project.Params.external_url }}
+                    <a href="{{ $project.Params.external_url }}" 
+                       class="link-style" 
+                       target="_blank" rel="noopener noreferrer">
+                        {{ $project.Title }}
+                    </a>
+                {{ else }}
+                    <a href="{{ $project.RelPermalink }}" class="link-style">{{ $project.Title }}</a>
+                {{ end }}
+            </h2>
+            <p class="text-sm text-gray-400 mb-2">
+                {{ if $project.Params.external_url }}
+                    {{ if in $project.Params.external_url "github.io" }}github.io{{ else }}priyamalok.me{{ end }}
+                {{ else }}
+                    priyamalok.me
+                {{ end }}
+            </p>
+            <p>{{ $project.Description }}</p>
+        </div>
+    </article>
+    {{ end }}
+</section>
+{{ end }}
