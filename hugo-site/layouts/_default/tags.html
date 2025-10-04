@@ -1,0 +1,60 @@
+{{ define "main" }}
+<main class="text-base leading-relaxed text-gray-800">
+    <section class="mb-12">
+        <h1 class="page-title text-3xl mb-6 text-black">Tags</h1>
+        
+        <ul id="tags-list" class="space-y-2">
+            {{ range .Site.Taxonomies.tags.ByCount }}
+            <li>
+                <a href="#{{ .Name }}" data-tag="{{ .Name }}" class="tag-link text-lg">{{ .Name }}</a>
+                <sup class="tag-count text-sm">{{ .Count }}</sup>
+            </li>
+            {{ else }}
+            <li><p class="text-gray-600">No tags found.</p></li>
+            {{ end }}
+        </ul>
+    </section>
+
+    <section id="posts-section" class="hidden">
+        <h2 id="posts-heading" class="page-title text-2xl mb-6 text-black border-t border-gray-200 pt-8"></h2>
+        <div id="posts-list" class="space-y-10"></div>
+    </section>
+</main>
+
+<style>
+    .tag-count { color: #6b7280; }
+    .tag-link { color: #2563eb; text-decoration: none; }
+    .tag-link:hover { text-decoration: underline; text-decoration-color: #93c5fd; }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const postsSection = document.getElementById('posts-section');
+    const postsHeading = document.getElementById('posts-heading');
+    const postsListContainer = document.getElementById('posts-list');
+    
+    const displayPostsForTag = (selectedTag) => {
+        // This will be populated by the original JavaScript approach
+        // For now, just show the section
+        postsHeading.textContent = `Posts tagged with "${selectedTag}"`;
+        postsSection.classList.remove('hidden');
+        postsSection.scrollIntoView();
+    };
+    
+    // Handle tag clicks
+    document.addEventListener('click', (event) => {
+        if (event.target.classList.contains('tag-link')) {
+            event.preventDefault();
+            displayPostsForTag(event.target.dataset.tag);
+            history.pushState(null, '', `#${event.target.dataset.tag}`);
+        }
+    });
+    
+    // Handle direct hash navigation
+    if (window.location.hash) {
+        const tagName = decodeURIComponent(window.location.hash.substring(1));
+        displayPostsForTag(tagName);
+    }
+});
+</script>
+{{ end }}

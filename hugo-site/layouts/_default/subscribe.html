@@ -1,0 +1,89 @@
+{{ define "main" }}
+<main class="text-base leading-relaxed text-gray-800">
+    <section class="mb-12">
+        <h1 class="page-title text-3xl mb-4 text-black">{{ .Title }}</h1>
+        <p class="mb-8">{{ .Description }}</p>
+        
+        <!-- Reverted action URL to localhost for local-only functionality -->
+        <form method="post" action="http://localhost:9000/subscription/form" class="space-y-6">
+            <input type="hidden" name="nonce" />
+            
+            <div class="space-y-4">
+                <input type="email" name="email" required placeholder="your.email@example.com" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-d9534f">
+                <input type="text" name="name" placeholder="Name (optional)" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-d9534f">
+            </div>
+
+            <div>
+                <div class="flex justify-between items-center mb-3">
+                    <p class="font-semibold text-gray-700">Select your interests:</p>
+                    <button type="button" id="select-all-btn" class="tag-pill-label">Select All</button>
+                </div>
+                
+                <div class="flex flex-wrap gap-3 pt-3 border-t border-gray-200">
+                    {{ range .Site.Taxonomies.tags.ByCount }}
+                    <div>
+                        <input id="tag-{{ .Name | urlize }}" type="checkbox" name="l" value="{{ .Name | urlize }}" class="hidden tag-pill-input">
+                        <label for="tag-{{ .Name | urlize }}" class="tag-pill-label">{{ .Name }}</label>
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+            
+            <button type="submit" class="bg-d9534f text-white font-semibold px-8 py-3 rounded-md hover:bg-bf4340 transition-colors w-full sm:w-auto" style="background-color: #d9534f;">Subscribe</button>
+        </form>
+    </section>
+</main>
+
+<style>
+    .tag-pill-label {
+        display: inline-block;
+        cursor: pointer;
+        border: 1px solid #d1d5db;
+        border-radius: 9999px;
+        padding: 0.25rem 0.75rem;
+        font-size: 0.875rem;
+        transition: all 0.2s ease-in-out;
+        user-select: none;
+    }
+
+    .tag-pill-input:checked + .tag-pill-label {
+        background-color: #fee2e2;
+        border-color: #d9534f;
+        color: #1f2937;
+        font-weight: 500;
+    }
+    
+    #select-all-btn {
+        background-color: #f3f4f6;
+        color: #4b5563;
+    }
+    #select-all-btn:hover {
+        background-color: #e5e7eb;
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const selectAllBtn = document.getElementById('select-all-btn');
+    const allTagCheckboxes = document.querySelectorAll('input[name="l"]');
+    
+    selectAllBtn.addEventListener('click', () => {
+        const shouldSelectAll = !Array.from(allTagCheckboxes).every(cb => cb.checked);
+        allTagCheckboxes.forEach(checkbox => {
+            checkbox.checked = shouldSelectAll;
+        });
+        selectAllBtn.textContent = shouldSelectAll ? 'Deselect All' : 'Select All';
+    });
+
+    document.querySelector('form').addEventListener('change', (e) => {
+        if(e.target.name === 'l') {
+            if (Array.from(allTagCheckboxes).every(cb => cb.checked)) {
+                selectAllBtn.textContent = 'Deselect All';
+            } else {
+                selectAllBtn.textContent = 'Select All';
+            }
+        }
+    });
+});
+</script>
+{{ end }}
