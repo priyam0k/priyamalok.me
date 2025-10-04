@@ -36,30 +36,6 @@ const posts = [
         tags: ["glm", "gbm", "glm vs gbm", "pricing", "reserving"]
     },
     {
-        title: "CS2 mindmap",
-        url: "/project/cs2-mindmap.html",
-        date: "Sep 23, 2025",
-        description: "For quick summary",
-        source: "priyamalok.me",
-        tags: ["actuarial-exams"]
-    },
-    {
-        title: "CS1 mindmap",
-        url: "/project/cs1-intractive-mindmap.html",
-        date: "Sep 23, 2025",
-        description: "For quick summary",
-        source: "priyamalok.me",
-        tags: ["actuarial-exams"]
-    },  
-    {
-        title: "CM2 mindmap",
-        url: "/project/cm2-mindmap.html",
-        date: "Sep 23, 2025",
-        description: "For quick summary",
-        source: "priyamalok.me",
-        tags: ["actuarial-exams"]
-    },
-    {
         title: "Beyond the Framework",
         url: "blog/beyond-the-framework-key-takeways-from-founders.html",
         date: "Aug 15, 2025",
