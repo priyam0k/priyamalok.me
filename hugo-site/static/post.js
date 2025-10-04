@@ -37,7 +37,7 @@ const posts = [
     },
     {
         title: "Beyond the Framework",
-        url: "blog/beyond-the-framework-key-takeways-from-founders.html",
+        url: "/blog/beyond-the-framework-key-takeways-from-founders.html",
         date: "Aug 15, 2025",
         description: "Key takeaways from a meeting with the PredicTri founders, on how transparency and data-driven explainability are shaping the future of actuarial work.",
         source: "priyamalok.me",
@@ -45,7 +45,7 @@ const posts = [
     },
     {
         title: "50% tariffs on India: navigating the trade storm",
-        url: "blog/50-percent-tariffs-on-india-navigating-the-trade-storm.html",
+        url: "/blog/50-percent-tariffs-on-india-navigating-the-trade-storm.html",
         date: "Aug 06, 2025",
         description: "The world of international trade often feels like a high-stakes chess match, and the latest move from the U.S. has certainly shaken the board.",
         source: "priyamalok.me",
@@ -61,7 +61,7 @@ const posts = [
     },
     {
         title: "An analysis of blockchain in insurance, sparked by curiosity",
-        url: "blog/an-analysis-of-blockchain-in-insurance-sparked-by-curiosity.html",
+        url: "/blog/an-analysis-of-blockchain-in-insurance-sparked-by-curiosity.html",
         date: "Jul 31, 2025",
         description: "A recent mentorship session sparked a memory of a conversation with MJ The Fellow Actuary about the future of blockchain in insurance.",
         source: "priyamalok.me",
@@ -69,7 +69,7 @@ const posts = [
     },
     {
         title: "A journey through PriceWriter podcasts",
-        url: "blog/a-journey-through-pricewriter-podcasts.html",
+        url: "/blog/a-journey-through-pricewriter-podcasts.html",
         date: "Jul 28, 2025",
         description: "After following the PriceWriter podcasts for over a year, I'm reflecting on my favorite parts and key learnings.",
         source: "priyamalok.me",
@@ -77,7 +77,7 @@ const posts = [
     },
     {
         title: "Parametric insurance: global comparative analysis",
-        url: "blog/parametric-insurance-global-comparative-analysis.html",
+        url: "/blog/parametric-insurance-global-comparative-analysis.html",
         date: "Jul 26, 2025",
         description: "A comparative analysis of parametric insurance markets in India, the U.S., and the U.K., unpacking the actuarial foundations and product innovations.",
         source: "priyamalok.me",
@@ -85,7 +85,7 @@ const posts = [
     },
     {
         title: "Pricing a non-stationary world: a quantitative analysis",
-        url: "blog/pricing-a-non-stationary-world-a-quantitative-analysis.html",
+        url: "/blog/pricing-a-non-stationary-world-a-quantitative-analysis.html",
         date: "Jul 24, 2025",
         description: "An analysis of the escalating crisis in property insurance, driven by the increasing frequency and severity of climate-related catastrophes.",
         source: "priyamalok.me",
@@ -93,7 +93,7 @@ const posts = [
     },
     {
         title: "Project: Interactive guide to general insurance principles",
-        url: "blog/post-gi-mindmap.html",
+        url: "/blog/post-gi-mindmap.html",
         date: "Jul 03, 2025",
         description: "An interactive mind map designed to explore the core principles of General Insurance, from financial management to reinsurance.",
         source: "priyamalok.me",
@@ -101,7 +101,7 @@ const posts = [
     },
     {
         title: "A deep dive into the PredicTri framework",
-        url: "blog/a-deep-dive-into-the-predictri-framework.html",
+        url: "/blog/a-deep-dive-into-the-predictri-framework.html",
         date: "Jul 04, 2025",
         description: "An interactive analysis of the PredicTri framework, which aims to modernize P&C reserving using Bayesian methods and machine learning.",
         source: "priyamalok.me",
@@ -109,7 +109,7 @@ const posts = [
     },
     {
         title: "Reading between the yields: a global risk barometer",
-        url: "blog/reading-between-the-yields.html",
+        url: "/blog/reading-between-the-yields.html",
         date: "May 21, 2025",
         description: "A detailed comparative analysis of 10-year government bond yields across developed, strategic, and emerging economies.",
         source: "priyamalok.me",
