@@ -19,8 +19,7 @@ uglyURLs = true
   twitter = "https://x.com/priyam0k"
 
 [taxonomies]
-  tag = "tags"
-  category = "categories"
+  # Disable taxonomy page generation - using static HTML with JS instead
 
 [markup]
   [markup.goldmark]
