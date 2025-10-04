@@ -19,13 +19,8 @@
                     <button type="button" id="select-all-btn" class="tag-pill-label">Select All</button>
                 </div>
                 
-                <div class="flex flex-wrap gap-3 pt-3 border-t border-gray-200">
-                    {{ range .Site.Taxonomies.tags.ByCount }}
-                    <div>
-                        <input id="tag-{{ .Name | urlize }}" type="checkbox" name="l" value="{{ .Name | urlize }}" class="hidden tag-pill-input">
-                        <label for="tag-{{ .Name | urlize }}" class="tag-pill-label">{{ .Name }}</label>
-                    </div>
-                    {{ end }}
+                <div id="tags-container" class="flex flex-wrap gap-3 pt-3 border-t border-gray-200">
+                    <!-- Tags will be loaded dynamically from post.js -->
                 </div>
             </div>
             
@@ -62,9 +57,39 @@
     }
 </style>
 
+<script src="/post.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+    const tagsContainer = document.getElementById('tags-container');
     const selectAllBtn = document.getElementById('select-all-btn');
+    
+    // Extract unique tags from post.js
+    if (typeof posts !== 'undefined' && posts.length > 0) {
+        const tagCounts = {};
+        posts.forEach(post => {
+            post.tags.forEach(tag => {
+                tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+            });
+        });
+        
+        // Sort tags by count (descending)
+        const sortedTags = Object.keys(tagCounts).sort((a, b) => tagCounts[b] - tagCounts[a]);
+        
+        // Generate tag checkboxes
+        sortedTags.forEach(tag => {
+            const tagId = tag.toLowerCase().replace(/\s+/g, '-');
+            const div = document.createElement('div');
+            div.innerHTML = `
+                <input id="tag-${tagId}" type="checkbox" name="l" value="${tag}" class="hidden tag-pill-input">
+                <label for="tag-${tagId}" class="tag-pill-label">${tag}</label>
+            `;
+            tagsContainer.appendChild(div);
+        });
+    } else {
+        tagsContainer.innerHTML = '<p class="text-gray-500 text-sm">No tags available</p>';
+    }
+    
+    // Select All / Deselect All functionality
     const allTagCheckboxes = document.querySelectorAll('input[name="l"]');
     
     selectAllBtn.addEventListener('click', () => {

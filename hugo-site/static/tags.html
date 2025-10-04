@@ -129,7 +129,7 @@
                     sortedTags.forEach(tag => {
                         const li = document.createElement('li');
                         li.innerHTML = `
-                            <a href="#${tag}" data-tag="${tag}" class="tag-link text-lg">
+                            <a href="javascript:void(0)" data-tag="${tag}" class="tag-link text-lg">
                                 ${tag}</a>
                             <sup class="tag-count text-sm">${tagCounts[tag]}</sup>
                         `;
@@ -183,13 +183,16 @@
                     if (event.target.classList.contains('tag-link')) {
                         event.preventDefault();
                         displayPostsForTag(event.target.dataset.tag);
-                        history.pushState(null, '', `#${event.target.dataset.tag}`);
+                        // Smooth scroll to posts section without changing URL
+                        postsSection.scrollIntoView({ behavior: 'smooth' });
                     }
                 });
 
-                // Handle direct hash navigation
+                // Handle direct hash navigation (for backwards compatibility)
                 if (window.location.hash && tagCounts[window.location.hash.substring(1)]) {
                     displayPostsForTag(decodeURIComponent(window.location.hash.substring(1)));
+                    // Clean up the URL after loading
+                    history.replaceState(null, '', window.location.pathname);
                 }
             } else {
                 tagsList.innerHTML = '<li><p class="text-gray-600">Could not load tags. Please ensure post.js is available.</p></li>';
