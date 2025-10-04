@@ -1,0 +1,12 @@
+# Redirects for priyamalok.me Hugo site
+
+# Redirect old HTML extensions to clean URLs (if needed)
+/blog/*.html /blog/:splat 301
+/project/*.html /project/:splat 301
+
+# Ensure www redirects to non-www
+https://www.priyamalok.me/* https://priyamalok.me/:splat 301
+
+# RSS feed redirect
+/rss.xml /feed.xml 301
+/rss /feed.xml 301

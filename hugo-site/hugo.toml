@@ -1,0 +1,59 @@
+baseURL = "https://priyamalok.me"
+languageCode = "en-us"
+title = "Priyam Alok's personal homepage"
+
+# Cloudflare Pages optimization
+publishDir = "public"
+enableRobotsTXT = true
+enableGitInfo = true
+
+[build]
+  publish = "public"
+  command = "hugo --gc --minify"
+
+[params]
+  author = "Priyam Alok"
+  description = "Musings on insurance tech, finance<br>and life"
+  linkedin = "https://www.linkedin.com/in/priyamalok/"
+  twitter = "https://x.com/priyam0k"
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    style = "github"
+    lineNos = false
+    codeFences = true
+
+[permalinks]
+  blog = "/blog/:slug/"
+  project = "/project/:slug/"
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 10
+  [[menu.main]]
+    name = "Projects"
+    url = "/project/"
+    weight = 20
+  [[menu.main]]
+    name = "Musings"
+    url = "/blog/"
+    weight = 30
+
+# SEO and performance optimizations
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+
+[outputFormats]
+  [outputFormats.RSS]
+    mediatype = "application/rss"
+    baseName = "feed"

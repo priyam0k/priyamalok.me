@@ -1,0 +1,21 @@
+{{ define "main" }}
+<article class="prose max-w-none">
+    <h1 class="post-title text-3xl sm:text-4xl mb-4 text-black">{{ .Title }}</h1>
+    <p class="text-sm text-gray-500 mb-8 !-mt-2">Published on {{ .Date.Format "January 2, 2006" }}</p>
+    
+    <div class="text-lg leading-relaxed text-slate-800">
+        {{ .Content }}
+    </div>
+    
+    {{ if .Params.tags }}
+    <div class="mt-12 pt-8 border-t border-gray-200">
+        <p class="text-sm text-gray-500 mb-4">Tags:</p>
+        <div class="flex flex-wrap gap-2">
+            {{ range .Params.tags }}
+            <a href="/tags/{{ . | urlize }}/" class="text-sm px-3 py-1 bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition-colors">{{ . }}</a>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
+</article>
+{{ end }}

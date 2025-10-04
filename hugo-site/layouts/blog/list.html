@@ -1,0 +1,46 @@
+{{ define "main" }}
+<section class="mb-12">
+    <h1 class="page-title text-2xl mb-2 text-black">Musings</h1>
+    <p>An assorted collection of thoughts on insurance tech, finance and life. Browse by <a href="/tags/" class="link-style">tags</a>, or <a href="/subscribe/" class="link-style">subscribe</a> for updates.</p>
+</section>
+
+<section class="space-y-8">
+    {{ $posts := where .Site.RegularPages "Section" "in" (slice "blog" "project") }}
+    {{ range $index, $post := $posts.ByDate.Reverse }}
+    <article class="flex flex-col sm:flex-row gap-6">
+        {{ $dateParts := split ($post.Date.Format "Jan 2, 2006") " " }}
+        {{ $day := index $dateParts 1 }}
+        {{ $monthYear := printf "%s %s" (index $dateParts 0) (index $dateParts 2) }}
+        
+        <div class="w-28 text-sm text-gray-500 flex-shrink-0">
+            <p>{{ $day }}</p>
+            <p>{{ $monthYear }}</p>
+        </div>
+        <div>
+            <h3 class="post-title text-xl mb-1">
+                {{ if $post.Params.external_url }}
+                    <a href="{{ $post.Params.external_url }}" 
+                       class="link-style" 
+                       target="_blank" rel="noopener noreferrer">
+                        {{ $post.Title }}
+                    </a>
+                {{ else }}
+                    <a href="{{ $post.Permalink }}" class="link-style">{{ $post.Title }}</a>
+                {{ end }}
+            </h3>
+            <p class="text-sm text-gray-400 mb-2">
+                {{ if $post.Params.external_url }}
+                    {{ if in $post.Params.tags "music" }}youtube.com{{ else }}priyamalok.me{{ end }}
+                {{ else }}
+                    priyamalok.me
+                {{ end }}
+            </p>
+            <p>{{ $post.Description }}</p>
+        </div>
+    </article>
+    {{ if ne $index (sub (len $posts.ByDate.Reverse) 1) }}
+    <hr class="border-gray-200">
+    {{ end }}
+    {{ end }}
+</section>
+{{ end }}

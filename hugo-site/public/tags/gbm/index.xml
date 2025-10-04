@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>gbm on Priyam Alok&#39;s personal homepage</title>
+    <link>https://priyamalok.me/tags/gbm/</link>
+    <description>Recent content in gbm on Priyam Alok&#39;s personal homepage</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 01 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://priyamalok.me/tags/gbm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A Pragmatic Guide to GLM and GBM for Actuaries</title>
+      <link>https://priyamalok.me/blog/a-pragmatic-guide-to-glm-and-gbm-for-actuaries/</link>
+      <pubDate>Wed, 01 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://priyamalok.me/blog/a-pragmatic-guide-to-glm-and-gbm-for-actuaries/</guid>
+      <description>A technical comparison of GLM and GBM, covering their math, applications in ratemaking and reserving, and regulatory implications.</description>
+    </item>
+  </channel>
+</rss>
